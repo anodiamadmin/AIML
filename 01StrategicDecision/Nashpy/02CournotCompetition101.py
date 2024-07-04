@@ -4,7 +4,7 @@ import nashpy as nash
 import os
 import glob
 
-files = glob.glob('./plots/07Cournot_*.png')
+files = glob.glob('./plots/02Cournot_*.png')
 for f in files:
     os.remove(f)
 
@@ -113,7 +113,7 @@ def draw_profit_vs_quantities(q1, q2, c, q1_q2=0., color='blue'):
         ax_pic.set_zlabel('Profit -->')
         ax_pic.set_title(f'Cost of Production c1 ={c[position - 1]}')
     fig2.tight_layout()
-    fig2.savefig(f'./plots/07Cournot_ProfitVsQuantity_{q1_q2}.png')
+    fig2.savefig(f'./plots/02Cournot_ProfitVsQuantity_{q1_q2}.png')
 
 
 draw_default_cournot()
@@ -159,6 +159,6 @@ ax.set_xlabel('q1 -->')
 ax.set_ylabel('q2 -->')
 ax.set_zlabel('Profit -->')
 
-fig1.savefig(f'./plots/07Cournot_Competition_a_{a_crn_const}.png')
-fig3.savefig(f'./plots/07Cournot_NashEq_a_{a_crn_const}_q_{q_nash}.png')
+fig1.savefig(f'./plots/02Cournot_Competition_a_{a_crn_const}.png')
+fig3.savefig(f'./plots/02Cournot_NashEq_a_{a_crn_const}_q_{q_nash}.png')
 plt.show()
