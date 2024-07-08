@@ -25,6 +25,11 @@ B = [[-1, 1], [1, -1]]
 matching_pennies_game = nash.Game(A, B)
 print(f'Matching Pennies Game:\n{matching_pennies_game}')
 
+print('\n----- Single Matrix Matching Pennies Game -----')
+A = [[5, 6], [3, 4]]
+single_matrix_matching_pennies_game = nash.Game(A)
+print(f'Single Matrix Matching Pennies Game:\n{single_matrix_matching_pennies_game}')
+
 print('\n----- Market Share for Low Price Game -----')
 print(f'Firm1 & Firm2 sales identical apples at $10 or $5 to 100 customers.'
       f'80 customers care for low unit sale price, 20 are oblivious to price.')

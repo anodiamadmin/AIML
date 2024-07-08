@@ -4,7 +4,10 @@ import nashpy as nash
 
 
 def calc_compensation(q1, q2):
-    return q1 > q2 if 0 else q2 + 5
+    if q1 > q2:
+        return 0
+    else:
+        return q2 + 5
 
 
 fig = plt.figure(figsize=plt.figaspect(0.8))
@@ -14,8 +17,9 @@ ax = fig.add_subplot(1, 1, 1, projection='3d')
 q1 = np.linspace(5, 20, 151)
 q2 = np.linspace(5, 20, 151)
 q1_mesh, q2_mesh = np.meshgrid(q1, q2)
-compensation_1 = calc_compensation(q1_mesh, q2_mesh)
-compensation_2 = calc_compensation(q2_mesh, q1_mesh)
+v_calc_compensation = np.vectorize(calc_compensation)
+compensation_1 = v_calc_compensation(q1_mesh, q2_mesh)
+compensation_2 = v_calc_compensation(q2_mesh, q1_mesh)
 
 ax.plot_surface(q1_mesh, q2_mesh, compensation_1, color='red', alpha=0.2, linewidth=.5, label=f'Player - 1')
 ax.plot_surface(q1_mesh, q2_mesh, compensation_2, color='green', alpha=0.2, linewidth=.5, label=f'Player - 2')
@@ -29,9 +33,9 @@ ax.plot_surface(q1_mesh, q2_mesh, compensation_2, color='green', alpha=0.2, line
 # print(f'next_nash({type(next_nash)})\n{next_nash}')
 
 ax.legend(loc='upper right')
-ax.set_xlim(0, 20)
-ax.set_ylim(0, 20)
-ax.set_zlim(0, 30)
+ax.set_xlim(-0, 25)
+ax.set_ylim(-0, 25)
+ax.set_zlim(-5, 30)
 ax.set_xlabel('Claim 1 -->')
 ax.set_ylabel('Claim 2 -->')
 ax.set_zlabel('Compensation -->')
