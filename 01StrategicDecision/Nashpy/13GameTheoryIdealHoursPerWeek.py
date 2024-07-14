@@ -37,76 +37,72 @@ employee_data = np.array([np.round(employee_number), np.round(employee_timesheet
 # print(employee_data.shape)
 # print(employee_data)
 ##############################
-# np.savetxt('./data/13GameTheoryIdealHoursPerWeek.csv', employee_data, delimiter=',', fmt='%10.1f')
-#
-#
-# # Data Visualization:
-# plt.style.use('ggplot')
-#
-# fig, ax = plt.subplots(2, 2, sharex=False, sharey=False)
-# fig.set_figheight(6)
-# fig.set_figwidth(10)
-#
-# ax[0][0].hist(employee_timesheet, bins=np.arange(mean_timesheet - 4 * std_timesheet,
-#                                                  mean_timesheet + 4 * std_timesheet, 15),
-#               edgecolor='black', color='pink', linewidth=.3)
-# ax[0][0].axvline(q_33p, alpha=.5, color='green', linewidth=1.5, linestyle='--',
-#                  label=f'33% employees work\nup to {np.round(q_33p/60, 1)}hrs')
-# ax[0][0].axvline(q_67p, alpha=.5, color='red', linewidth=1.5, linestyle='--',
-#                  label=f'67% employees work\nup to {np.round(q_67p/60, 1)}hrs')
-# ax[0][0].set_title("Hours Worked Per Week")
-# ax[0][0].set_xlabel("Hours ->")
-# ax[0][0].set_ylabel("Number of Employees ->")
-# ax[0][0].set_xlim(mean_timesheet - 4 * std_timesheet, mean_timesheet + 4 * std_timesheet)
-# ax[0][0].set_ylim(-5, 75)
-# ax[0][0].set_xticks(ticks=range(mean_timesheet - 4 * std_timesheet,
-#                                 mean_timesheet + 4 * std_timesheet, std_timesheet))
-# ax[0][0].set_xticklabels(labels=range(int((mean_timesheet - 4 * std_timesheet) / 60),
-#                                       int((mean_timesheet + 4 * std_timesheet) / 60),
-#                                       int(std_timesheet / 60)),
-#                          rotation=90)
-# ax[0][0].legend(loc="upper left", fontsize=8)
-#
-# sns.regplot(x=employee_timesheet, y=employee_satisfaction, ax=ax[0][1], marker='o', color='#333355',
-#             scatter_kws={'s': 1}, line_kws={'color': '#8888aa', 'label': 'Trend Line'})
-#
-# ax[0][1].axhline(median_satisfaction, alpha=1, color='#8888aa', linewidth=1.5, linestyle='-.',
-#                  label=f'Median={np.round(median_satisfaction, 1)}')
-# ax[0][1].set_xticks(ticks=range(mean_timesheet - 4 * std_timesheet,
-#                                 mean_timesheet + 4 * std_timesheet, std_timesheet))
-# ax[0][1].set_xticklabels(labels=range(int((mean_timesheet - 4 * std_timesheet) / 60),
-#                                       int((mean_timesheet + 4 * std_timesheet) / 60),
-#                                       int(std_timesheet / 60)),
-#                          rotation=90)
-# ax[0][1].set_title("Hours Worked Vs Employee Satisfaction")
-# ax[0][1].set_xlabel("Hours ->")
-# ax[0][1].set_ylabel("Satisfaction Rating ->")
-# ax[0][1].axvline(q_33p, alpha=.5, color='green', linewidth=1.5, linestyle='--')
-# ax[0][1].axvline(q_67p, alpha=.5, color='red', linewidth=1.5, linestyle='--')
-# ax[0][1].legend(loc="lower left", fontsize=8)
-#
-# sns.regplot(x=employee_timesheet, y=employee_performance, ax=ax[1][0], marker='o', color='#333355',
-#             scatter_kws={'s': 1}, line_kws={'color': '#8888aa', 'label': 'Trend Line'})
-# ax[1][0].set_title("Hours Worked Vs Performance Rating")
-# ax[1][0].set_xlabel("Hours ->")
-# ax[1][0].set_ylabel("Performance Rating ->")
-# ax[1][0].set_xlim(mean_timesheet - 4 * std_timesheet, mean_timesheet + 4 * std_timesheet)
-# ax[1][0].set_xticks(ticks=range(mean_timesheet - 4 * std_timesheet,
-#                                 mean_timesheet + 4 * std_timesheet, std_timesheet))
-# ax[1][0].set_xticklabels(labels=range(int((mean_timesheet - 4 * std_timesheet) / 60),
-#                                       int((mean_timesheet + 4 * std_timesheet) / 60),
-#                                       int(std_timesheet / 60)),
-#                          rotation=90)
-# ax[1][0].axvline(q_33p, alpha=.5, color='green', linewidth=1.5, linestyle='--')
-# ax[1][0].axvline(q_67p, alpha=.5, color='red', linewidth=1.5, linestyle='--')
-# ax[1][0].axhline(mean_performance, alpha=1, color='#8888aa', linewidth=1.5, linestyle='-.',
-#                  label=f'Mean={np.round(mean_performance, 1)}')
-# ax[1][0].legend(loc="lower left", fontsize=8)
-#
-# plt.grid(True)
-# plt.tight_layout()
-# plt.show()
-#############################
+np.savetxt('./data/13GameTheoryIdealHoursPerWeek.csv', employee_data, delimiter=',', fmt='%10.1f')
+
+
+# Data Visualization:
+plt.style.use('ggplot')
+
+fig, ax = plt.subplots(2, 2, sharex=False, sharey=False)
+fig.set_figheight(6)
+fig.set_figwidth(10)
+
+ax[0][0].hist(employee_timesheet, bins=np.arange(mean_timesheet - 4 * std_timesheet,
+                                                 mean_timesheet + 4 * std_timesheet, 15),
+              edgecolor='black', color='pink', linewidth=.3)
+ax[0][0].axvline(q_33p, alpha=.5, color='green', linewidth=1.5, linestyle='--',
+                 label=f'33% employees work\nup to {np.round(q_33p/60, 1)}hrs')
+ax[0][0].axvline(q_67p, alpha=.5, color='red', linewidth=1.5, linestyle='--',
+                 label=f'67% employees work\nup to {np.round(q_67p/60, 1)}hrs')
+ax[0][0].set_title("Hours Worked Per Week")
+ax[0][0].set_xlabel("Hours ->")
+ax[0][0].set_ylabel("Number of Employees ->")
+ax[0][0].set_xlim(mean_timesheet - 4 * std_timesheet, mean_timesheet + 4 * std_timesheet)
+ax[0][0].set_ylim(-5, 75)
+ax[0][0].set_xticks(ticks=range(mean_timesheet - 4 * std_timesheet,
+                                mean_timesheet + 4 * std_timesheet, std_timesheet))
+ax[0][0].set_xticklabels(labels=range(int((mean_timesheet - 4 * std_timesheet) / 60),
+                                      int((mean_timesheet + 4 * std_timesheet) / 60),
+                                      int(std_timesheet / 60)),
+                         rotation=90)
+ax[0][0].legend(loc="upper left", fontsize=8)
+
+sns.regplot(x=employee_timesheet, y=employee_satisfaction, ax=ax[0][1], marker='o', color='#333355',
+            scatter_kws={'s': 1}, line_kws={'color': '#8888aa', 'label': 'Trend Line'})
+
+ax[0][1].axhline(median_satisfaction, alpha=1, color='#8888aa', linewidth=1.5, linestyle='-.',
+                 label=f'Median={np.round(median_satisfaction, 1)}')
+ax[0][1].set_xticks(ticks=range(mean_timesheet - 4 * std_timesheet,
+                                mean_timesheet + 4 * std_timesheet, std_timesheet))
+ax[0][1].set_xticklabels(labels=range(int((mean_timesheet - 4 * std_timesheet) / 60),
+                                      int((mean_timesheet + 4 * std_timesheet) / 60),
+                                      int(std_timesheet / 60)),
+                         rotation=90)
+ax[0][1].set_title("Hours Worked Vs Employee Satisfaction")
+ax[0][1].set_xlabel("Hours ->")
+ax[0][1].set_ylabel("Satisfaction Rating ->")
+ax[0][1].axvline(q_33p, alpha=.5, color='green', linewidth=1.5, linestyle='--')
+ax[0][1].axvline(q_67p, alpha=.5, color='red', linewidth=1.5, linestyle='--')
+ax[0][1].legend(loc="lower left", fontsize=8)
+
+sns.regplot(x=employee_timesheet, y=employee_performance, ax=ax[1][0], marker='o', color='#333355',
+            scatter_kws={'s': 1}, line_kws={'color': '#8888aa', 'label': 'Trend Line'})
+ax[1][0].set_title("Hours Worked Vs Performance Rating")
+ax[1][0].set_xlabel("Hours ->")
+ax[1][0].set_ylabel("Performance Rating ->")
+ax[1][0].set_xlim(mean_timesheet - 4 * std_timesheet, mean_timesheet + 4 * std_timesheet)
+ax[1][0].set_xticks(ticks=range(mean_timesheet - 4 * std_timesheet,
+                                mean_timesheet + 4 * std_timesheet, std_timesheet))
+ax[1][0].set_xticklabels(labels=range(int((mean_timesheet - 4 * std_timesheet) / 60),
+                                      int((mean_timesheet + 4 * std_timesheet) / 60),
+                                      int(std_timesheet / 60)),
+                         rotation=90)
+ax[1][0].axvline(q_33p, alpha=.5, color='green', linewidth=1.5, linestyle='--')
+ax[1][0].axvline(q_67p, alpha=.5, color='red', linewidth=1.5, linestyle='--')
+ax[1][0].axhline(mean_performance, alpha=1, color='#8888aa', linewidth=1.5, linestyle='-.',
+                 label=f'Mean={np.round(mean_performance, 1)}')
+ax[1][0].legend(loc="lower left", fontsize=8)
+###########################
 
 
 # Game Theory
@@ -190,4 +186,121 @@ employee_data = np.array([np.round(employee_number), np.round(employee_timesheet
 # print(f'unhappy_hi_hrs_low_perf = {unhappy_hi_hrs_low_perf}')
 
 mdn_ts = np.median(employee_timesheet)
-print(f'mdn_ts = {mdn_ts}')
+# print(f'mdn_ts = {mdn_ts}')
+whol_arr = employee_data[np.where(employee_timesheet >= mdn_ts)]
+wlb_arr = employee_data[np.where(employee_timesheet < mdn_ts)]
+# print(f'whol_arr.shape = {whol_arr.shape}')
+# print(f'wlb_arr.shape = {wlb_arr.shape}')
+# print(f'whol_arr mean Perf = {np.mean(whol_arr.T[3])}')
+# print(f'wlb_arr mean Perf = {np.mean(wlb_arr.T[3])}')
+# print(f'whol_arr = {whol_arr}')
+# print(f'wlb_arr = {wlb_arr}')
+
+q33_whol_hap = np.percentile(whol_arr[:, 2], 100/3)
+q67_whol_hap = np.percentile(whol_arr[:, 2], 2*100/3)
+# print(f'q33_whol_hap = {q33_whol_hap}')
+# print(f'q67_whol_hap = {q67_whol_hap}')
+whol_low_happ_arr = whol_arr[np.where((whol_arr[:, 2] < q33_whol_hap))]
+whol_med_happ_arr = whol_arr[np.where((whol_arr[:, 2] >= q33_whol_hap) & (whol_arr[:, 2] < q67_whol_hap))]
+whol_hi_happ_arr = whol_arr[np.where((whol_arr[:, 2] >= q67_whol_hap))]
+# print(f'whol_low_happ_arr mean Perf = {np.mean(whol_low_happ_arr.T[3])}')
+# print(f'whol_med_happ_arr mean Perf = {np.mean(whol_med_happ_arr.T[3])}')
+# print(f'whol_hi_happ_arr mean Perf = {np.mean(whol_hi_happ_arr.T[3])}')
+q33_whol_low_prf = np.percentile(whol_low_happ_arr[:, 3], 100/3)
+q67_whol_low_prf = np.percentile(whol_low_happ_arr[:, 3], 2*100/3)
+whol_low_happ_low_perf = np.round(np.mean(whol_low_happ_arr[np.where((whol_low_happ_arr[:, 3] < q33_whol_low_prf))].T[3]), 1)
+whol_low_happ_mid_perf = np.round(np.mean(whol_low_happ_arr[np.where((whol_low_happ_arr[:, 3] >= q33_whol_low_prf) & (whol_low_happ_arr[:, 3] < q67_whol_low_prf))].T[3]), 1)
+whol_low_happ_hi_perf = np.round(np.mean(whol_low_happ_arr[np.where((whol_low_happ_arr[:, 3] >= q67_whol_low_prf))].T[3]), 1)
+print(f'whol_low_happ_low_perf = {whol_low_happ_low_perf}')
+print(f'whol_low_happ_mid_perf = {whol_low_happ_mid_perf}')
+print(f'whol_low_happ_hi_perf = {whol_low_happ_hi_perf}')
+
+q33_whol_med_prf = np.percentile(whol_med_happ_arr[:, 3], 100/3)
+q67_whol_med_prf = np.percentile(whol_med_happ_arr[:, 3], 2*100/3)
+whol_med_happ_low_perf = np.round(np.mean(whol_med_happ_arr[np.where((whol_med_happ_arr[:, 3] < q33_whol_med_prf))].T[3]), 1)
+whol_med_happ_mid_perf = np.round(np.mean(whol_med_happ_arr[np.where((whol_med_happ_arr[:, 3] >= q33_whol_med_prf) & (whol_med_happ_arr[:, 3] < q67_whol_med_prf))].T[3]), 1)
+whol_med_happ_hi_perf = np.round(np.mean(whol_med_happ_arr[np.where((whol_med_happ_arr[:, 3] >= q67_whol_med_prf))].T[3]), 1)
+print(f'whol_med_happ_low_perf = {whol_med_happ_low_perf}')
+print(f'whol_med_happ_mid_perf = {whol_med_happ_mid_perf}')
+print(f'whol_med_happ_hi_perf = {whol_med_happ_hi_perf}')
+
+q33_whol_hi_prf = np.percentile(whol_hi_happ_arr[:, 3], 100/3)
+q67_whol_hi_prf = np.percentile(whol_hi_happ_arr[:, 3], 2*100/3)
+whol_hi_happ_low_perf = np.round(np.mean(whol_hi_happ_arr[np.where((whol_hi_happ_arr[:, 3] < q33_whol_hi_prf))].T[3]), 1)
+whol_hi_happ_mid_perf = np.round(np.mean(whol_hi_happ_arr[np.where((whol_hi_happ_arr[:, 3] >= q33_whol_hi_prf) & (whol_hi_happ_arr[:, 3] < q67_whol_hi_prf))].T[3]), 1)
+whol_hi_happ_hi_perf = np.round(np.mean(whol_hi_happ_arr[np.where((whol_hi_happ_arr[:, 3] >= q67_whol_hi_prf))].T[3]), 1)
+print(f'whol_hi_happ_low_perf = {whol_hi_happ_low_perf}')
+print(f'whol_hi_happ_mid_perf = {whol_hi_happ_mid_perf}')
+print(f'whol_hi_happ_hi_perf = {whol_hi_happ_hi_perf}')
+
+# print(f'q33_whol_low_prf = {q33_whol_low_prf}')
+# print(f'q67_whol_low_prf = {q67_whol_low_prf}')
+# print(f'q33_whol_med_prf = {q33_whol_med_prf}')
+# print(f'q67_whol_med_prf = {q67_whol_med_prf}')
+# print(f'q33_whol_hi_prf = {q33_whol_hi_prf}')
+# print(f'q67_whol_hi_prf = {q67_whol_hi_prf}')
+
+q33_wlb_hap = np.percentile(wlb_arr[:, 2], 100/3)
+q67_wlb_hap = np.percentile(wlb_arr[:, 2], 2*100/3)
+# print(f'q33_wlb_hap = {q33_wlb_hap}')
+# print(f'q67_wlb_hap = {q67_wlb_hap}')
+wlb_low_happ_arr = wlb_arr[np.where((wlb_arr[:, 2] < q33_wlb_hap))]
+wlb_med_happ_arr = wlb_arr[np.where((wlb_arr[:, 2] >= q33_wlb_hap) & (wlb_arr[:, 2] < q67_wlb_hap))]
+wlb_hi_happ_arr = wlb_arr[np.where((wlb_arr[:, 2] >= q67_wlb_hap))]
+# print(f'wlb_low_happ_arr mean Perf = {np.mean(wlb_low_happ_arr.T[3])}')
+# print(f'wlb_med_happ_arr mean Perf = {np.mean(wlb_med_happ_arr.T[3])}')
+# print(f'wlb_hi_happ_arr mean Perf = {np.mean(wlb_hi_happ_arr.T[3])}')
+q33_wlb_low_prf = np.percentile(wlb_low_happ_arr[:, 3], 100/3)
+q67_wlb_low_prf = np.percentile(wlb_low_happ_arr[:, 3], 2*100/3)
+wlb_low_happ_low_perf = np.round(np.mean(wlb_low_happ_arr[np.where((wlb_low_happ_arr[:, 3] < q33_wlb_low_prf))].T[3]), 1)
+wlb_low_happ_mid_perf = np.round(np.mean(wlb_low_happ_arr[np.where((wlb_low_happ_arr[:, 3] >= q33_wlb_low_prf) & (wlb_low_happ_arr[:, 3] < q67_wlb_low_prf))].T[3]), 1)
+wlb_low_happ_hi_perf = np.round(np.mean(wlb_low_happ_arr[np.where((wlb_low_happ_arr[:, 3] >= q67_wlb_low_prf))].T[3]), 1)
+print(f'wlb_low_happ_low_perf = {wlb_low_happ_low_perf}')
+print(f'wlb_low_happ_mid_perf = {wlb_low_happ_mid_perf}')
+print(f'wlb_low_happ_hi_perf = {wlb_low_happ_hi_perf}')
+
+q33_wlb_med_prf = np.percentile(wlb_med_happ_arr[:, 3], 100/3)
+q67_wlb_med_prf = np.percentile(wlb_med_happ_arr[:, 3], 2*100/3)
+wlb_med_happ_low_perf = np.round(np.mean(wlb_med_happ_arr[np.where((wlb_med_happ_arr[:, 3] < q33_wlb_med_prf))].T[3]), 1)
+wlb_med_happ_med_perf = np.round(np.mean(wlb_med_happ_arr[np.where((wlb_med_happ_arr[:, 3] >= q33_wlb_med_prf) & (wlb_med_happ_arr[:, 3] < q67_wlb_med_prf))].T[3]), 1)
+wlb_med_happ_hi_perf = np.round(np.mean(wlb_med_happ_arr[np.where((wlb_med_happ_arr[:, 3] >= q67_wlb_med_prf))].T[3]), 1)
+print(f'wlb_med_happ_low_perf = {wlb_med_happ_low_perf}')
+print(f'wlb_med_happ_mid_perf = {wlb_med_happ_med_perf}')
+print(f'wlb_med_happ_hi_perf = {wlb_med_happ_hi_perf}')
+
+q33_wlb_hi_prf = np.percentile(wlb_hi_happ_arr[:, 3], 100/3)
+q67_wlb_hi_prf = np.percentile(wlb_hi_happ_arr[:, 3], 2*100/3)
+wlb_hi_happ_low_perf = np.round(np.mean(wlb_hi_happ_arr[np.where((wlb_hi_happ_arr[:, 3] < q33_wlb_hi_prf))].T[3]), 1)
+wlb_hi_happ_mid_perf = np.round(np.mean(wlb_hi_happ_arr[np.where((wlb_hi_happ_arr[:, 3] >= q33_wlb_hi_prf) & (wlb_hi_happ_arr[:, 3] < q67_wlb_hi_prf))].T[3]), 1)
+wlb_hi_happ_hi_perf = np.round(np.mean(wlb_hi_happ_arr[np.where((wlb_hi_happ_arr[:, 3] >= q67_wlb_hi_prf))].T[3]), 1)
+print(f'wlb_hi_happ_low_perf = {wlb_hi_happ_low_perf}')
+print(f'wlb_hi_happ_mid_perf = {wlb_hi_happ_mid_perf}')
+print(f'wlb_hi_happ_hi_perf = {wlb_hi_happ_hi_perf}')
+# print(f'q33_wlb_low_prf = {q33_wlb_low_prf}')
+# print(f'q67_wlb_low_prf = {q67_wlb_low_prf}')
+# print(f'q33_wlb_med_prf = {q33_wlb_med_prf}')
+# print(f'q67_wlb_med_prf = {q67_wlb_med_prf}')
+# print(f'q33_wlb_hi_prf = {q33_wlb_hi_prf}')
+# print(f'q67_wlb_hi_prf = {q67_wlb_hi_prf}')
+cellText = [[f'( {wlb_hi_happ_hi_perf}, {whol_hi_happ_hi_perf} )',
+                          f'( {wlb_hi_happ_mid_perf}, {whol_hi_happ_mid_perf} )',
+                          f'( {wlb_hi_happ_low_perf}, {whol_hi_happ_low_perf} )'],
+                         [f'( {wlb_med_happ_hi_perf}, {whol_med_happ_hi_perf} )',
+                          f'( {wlb_med_happ_med_perf}, {whol_med_happ_mid_perf} )',
+                          f'( {wlb_med_happ_low_perf}, {whol_med_happ_low_perf} )'],
+                         [f'( {wlb_low_happ_hi_perf}, {whol_low_happ_hi_perf} )',
+                          f'( {wlb_low_happ_mid_perf}, {whol_low_happ_mid_perf} )',
+                          f'( {wlb_low_happ_low_perf}, {whol_low_happ_low_perf} )']]
+print(cellText)
+ax[1][1].table(cellText=cellText,
+               rowLabels=['Happy', 'Medium', 'Unhappy'],
+               colLabels=['Happy', 'Medium', 'Unhappy'],
+               loc='center')
+ax[1][1].set_title("Performance Benefit Comparison")
+ax[1][1].axis('off')
+
+plt.grid(True)
+plt.tight_layout()
+plt.savefig('./image/13GameTheoryIdealHoursPerWeek.png')
+plt.show()
+#
