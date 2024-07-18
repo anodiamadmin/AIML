@@ -46,9 +46,6 @@ for player in range(len(player_list)):
     ax.plot([player, player], [actual_fan_base_rating[player], actual_fan_base_rating[player]],
             [0, cv], color='yellow', linewidth=3)
     ax.scatter(player, actual_fan_base_rating[player], cv, color='k', s=20, alpha=1, marker='d')
-    ax.scatter(player, 2, cv, color='yellow', s=20, alpha=1, marker='d')
-    ax.scatter(player, actual_fan_base_rating[player], auction_value, color='red', s=30, alpha=1,
-               marker='*')
     ax.plot([player, player], [actual_fan_base_rating[player], actual_fan_base_rating[player]],
             [cv, auction_value], color='green', linewidth=3)
     ax.plot([player, player], [2, 2], [0, cv], color='grey', linewidth=.5, alpha=.5)
@@ -57,6 +54,9 @@ for player in range(len(player_list)):
                                       franchise_budget=2, sponsor_agreement=1.)
     ax.plot(np.ones(len(fan_base_rating))*player, fan_base_rating,
             c_val + p_val, color='green', linewidth=.5, alpha=1)
+    ax.scatter(player, 2, cv, color='yellow', s=20, alpha=1, marker='d', edgecolors='grey')
+    ax.scatter(player, actual_fan_base_rating[player], auction_value, color='red', s=100, alpha=1,
+               marker='*')
 
 ax.legend(loc='upper left', fontsize=8)
 ax.set_title("BBL Auction Price - Sydney Thunders")
