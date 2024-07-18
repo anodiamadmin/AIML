@@ -41,8 +41,8 @@ for player in range(len(player_list)):
     cv, pv = valuation_function(player, actual_fan_base_rating[player],
                                 franchise_budget=2, sponsor_agreement=1.)
     auction_value = cv + pv
-    # print(f'Player {player} -> {actual_fan_base_rating[player - 1]} -> {cv} -> {pv} '
-    #       f'-> {auction_value}')
+    print(f'Player {player} -> {actual_fan_base_rating[player - 1]} -> {cv} -> {pv} '
+          f'-> {auction_value}')
     ax.plot([player, player], [actual_fan_base_rating[player], actual_fan_base_rating[player]],
             [0, cv], color='yellow', linewidth=3)
     ax.scatter(player, actual_fan_base_rating[player], cv, color='k', s=20, alpha=1, marker='d')
