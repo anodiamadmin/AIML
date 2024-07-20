@@ -14,8 +14,8 @@ for nash_equilibrium in next(basic_game.support_enumeration()):
         print(f'len([nash_equilibrium]) = {len([nash_equilibrium])}')
 
 print('\n----- Battle of Sexes -----')
-A = [[10, 2], [0, 5]]
-B = [[5, 2], [0, 10]]
+A = [[10, 0], [0, 5]]
+B = [[5, 0], [0, 10]]
 battle_of_sexes_game = nash.Game(A, B)
 print(f'Battle of Sexes:\n{battle_of_sexes_game}')
 for nash_equilibrium in next(battle_of_sexes_game.support_enumeration()):
