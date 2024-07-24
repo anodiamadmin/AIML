@@ -4,23 +4,32 @@ players, strategies, strategies_row, strategies_col, colors = [], [], [], [], []
 game_name, payoff_quantity_name = None, None
 symmetric = True
 
-# ######################################
+########################################
 # payoff_matrix = [[(-8, -8), (0, -10)],          # ** Mandatory field **
 #                  [(-10, 0), (-1, -1)]]
 # game_name = 'Prisoner\'s Dilemma'
 # players = ['John', 'Clerk']
 # strategies = ['Confess', 'Deny']
 # payoff_quantity_name = 'Sentence-Years'
+# ######################################
+########################################
+payoff_matrix = [[(10, 5), (2, 0)],          # ** Mandatory field **
+                 [(0, 2), (5, 10)]]
+game_name = 'Battle of Sexes'
+players = ['John', 'Alice']
+strategies = ['Cricket', 'Movie']
+# payoff_quantity_name = 'Sentence-Years'
 ######################################
-######################################
-payoff_matrix = [[(5, -5), (0, 0), (0, 0)],          # ** Mandatory field **
-                 [(0, 0), (0, 0), (0, 0)],
-                 [(0, 0), (0, 0), (-5, 5)]]
-game_name = 'Politics'
-players = ['L-Party', 'R-Party']
-strategies = ['Left', 'Mid', 'Right']
-payoff_quantity_name = 'Vote Share'
-######################################
+
+#######################################
+# payoff_matrix = [[(5, -5), (0, 0), (0, 0)],          # ** Mandatory field **
+#                  [(0, 0), (0, 0), (0, 0)],
+#                  [(0, 0), (0, 0), (-5, 5)]]
+# game_name = 'Politics'
+# players = ['L-Party', 'R-Party']
+# strategies = ['Left', 'Mid', 'Right']
+# payoff_quantity_name = 'Vote Share'
+# ######################################
 
 if not game_name:
     game_name = 'Generic Game'
