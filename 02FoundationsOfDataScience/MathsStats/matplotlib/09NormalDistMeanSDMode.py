@@ -6,6 +6,16 @@ plt.style.use('fivethirtyeight')
 mu, sigma = 160.95, 5.59
 heights = np.random.normal(mu, sigma, 100000)
 
+p_47 = sp.norm.cdf(0.47)
+print(f'scipy.stats.norm.cdf(0.47) = {p_47}')   # R equivalent of:: pnorm(0.47) = 0.6808224912174442
+q_68 = sp.norm.ppf(0.68)
+print(f'scipy.stats.norm.ppf(0.68) = {q_68}')   # R equivalent of:: qnorm(0.68) = 0.4676987991145084
+
+p_3_3 = sp.norm.cdf(3) - sp.norm.cdf(-3)   # R equivalent of:: pnorm(3) - pnorm(-3) = 0.9973002039367398
+print(f'scipy.stats.norm.cdf(3) - sp.norm.cdf(-3) = {p_3_3}')
+
+p_1sd = sp.norm.cdf(1) - sp.norm.cdf(-1)
+
 bins = np.arange(mu-4*sigma, mu+4*sigma, .5)
 plt.hist(heights, bins=bins, edgecolor='black', color='pink', linewidth=1)
 
