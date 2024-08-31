@@ -1,0 +1,30 @@
+<fulfillmentToken fulfillmentType="loan" auth="user" xmlns="http://ns.adobe.com/adept">
+  <distributor>urn:uuid:9cb786e8-586a-4950-8901-fff8d2ee6025</distributor>
+  <operatorURL>https://acs.ebookcentral.proquest.com/fulfillment</operatorURL>
+  <transaction>30772861_545045718</transaction>
+  <purchase>2024-09-07T19:52:33+00:00</purchase>
+  <expiration>2024-09-08T01:52:33+00:00</expiration>
+  <resourceItemInfo>
+    <resource>urn:uuid:00000000-0000-0000-0000-000030772861</resource>
+    <resourceItem>0</resourceItem>
+    <metadata>
+      <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">Statistics: Unlocking the Power of Data, 2nd Australia and New Zealand Edition</dc:title>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Lock, Patti Frazer;</dc:creator>
+      <dc:publisher xmlns:dc="http://purl.org/dc/elements/1.1/">John Wiley &amp; Sons, Incorporated</dc:publisher>
+      <dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/">30772861</dc:identifier>
+      <dc:format xmlns:dc="http://purl.org/dc/elements/1.1/">application/pdf</dc:format>
+    </metadata>
+    <licenseToken>
+      <resource>urn:uuid:00000000-0000-0000-0000-000030772861</resource>
+      <permissions>
+        <display>
+          <duration>7775999</duration>
+        </display>
+        <play>
+          <duration>7775999</duration>
+        </play>
+      </permissions>
+    </licenseToken>
+  </resourceItemInfo>
+  <hmac>M53d/x1PiBXIB45RzU3Ji5sx9Hc=</hmac>
+</fulfillmentToken>
