@@ -1,0 +1,81 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+arr1 = np.arange(-10, 11, 1)
+
+print(plt.style.available)
+plt.style.use('ggplot')
+
+fig, ax = plt.subplots(2, 3, sharex=False, sharey=False)
+fig.set_figheight(6)
+fig.set_figwidth(12)
+
+# np.sqrt() & np.absolute()
+sigmoidArr = 1/(1+np.exp(-arr1))
+sqrtarr1 = np.sqrt(np.absolute(arr1))
+ax[0][0].plot(arr1, sqrtarr1, label="np.sqrt(np.absolute())", color="purple", marker="o", linestyle=':', linewidth='1', markersize=5)
+ax[0][0].plot(arr1, sigmoidArr, label="sigmoid()", color="red", linestyle='-', marker="*", linewidth='1', markersize=5)
+ax[0][0].set_xlabel("X axis -->")
+ax[0][0].set_ylabel("Y Axis -->")
+ax[0][0].set_xlim(-10, 10)
+ax[0][0].legend(loc="upper left")
+
+# np.exp()
+exparr1 = np.exp(arr1)
+ax[0][1].plot(arr1, exparr1, label="np.exp()", color="red",  marker="x", linestyle='--', linewidth='1', markersize=5)
+ax[0][1].legend(loc="upper left")
+# np.exp() - log-scale
+ax[0][2].plot(arr1, exparr1, label="np.exp() - log-scale", color="red",  marker="x", linestyle='--', linewidth='1', markersize=5)
+ax[0][2].set_yscale('log')
+ax[0][2].legend(loc="upper left")
+
+# np.min(), np.max() & np.sign()     # min() & max() also work
+realarr1 = np.linspace(-2.5, 2.5, 51)
+funcarr1 = 1/((realarr1**3) - (realarr1**2) + 1)
+ax[1][0].plot(realarr1, funcarr1, label="1/(x^3-x^2+1)", color="red", linestyle='-', linewidth='1', markersize=5)
+ax[1][0].plot(realarr1, np.max(funcarr1)*np.ones(51), label="np.min()", color="#00ff00", linestyle='-', linewidth='1', markersize=5)
+ax[1][0].plot(realarr1, np.min(funcarr1)*np.ones(51), label="np.max()", color="green", linestyle='-', linewidth='1', markersize=5)
+ax[1][0].plot(realarr1, np.sign(funcarr1)+2, label="np.sign()+2", color="blue", linestyle='-', linewidth='1', markersize=5)
+ax[1][0].legend(loc="lower right")
+ax[1][0].set_xlim(-2.5, 2.5)
+
+# np.log10() & np.log2()
+arr2 = np.geomspace(10**-10, 10**10, 21)
+log10arr = np.log10(arr2)
+log2arr = np.log2(arr2)
+ax[1][1].plot(arr2, log10arr, label="np.log10()", color="red", linestyle='-', linewidth='1', markersize=5)
+ax[1][1].plot(arr2, log2arr, label="np.log2()", color="#00ff00", linestyle='-', linewidth='1', markersize=5)
+ax[1][1].legend(loc="upper left")
+ax[1][1].set_xlim(10**-11, 10**11)
+ax[1][1].set_xscale('log')
+ax[1][1].axvline(1, color='#ffffff', linestyle='-', linewidth=1)
+print(f'log(1)={np.log(1)}')
+print(f'log(0)={np.log(0)}')
+print(f'log(-.5)={np.log(-.5)}')
+print(f'log(-1)={np.log(-1)}')
+
+# Trigonometric Functions
+realarr1 = np.linspace(-10, 10, 201)
+sinarr = np.sin(realarr1)
+cosarr = np.cos(realarr1)
+tanarr = np.tan(realarr1)
+funcarr1 = np.sin(realarr1) * np.cos(realarr1)
+ax[1][2].plot(realarr1, funcarr1, label="sin(x)*cos(x)", color="red", linestyle='-', linewidth='1', markersize=5)
+ax[1][2].plot(realarr1, sinarr, label="sin(x)", color="#00ff00", linestyle='-', linewidth='1', markersize=5)
+ax[1][2].plot(realarr1, cosarr, label="cos(x)", color="green", linestyle='-', linewidth='1', markersize=5)
+ax[1][2].plot(realarr1, tanarr, label="tan(x)", color="blue", linestyle='-', linewidth='1', markersize=5)
+ax[1][2].legend(loc="upper left")
+ax[1][2].set_ylim(-2, 2)
+print(f'np.pi={np.pi}')
+
+plt.suptitle("Universal Functions")
+plt.subplots_adjust(hspace=0.5)
+plt.subplots_adjust(wspace=0.5)
+plt.subplots_adjust(top=0.85)
+plt.subplots_adjust(bottom=0.15)
+plt.subplots_adjust(left=0.1)
+plt.subplots_adjust(right=0.9)
+
+plt.grid(True)
+plt.tight_layout()
+plt.show()

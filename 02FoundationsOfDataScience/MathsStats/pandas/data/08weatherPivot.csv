@@ -1,0 +1,22 @@
+date,city,max_temp,min_temp,precip_chnce,weather_type
+22/05/2024,Melbourne,18,9,2,Sunny
+23/05/2024,Melbourne,19,10,6,Sunny
+24/05/2024,Melbourne,19,12,5,Sunny
+25/05/2024,Melbourne,19,12,62,Cloudy
+26/05/2024,Melbourne,19,11,24,Partly Cloudy
+27/05/2024,Melbourne,20,11,22,Partly Cloudy
+28/05/2024,Melbourne,20,11,14,Partly Cloudy
+22/05/2024,Sydney,19,11,6,Sunny
+23/05/2024,Sydney,20,11,7,Rainy
+24/05/2024,Sydney,20,13,71,Rainy
+25/05/2024,Sydney,18,9,91,Rainy
+26/05/2024,Sydney,17,8,100,Sunny
+27/05/2024,Sydney,18,13,2,Sunny
+28/05/2024,Sydney,20,14,0,Sunny
+22/05/2024,Brisbane,23,17,100,Rainy
+23/05/2024,Brisbane,23,17,90,Rainy
+24/05/2024,Brisbane,24,18,65,Partly Cloudy
+25/05/2024,Brisbane,26,18,12,Sunny
+26/05/2024,Brisbane,23,16,97,Rainy
+27/05/2024,Brisbane,25,17,23,Cloudy
+28/05/2024,Brisbane,25,16,22,Partly Cloudy

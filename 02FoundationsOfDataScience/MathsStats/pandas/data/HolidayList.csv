@@ -1,0 +1,11 @@
+Date,Day,Occasion,Observance
+26-Jan-23,Thursday,Republic Day,nearest_workday
+8-Mar-23,Wednesday,Holi,nearest_workday
+22-Apr-23,Saturday,Eid ul Fitr,nearest_workday
+1-May-23,Monday,Workers Day,nearest_workday
+15-Aug-23,Tuesday,Independence Day,nearest_workday
+22-Oct-23,Sunday,Durga Puja,previous_Friday
+23-Oct-23,Monday,Durga Puja Nabami,nearest_workday
+24-Oct-23,Tuesday,Dusshera,nearest_workday
+12-Nov-23,Sunday,Diwali,sunday_to_monday
+25-Dec-23,Monday,Christmas,nearest_workday

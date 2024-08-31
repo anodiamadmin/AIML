@@ -1,0 +1,12 @@
+meta data:
+  Stoc Exchange Name: XXX
+  Date: 23-May-2024
+  Time: 16:29
+  File Name: ABCD EFGH
+---------------------------
+stock_ticker,eps,revenue,price,business_head
+GOOGL,72.91,62,1639,Larry Page
+WMT,9.22,783,129,n.a.
+MSFT,-1,320,189,Bill Gates
+RIL,44.2,134,3300,Mukesh Ambani
+TATA,12.3,-1,n.a.,Ratan Tata

@@ -1,0 +1,15 @@
+date,avg_temp,max_wind_speed,wind_direction_mode,weather_type
+22/05/2024,22,9,N,Sunny
+23/05/2024,23,10 m/h,NE,Sunny
+24/05/2024,23,12 mph,NE,Sunny
+25/05/2024,0,12,-9999,Cloudy
+26/05/2024,100,11kph,NNE,Partly Cloudy
+27/05/2024,-99,11,N,Partly Cloudy
+28/05/2024,24,-1,NE,Partly Cloudy
+29/05/2024,23,0,NE,Sunny
+30/05/2024,24,11,-9999,Rainy
+31/05/2024,24 F,13,E,Rainy
+1/6/2024,26 C,0,NEE,Rainy
+2/6/2024,21,8,NE,Sunny
+3/6/2024,22,13,-9999,Sunny
+4/6/2024,24,14,NNE,Sunny
