@@ -1,9 +1,15 @@
+library(tidyverse)
+library(readr)
 library(ggplot2)
-houses = read_excel("D:/AIML/02FoundationsOfDataScience/R_Programming/HousingPrices.xlsx")
+library(nlme)
+library(lme4)
+library(car)
+library(readxl)
+houses = read_excel("D:\\AIML\\02FoundationsOfDataScience\\R_Programming\\HousingPrices.xlsx")
 summary(houses)
 
 # Fit multiple regression model
-model <- lm(SellingPrice ~ Rooms + Location, data = data)
+model <- lm(Price ~ Rooms + Location, data = data)
 
 # Summary of the model to get t-tests and p-values for individual coefficients
 summary_model <- summary(model)

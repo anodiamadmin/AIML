@@ -3,7 +3,7 @@ houses = read_excel("D:/AIML/02FoundationsOfDataScience/R_Programming/HousingPri
 summary(houses)
 
 # Fit multiple regression model
-model <- lm(SellingPrice ~ Rooms + Location, data = data)
+model <- lm(Price ~ Rooms + Location, data = data)
 
 # Summary of the model
 summary(model)
