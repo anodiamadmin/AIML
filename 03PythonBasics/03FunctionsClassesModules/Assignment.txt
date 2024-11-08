@@ -1,0 +1,50 @@
+
+
+
+Python Program on functions, classes and modules:
+Define Temperature class to convert temperatures between units of Fahrenheit, Celsius and Kelvin, and to compare temperatures that are on different units.
+
+The conversions between the units go as follows:
+Converting to Celsius:
+Celsius = (Fahrenheit - 32) × 5/9
+Celsius = Kelvin - 273.15
+Converting from Celsius:
+Fahrenheit = (9/5 x Celsius) + 32
+Kelvin = Celsius + 273.15
+
+Temperature class should:
+Have an __init__ special method that allows to create a Temperature object by supplying a number and a unit: either Celsius (C), Fahrenheit (F), or Kelvin (K).
+Have a __str__ special method that allows you to print a Temperature object in an informative way.
+Have an instance method called to that has a parameter for a unit, an optional parameter for a number of decimal places, and returns the temperature of the instance in the given unit, rounded to the given number of decimal places, if any were given, otherwise not rounded.
+
+Have __eq__, __lt__, __le__, __gt__, and __ge__ special methods that allow you to compare two Temperature objects.
+
+Make appropriate use of docstrings.
+
+Save your class in a module called temperature.py. Import this module into code.py, and add some code to code.py that illustrates the use of your Temperature class.
+
+Example: Here is the kind of code you might use to illustrate your class:
+# Create Temperature objects
+temp_1 = Temperature(32, 'C')
+temp_2 = Temperature(100, 'F')
+temp_3 = Temperature(324, 'K')
+# Print them
+print(temp_1) # Outputs Temperature: 32C
+print(temp_2) # Outputs Temperature: 100F
+print(temp_3) # Outputs Temperature: 324K
+# Convert them
+print(temp_1.to('F')) # Outputs 89.6
+print(temp_2.to('K', 3)) # Outputs 310.928
+print(temp_3.to('C', 1)) # Outputs 50.9
+# Compare them
+print(temp_1 == temp_2) # Outputs False
+print(temp_1 < temp_2) # Outputs True
+print(temp_1 <= temp_2) # Outputs True
+print(temp_1 > temp_2) # Outputs False
+print(temp_1 >= temp_2) # Outputs False
+
+Prioritize the following:
+- Correct logic
+- Free from syntax and runtime errors
+- Good choice of variable/function names
+- Sensible use of comments
