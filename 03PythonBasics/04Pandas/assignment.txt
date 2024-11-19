@@ -1,0 +1,157 @@
+The attached file data.csv contains data about flights along Australia's busiest domestic routes in 2019.
+The columns are:
+City1
+City2
+MonthNum
+DistanceKm - the distance in kilometres between the two cities
+AircraftTrips - the number of aircraft trips that month between the two cities
+Seats - the number of available passenger trips that month between the two cities
+PassengerTrips - the number of actual passenger trips that month between the two cities
+
+Write a program in Python Pandas that answers the following questions: Write seperate and well documented functios for each of the parts and call tem from a main function.
+1. What were the 10 busiest routes for the year, measured by actual passenger trips, and how many actual passenger trips did they have?
+2. For every route, what was their busiest month number, measured by actual passenger trips, and how many actual passenger trips did it have that month? (If there is no unique busiest month, any month will do.) use idxmax() method of data frame 
+3. During which month number were there the most actual passenger trips in total across all routes?
+4. What were the 10 routes that had the highest proportion of vacant seats during the year, and what were their proportions of vacancy? Use the following logic:
+   - First find the total seats in every route during the year
+   - Then find the total passenger trips in each route during the year
+   - Then calculate the vacancy proportion for each route during the year
+   - Finally find the 10 routes that had the highest proportion of vacant seats during the year
+
+Program must be:
+- Correct logic for all questions (1 to 4)
+- Free from syntax and runtime errors
+- Good choice of variable/function names
+- Sensible use of comments
+
+Here is the kind of output that your program should produce:
+
+The 10 busiest routes:
+City1       City2     
+MELBOURNE   SYDNEY        9181932
+BRISBANE    SYDNEY        4821044
+            MELBOURNE     3608681
+GOLD COAST  SYDNEY        2733109
+ADELAIDE    MELBOURNE     2538061
+MELBOURNE   GOLD COAST    2122157
+            PERTH         2110125
+ADELAIDE    SYDNEY        1878741
+PERTH       SYDNEY        1692031
+HOBART      MELBOURNE     1670181
+Name: PassengerTrips, dtype: int64
+
+
+
+Each route's busiest month:
+                              BusiestMonth  NumTrips
+City1          City2                                
+ADELAIDE       ALICE SPRINGS             7     14610
+               BRISBANE                 10     86017
+               CANBERRA                 10     18788
+               GOLD COAST                1     21307
+               MELBOURNE                10    232046
+...                                    ...       ...
+SUNSHINE COAST MELBOURNE                 9     54506
+               SYDNEY                    1     64119
+SYDNEY         TAMWORTH                 11     16383
+               TOWNSVILLE                7     19142
+               WAGGA WAGGA              10     17146
+
+[70 rows x 2 columns]
+
+You could also display all 70 routes as follows:
+
+Each route's busiest month:
+                                 BusiestMonth  NumTrips
+City1           City2                                  
+ADELAIDE        ALICE SPRINGS               7     14610
+                BRISBANE                   10     86017
+                CANBERRA                   10     18788
+                GOLD COAST                  1     21307
+                MELBOURNE                  10    232046
+                PERTH                      10     62148
+                PORT LINCOLN               11     16088
+                SYDNEY                     10    176119
+ALBURY          SYDNEY                     10     21479
+ALICE SPRINGS   DARWIN                      7     13110
+                MELBOURNE                   1         0
+                SYDNEY                      1         0
+ARMIDALE        SYDNEY                     10     11908
+AYERS ROCK      SYDNEY                      8     19685
+BALLINA         SYDNEY                      1     45817
+BRISBANE        CAIRNS                      7    119665
+                CANBERRA                    7     62171
+                DARWIN                      7     39625
+                EMERALD                    10     18854
+                GLADSTONE                  10     22692
+                HAMILTON ISLAND             8     12628
+                HOBART                      1     25674
+                MACKAY                     10     71185
+                MELBOURNE                  10    331472
+                MORANBAH                    1         0
+                MOUNT ISA                   8     13501
+                NEWCASTLE                  10     56940
+                PERTH                      10     89670
+                PROSERPINE                 10     24769
+                ROCKHAMPTON                 7     50811
+                SYDNEY                     10    447595
+                TOWNSVILLE                  7     95192
+BROOME          PERTH                       7     34630
+BUNDABERG       BRISBANE                   10     14211
+CAIRNS          MELBOURNE                   7     92279
+                SYDNEY                      7    109636
+                TOWNSVILLE                 10     13177
+CANBERRA        MELBOURNE                  10    111079
+                SYDNEY                     10     89721
+COFFS HARBOUR   SYDNEY                     10     31157
+DARWIN          MELBOURNE                   7     34887
+                PERTH                       7     17815
+                SYDNEY                      7     37777
+DUBBO           SYDNEY                     10     17016
+GERALDTON       PERTH                       5      9834
+GOLD COAST      SYDNEY                      1    264968
+HAMILTON ISLAND MELBOURNE                  11      8232
+                SYDNEY                     10     23928
+HOBART          MELBOURNE                   1    164170
+                SYDNEY                      1     75075
+KALGOORLIE      PERTH                      10     26547
+KARRATHA        PERTH                      10     43237
+LAUNCESTON      MELBOURNE                   1     97718
+                SYDNEY                      1     37451
+MELBOURNE       GOLD COAST                  1    206458
+                MILDURA                    10     21067
+                NEWCASTLE                   1     45569
+                PERTH                      12    197540
+                SYDNEY                     10    823951
+                TOWNSVILLE                  1         0
+PERTH           NEWMAN                     10     32714
+                PORT HEDLAND                7     36330
+                SYDNEY                     10    157973
+PORT MACQUARIE  SYDNEY                     10     17729
+PROSERPINE      SYDNEY                     10     11398
+SUNSHINE COAST  MELBOURNE                   9     54506
+                SYDNEY                      1     64119
+SYDNEY          TAMWORTH                   11     16383
+                TOWNSVILLE                  7     19142
+                WAGGA WAGGA                10     17146
+
+The overall busiest month:
+MonthNum
+10    5105125
+Name: PassengerTrips, dtype: int64
+
+
+
+The 10 routes with the highest proportion of vacant seats:
+                             Vacancy
+City1         City2                 
+ALICE SPRINGS DARWIN        0.565066
+KALGOORLIE    PERTH         0.433001
+CAIRNS        TOWNSVILLE    0.418525
+GERALDTON     PERTH         0.412624
+PERTH         NEWMAN        0.406720
+ADELAIDE      PORT LINCOLN  0.397928
+PERTH         PORT HEDLAND  0.370486
+KARRATHA      PERTH         0.360320
+SYDNEY        TAMWORTH      0.349407
+MELBOURNE     MILDURA       0.339240
