@@ -1,0 +1,12 @@
+Write a program to generate the following 3 plots:
+The CSV file data.csv in the current folder contains data about space missions since 1957.
+The columns are: Company, Location, DateTime, Details and Outcome (Prelaunch Failure / Partial Failure / Failure / Success)
+1. Create a pie plot that shows the distribution of mission outcomes. Ref: image1.png
+2. Create a horizontal bar plot showing the total number of missions for each company, with the most at the top and the fewest at the bottom. Ref: image2.png
+3. Create the same horizontal bar plot, but with the missions grouped into success and failure, with success in green and failure in red. Ref: image3.png
+If you can see ways to improve the plots, or propose similar ones that convey the same information, please do so.
+The program must be
+- Free from syntax and runtime errors
+- Contain Correct logic
+- Good choice of variable/function names
+- Sensible use of comments
