@@ -1,0 +1,18 @@
+World Happiness Index:
+2015-2019
+https://www.kaggle.com/datasets/unsdsn/world-happiness/code
+https://www.kaggle.com/code/jacopoferretti/world-happiness-score-eda-statistics
+2015-2023
+https://www.kaggle.com/datasets/seanlim123/world-happiness-cleaned/code
+https://www.kaggle.com/code/seanlim123/world-happiness-2015-2023-analysis
+
+global country development and prosperity index 2023
+https://www.kaggle.com/datasets/tarktunataalt/2023-global-country-development-and-prosperity-index/code
+
+
+I have 2 datasets each of which has about 140 to 165 rows, each row for one country in the world.
+1. World Happiness Index from 2015 till 2023. Total 9 files, one file for each year. The files contains the following columns:
+Country, Region, Happiness Rank, Happiness Score, Economy (GDP per Capita), Family, Health (Life Expectancy), Freedom, Trust (Government Corruption), Generosity, Dystopia Residual
+2. Global country development and prosperity index for the year 2023. Total 1 file only for 2023. It contains the following columns:
+Country, AveragScore, SafetySecurity, PersonelFreedom, Governance, SocialCapital, InvestmentEnvironment, EnterpriseConditions, MarketAccessInfrastructure, EconomicQuality, LivingConditions, Health, Education, NaturalEnvironment
+I need to do Python Exploratory Data Analysis and data visualization using this database.
