@@ -18,7 +18,7 @@ from tensorflow.keras.utils import to_categorical
 """ Functions for Assessment 3: ZZSC5836 Data Mining and Machine Learning: """
 
 """ # 2. Develop a dense neural network with one hidden layer.
-         Vary the number of hidden neurons to be 5, 10, 15, and 20 in order to investigate the
+         Vary the number of hidden neurons to be 5, 10, 15, 20, 30, 4, 50 in order to investigate the
          performance of the model using Stochastic Gradient Descent (SGD).
          Determine the optimal number of neurons in the hidden layer from the range of values considered."""
 
@@ -38,7 +38,7 @@ def build_and_train_model(X_train, X_test, y_train, y_test, hidden_neurons, lear
 
 def evaluate_hidden_neurons(df, neuron_options=None):
     if neuron_options is None:
-        neuron_options = [5, 10, 15, 20]
+        neuron_options = [5, 10, 15, 20, 30, 40, 50]
     # Split features and target
     X = df.drop("RingAgeClass", axis=1).values
     y = df["RingAgeClass"].astype(int).values
@@ -63,7 +63,7 @@ def evaluate_hidden_neurons(df, neuron_options=None):
     plt.xticks(neuron_options)
     plt.ylabel("Validation Accuracy")
     plt.grid(True)
-    save_plot('Accuracy-vs-Hidden-Layer-Neurons')
+    save_plot('2_Accuracy-vs-Hidden-Layer-Neurons')
     plt.show(block=False)
     return best_neurons, scores
 
@@ -99,7 +99,7 @@ def evaluate_learning_rates(df, best_neurons, learning_rate_options=None):
     plt.xticks(learning_rate_options)
     plt.ylabel("Validation Accuracy")
     plt.grid(True)
-    save_plot('Accuracy-vs-Learning-Rate')
+    save_plot('3_Accuracy-vs-Learning-Rate')
     plt.show(block=False)
     return best_lr, scores
 
@@ -136,7 +136,7 @@ def evaluate_hidden_layers_effect(df, best_neurons, best_learning_rate):
     history_1 = model_1.fit(X_train, y_train, epochs=100, batch_size=32, verbose=0, validation_data=(X_test, y_test))
     acc_1 = model_1.evaluate(X_test, y_test, verbose=0)[1]
     scores[1] = acc_1
-    print(f"\nAccuracy with 1 Hidden Layer: {acc_1:.4f}")
+    print(f"Accuracy with 1 Hidden Layer: {acc_1:.4f}")
     # Two hidden layers
     model_2 = build_model(layers=2)
     history_2 = model_2.fit(X_train, y_train, epochs=100, batch_size=32, verbose=0, validation_data=(X_test, y_test))
@@ -158,7 +158,7 @@ def evaluate_hidden_layers_effect(df, best_neurons, best_learning_rate):
     plt.ylabel("Validation Accuracy")
     plt.ylim(0, 1)
     plt.grid(axis='y')
-    save_plot("Hidden-Layer-Effect")
+    save_plot("4_Hidden-Layer-Effect")
     plt.show(block=False)
     return best_number_of_layers, scores
 
@@ -205,61 +205,58 @@ def evaluate_optimizers(df, best_neurons, best_learning_rate, best_number_of_lay
 """ # 6. Take the final optimal model among all the above cases and show the confusion matrix
          and ROC/AUC curve for different classes of the multi-class problem. """
 
-
-def evaluate_final_model_metrics(df, best_neurons, best_learning_rate, best_number_of_layers, best_optimizer):
+def plot_confusion_matrix_and_roc(df, best_optimizer, best_number_of_layers, best_learning_rate, best_neurons):
     # Prepare data
     X = df.drop("RingAgeClass", axis=1).values
     y = df["RingAgeClass"].astype(int).values
-    class_labels = np.unique(y)
-    n_classes = len(class_labels)
-    # Normalize and split
-    scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(X)
-    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
-    # Binarize labels for ROC curve
-    y_train_bin = label_binarize(y_train, classes=class_labels)
-    y_test_bin = label_binarize(y_test, classes=class_labels)
-    # Build model
+    X = StandardScaler().fit_transform(X)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Define model
     model = Sequential()
     model.add(Input(shape=(X_train.shape[1],)))
-    model.add(Dense(best_neurons, activation='relu'))
-    if best_number_of_layers == 2:
+    for _ in range(best_number_of_layers):
         model.add(Dense(best_neurons, activation='relu'))
-    model.add(Dense(n_classes, activation='softmax'))
-    optimizer = SGD(learning_rate=best_learning_rate) if best_optimizer == "SGD" else Adam(learning_rate=best_learning_rate)
-    model.compile(optimizer=optimizer,
-                  loss='categorical_crossentropy',
-                  metrics=['accuracy'])
-    # Train model with one-hot labels
-    model.fit(X_train, to_categorical(y_train_bin), epochs=50, batch_size=32, verbose=0, validation_data=(X_test, to_categorical(y_test_bin)))
-    # Predict classes for confusion matrix
-    y_pred = model.predict(X_test)
-    y_pred_classes = np.argmax(y_pred, axis=1)
-    # Confusion Matrix
+    model.add(Dense(4, activation='softmax'))  # 4 output classes
+    # Choose optimizer
+    if best_optimizer.upper() == 'ADAM':
+        optimizer = Adam(learning_rate=best_learning_rate)
+    else:
+        optimizer = SGD(learning_rate=best_learning_rate)
+    model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    model.fit(X_train, y_train, epochs=100, batch_size=32, verbose=0, validation_data=(X_test, y_test))
+    # Predict labels and probabilities
+    y_pred_probs = model.predict(X_test)
+    y_pred_classes = np.argmax(y_pred_probs, axis=1)
+    # --- Confusion Matrix ---
     cm = confusion_matrix(y_test, y_pred_classes)
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=class_labels)
-    disp.plot(cmap='Blues')
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=[0, 1, 2, 3])
+    disp.plot(cmap=plt.cm.Blues)
     plt.title("Confusion Matrix")
-    save_plot("Confusion-Matrix")
+    plt.grid(False)
+    save_plot("6_Confusion_Matrix")
     plt.show(block=False)
-    # ROC + AUC
+    # --- ROC Curve & AUC ---
+    y_test_bin = label_binarize(y_test, classes=[0, 1, 2, 3])
     fpr = {}
     tpr = {}
     roc_auc = {}
-    for i in range(n_classes):
-        fpr[i], tpr[i], _ = roc_curve(y_test_bin[:, i], y_pred[:, i])
+    for i in range(4):
+        fpr[i], tpr[i], _ = roc_curve(y_test_bin[:, i], y_pred_probs[:, i])
         roc_auc[i] = auc(fpr[i], tpr[i])
-    plt.figure(figsize=(8, 6))
-    for i in range(n_classes):
-        plt.plot(fpr[i], tpr[i], label=f'Class {class_labels[i]} (AUC = {roc_auc[i]:.2f})')
-    plt.plot([0, 1], [0, 1], 'k--', label='Chance')
-    plt.title('ROC Curves by Class')
-    plt.xlabel('False Positive Rate')
-    plt.ylabel('True Positive Rate')
+    # Plot ROC curves
+    plt.figure(figsize=(7, 6))
+    colors = ['blue', 'green', 'red', 'purple']
+    for i in range(4):
+        plt.plot(fpr[i], tpr[i], label=f"Class {i} (AUC = {roc_auc[i]:.2f})", color=colors[i])
+    plt.plot([0, 1], [0, 1], 'k--')
+    plt.title("Multi-Class ROC Curve")
+    plt.xlabel("False Positive Rate")
+    plt.ylabel("True Positive Rate")
     plt.legend()
     plt.grid(True)
-    save_plot("ROC-Curves-Multiclass")
-    plt.show(block=True)
+    save_plot("6_ROC_Curve")
+    plt.show(block=False)
 
 
 """ # 1. Analyse and visualise the given datasets by reporting the distribution of classes,
@@ -281,7 +278,7 @@ def plot_ring_age_correlation_heatmap(df):
     plt.xticks(rotation=45, ha='right')
     plt.yticks(rotation=0)
     plt.tight_layout()
-    save_plot('Abalone-Features-RingAge-CorrelationHeatmap')
+    save_plot('1_Abalone-Features-RingAge-CorrelationHeatmap')
     plt.show(block=False)
 
 
@@ -303,7 +300,7 @@ def plot_ring_age_percentage_histogram(df, class_col='RingAgeClass'):
     plt.ylim(0, max(class_percent.values) + 10)
     plt.grid(axis='y', linestyle='--', alpha=0.6)
     plt.tight_layout()
-    save_plot('Abalone-AgeClass-Histogram')
+    save_plot('1_Abalone-AgeClass-Histogram')
     plt.show(block=False)
 
 
@@ -357,11 +354,11 @@ def load_data(file_path, file_name, column_names):
 
 
 def save_plot(filename):
-    save_dir = r"./plots"  # Output directory to generate plots/ .png files
-    os.makedirs(save_dir, exist_ok=True)  # Create the directory if it doesn't exist
-    save_path = os.path.join(save_dir, filename+'.png')
-    plt.savefig(save_path, dpi=300, bbox_inches='tight')  # Save the plot
-    # print(f"Plot saved to: {save_path}")
+    plots_dir = os.path.join(os.getcwd(), 'plots')  # Absolute path
+    os.makedirs(plots_dir, exist_ok=True)  # Create if not exists
+    full_path = os.path.join(plots_dir, f"{filename}.png")
+    plt.savefig(full_path)
+    print(f"Plot saved to: {full_path}")
 
 
 def main():
@@ -378,8 +375,8 @@ def main():
     # Clean abalone data: OneHotEncoding for Sex
     df_clean_abalone = clean_data(df_abalone_data)
     print(f'\n--------------------------------------------------------------------------')
-    print(f'1. Analyse and visualise the given datasets by reporting the distribution of classes, '
-          f'\ndistribution of features and any other visualisation you find appropriate.')
+    print(f'1.\tAnalyse and visualise the given datasets by reporting the distribution of classes, '
+          f'\n\tdistribution of features and any other visualisation you find appropriate.')
     print(f'--------------------------------------------------------------------------')
     # print(f'\nClean Abalone Data (One Hot Encoded Sex).\n{df_clean_abalone.head(5)}')
     plot_ring_age_correlation_heatmap(df_clean_abalone)
@@ -393,50 +390,56 @@ def main():
           f'\n--------------------------------------------------------------------------'
           f'\nType of columns in df_abalone: {df_abalone.dtypes}'
           f'\n--------------------------------------------------------------------------'
-          f'\nNumber of rows in df_abalone: {df_abalone.shape[0]}')
+          f'\nNumber of rows in df_abalone: {df_abalone.shape[0]}'
+          f'\n--------------------------------------------------------------------------')
+    output_classes = np.unique(df_abalone["RingAgeClass"])
+    print(f'Output classes: {output_classes}')
     print(f'--------------------------------------------------------------------------')
     print(f'\n--------------------------------------------------------------------------')
-    print(f'2. Develop a dense neural network with one hidden layer. Vary the number of hidden neurons '
-          f'\nto be 5, 10, 15, and 20 in order to investigate the performance of the model using '
-          f'\nStochastic Gradient Descent (SGD). Determine the optimal number of neurons in the '
-          f'\nhidden layer from the range of values considered.')
+    print(f'2.\tDevelop a dense neural network with one hidden layer. Vary the number of hidden neurons '
+          f'\n\tto be 5, 10, 15, 20, 30, 4, 50 in order to investigate the performance of the model using '
+          f'\n\tStochastic Gradient Descent (SGD). Determine the optimal number of neurons in the '
+          f'\n\thidden layer from the range of values considered.')
     print(f'--------------------------------------------------------------------------')
-    neuron_options = [5, 10, 15, 20]
+    neuron_options = [5, 10, 15, 20, 30, 40, 50]
     best_neurons, neuron_scores = evaluate_hidden_neurons(df_abalone, neuron_options)
-    print(f"Best number of hidden neurons: {best_neurons} :: Accuracy: {neuron_scores[best_neurons]:.4f}\n\n")
+    print(f"Best number of hidden neurons: {best_neurons} :: Accuracy: {neuron_scores[best_neurons]:.4f}")
     print(f'--------------------------------------------------------------------------')
     print(f'\n--------------------------------------------------------------------------')
-    print(f'3. Investigate the effect of learning rate (using SGD) for the selected dataset '
-          f'\n(using the optimal number of hidden neurons).')
+    print(f'3.\tInvestigate the effect of learning rate (using SGD) for the selected dataset '
+          f'\n\t(using the optimal number of hidden neurons).')
     print(f'--------------------------------------------------------------------------')
     learning_rate_options = [0.1, 0.01, 0.001]
     best_learning_rate, lr_scores = evaluate_learning_rates(df_abalone, best_neurons, learning_rate_options)
     print(f"Best Learning Rate: {best_learning_rate} for Best hidden neurons: {best_neurons} "
-          f":: Accuracy: {lr_scores[best_learning_rate]:.4f}\n\n")
+          f":: Accuracy: {lr_scores[best_learning_rate]:.4f}")
     print(f'--------------------------------------------------------------------------')
     print(f'\n--------------------------------------------------------------------------')
-    print(f'4. Investigate the effect on a different number of hidden layers:  Now modify the model '
-          f'\nby adding another hidden layer. Use the optimal number of hidden neurons from Step 2 for '
-          f'\nboth the layers and the optimal learning rate from Step 3. Investigate the effect of this '
-          f'\nchange in the number of hidden layers (using SGD).')
+    print(f'4.\tInvestigate the effect on a different number of hidden layers:  Now modify the model '
+          f'\n\tby adding another hidden layer. Use the optimal number of hidden neurons from Step 2 for '
+          f'\n\tboth the layers and the optimal learning rate from Step 3. Investigate the effect of this '
+          f'\n\tchange in the number of hidden layers (using SGD).')
     print(f'--------------------------------------------------------------------------')
     best_number_of_layers, layer_scores = evaluate_hidden_layers_effect(df_abalone, best_neurons, best_learning_rate)
-    print(f"\nBest Number of Hidden Layers: {best_number_of_layers} for Best Learning Rate: {best_learning_rate} "
-          f"for Best hidden neurons: {best_neurons} :: Accuracy: {layer_scores[best_number_of_layers]:.4f}\n\n")
+    print(f"Best Number of Hidden Layers: {best_number_of_layers} for Best Learning Rate: {best_learning_rate} "
+          f"for Best hidden neurons: {best_neurons} :: Accuracy: {layer_scores[best_number_of_layers]:.4f}")
     print(f'--------------------------------------------------------------------------')
     print(f'\n--------------------------------------------------------------------------')
-    print(f'5. Investigate the effect of Adam and SGD on training and test performance.')
+    print(f'5.\tInvestigate the effect of Adam and SGD on training and test performance.')
     print(f'--------------------------------------------------------------------------')
     best_optimizer, opt_scores = evaluate_optimizers(df_abalone, best_neurons, best_learning_rate, best_number_of_layers)
-    print(f"\nBest Optimizer: {best_optimizer} for Best Number of Hidden Layers: {best_number_of_layers} "
+    print(f"Best Optimizer: {best_optimizer} for Best Number of Hidden Layers: {best_number_of_layers} "
           f"for Best Learning Rate: {best_learning_rate} for Best hidden neurons: {best_neurons} "
-          f":: Accuracy: {opt_scores[best_optimizer]:.4f}\n\n")
+          f":: Accuracy: {opt_scores[best_optimizer]:.4f}")
     print(f'--------------------------------------------------------------------------')
     print(f'\n--------------------------------------------------------------------------')
-    print(f'6. Take the final optimal model among all the above cases and show the confusion matrix '
-          f'\nand ROC/AUC curve for different classes of the multi-class problem.')
+    print(f'6.\tTake the final optimal model among all the above cases and show the confusion matrix '
+          f'\n\tand ROC/AUC curve for different classes of the multi-class problem.')
     print(f'--------------------------------------------------------------------------')
-    evaluate_final_model_metrics(df_abalone, best_neurons, best_learning_rate, best_number_of_layers, best_optimizer)
+    plot_confusion_matrix_and_roc(df=df_abalone, best_optimizer=best_optimizer,
+                                  best_number_of_layers=best_number_of_layers,
+                                  best_learning_rate=best_learning_rate,
+                                  best_neurons=best_neurons)
     print(f'--------------------------------------------------------------------------')
     print(f'--------------------------------------------------------------------------')
 
