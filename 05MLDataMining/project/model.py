@@ -18,7 +18,7 @@ from tensorflow.keras.utils import to_categorical
 """ Functions for Assessment 3: ZZSC5836 Data Mining and Machine Learning: """
 
 """ # 2. Develop a dense neural network with one hidden layer.
-         Vary the number of hidden neurons to be 5, 10, 15, 20, 30, 4, 50 in order to investigate the
+         Vary the number of hidden neurons to be 5, 10, 15, 20 in order to investigate the
          performance of the model using Stochastic Gradient Descent (SGD).
          Determine the optimal number of neurons in the hidden layer from the range of values considered."""
 
@@ -38,7 +38,7 @@ def build_and_train_model(X_train, X_test, y_train, y_test, hidden_neurons, lear
 
 def evaluate_hidden_neurons(df, neuron_options=None):
     if neuron_options is None:
-        neuron_options = [5, 10, 15, 20, 30, 40, 50]
+        neuron_options = [5, 10, 15, 20]
     # Split features and target
     X = df.drop("RingAgeClass", axis=1).values
     y = df["RingAgeClass"].astype(int).values
@@ -46,7 +46,7 @@ def evaluate_hidden_neurons(df, neuron_options=None):
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
     # Train/test split
-    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.4, random_state=42)
     scores = {}
     for neurons in neuron_options:
         acc, _ = build_and_train_model(X_train, X_test, y_train, y_test, neurons)
@@ -82,7 +82,7 @@ def evaluate_learning_rates(df, best_neurons, learning_rate_options=None):
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
     # Train/test split
-    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.4, random_state=42)
     scores = {}
     for lr in learning_rate_options:
         acc, _ = build_and_train_model(X_train, X_test, y_train, y_test, best_neurons, learning_rate=lr)
@@ -118,7 +118,7 @@ def evaluate_hidden_layers_effect(df, best_neurons, best_learning_rate):
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
     # Train/test split
-    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.4, random_state=42)
     def build_model(layers=1):
         model = Sequential()
         model.add(Input(shape=(X_train.shape[1],)))
@@ -174,7 +174,7 @@ def evaluate_optimizers(df, best_neurons, best_learning_rate, best_number_of_lay
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
     # Train/test split
-    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.4, random_state=42)
     def build_model(optimizer_name):
         model = Sequential()
         model.add(Input(shape=(X_train.shape[1],)))
@@ -210,7 +210,7 @@ def plot_confusion_matrix_and_roc(df, best_optimizer, best_number_of_layers, bes
     X = df.drop("RingAgeClass", axis=1).values
     y = df["RingAgeClass"].astype(int).values
     X = StandardScaler().fit_transform(X)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=42)
 
     # Define model
     model = Sequential()
@@ -397,11 +397,11 @@ def main():
     print(f'--------------------------------------------------------------------------')
     print(f'\n--------------------------------------------------------------------------')
     print(f'2.\tDevelop a dense neural network with one hidden layer. Vary the number of hidden neurons '
-          f'\n\tto be 5, 10, 15, 20, 30, 4, 50 in order to investigate the performance of the model using '
+          f'\n\tto be 5, 10, 15, 20 in order to investigate the performance of the model using '
           f'\n\tStochastic Gradient Descent (SGD). Determine the optimal number of neurons in the '
           f'\n\thidden layer from the range of values considered.')
     print(f'--------------------------------------------------------------------------')
-    neuron_options = [5, 10, 15, 20, 30, 40, 50]
+    neuron_options = [5, 10, 15, 20]
     best_neurons, neuron_scores = evaluate_hidden_neurons(df_abalone, neuron_options)
     print(f"Best number of hidden neurons: {best_neurons} :: Accuracy: {neuron_scores[best_neurons]:.4f}")
     print(f'--------------------------------------------------------------------------')
