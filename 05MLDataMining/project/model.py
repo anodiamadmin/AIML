@@ -453,14 +453,14 @@ def main():
     print(f'\n\nEvaluating SGD Optimizer')
     print(f'--------------------------------------------------------------------------')
     """ Vary the number of hidden neurons to investigate the performance of the model using (SGD) """
-    hidden_neuron_list = [5, 10]                       #  [5, 10, 15, 20]
-    n_runs = 2                                         #  10
+    hidden_neuron_list = [5, 10, 15, 20]
+    n_runs = 10
     sgd_best_neuron_option = evaluate_neuron_options(df_abalone, n_runs=n_runs, hidden_neurons_list=hidden_neuron_list)
     """ Investigate the effect of learning rate (using SGD) """
     sgd_learning_rate_list = [0.1, 0.01, 0.001]        #  [0.1, 0.01, 0.001, 0.0001]
     sgd_best_learning_rate = evaluate_learning_rate(df_abalone, sgd_best_neuron_option, learning_rate_list=sgd_learning_rate_list)
     """ Investigate the effect of a varying number of hidden layers """
-    hidden_layers_list = [1, 2]                        #  [1, 2, 3]
+    hidden_layers_list =  [1, 2, 3]
     sgd_best_hidden_layers, sgd_best_accuracy = evaluate_hidden_layers(df_abalone, sgd_best_learning_rate,  hidden_layers_list=hidden_layers_list)
     """ Adam """
     print(f'\n\nEvaluating Adam Optimizer')
