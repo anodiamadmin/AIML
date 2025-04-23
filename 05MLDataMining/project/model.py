@@ -92,7 +92,7 @@ def clean_data(df_abalone):
     # Convert boolean Sex_* columns to integers (0/1)
     sex_cols = [col for col in df_cleaned.columns if col.startswith('Sex_')]
     df_cleaned[sex_cols] = df_cleaned[sex_cols].astype(int)
-    # print(f'\n# Clean abalone data (e.g. One Hot Encoding for Sex Column).\n{df_cleaned.head(5)}')
+    # print(f'\n# Clean abalone data (e.g., One Hot Encoding for Sex Column).\n{df_cleaned.head(5)}')
     return df_cleaned
 
 
@@ -166,7 +166,7 @@ def exploratory_analysis(df_clean_abalone):
          Determine the optimal number of neurons in the hidden layer from the range of values considered."""
 
 
-def split_abalone_date_for_train_test(df, test_size, random_state):
+def split_data_for_train_test(df, test_size, random_state):
     # Split features and target
     X = df.drop("RingAgeClass", axis=1).values
     y = df["RingAgeClass"].astype(int).values
@@ -186,7 +186,7 @@ def build_train_evaluate_classification_model(df, test_size=0.4, random_state=42
                                               loss_function='sparse_categorical_crossentropy',
                                               softmax_classes=4, epochs=100, batch_size=32, verbose=0):
     # Fixed train/test split
-    X_train, X_test, y_train, y_test = split_abalone_date_for_train_test(df, test_size=test_size,
+    X_train, X_test, y_train, y_test = split_data_for_train_test(df, test_size=test_size,
                                                                          random_state=random_state)
     # Optimizer selection dictionary
     optimizers = {
@@ -225,7 +225,8 @@ def evaluate_model_with_confidence_interval(df, n_runs, ci, **model_kwargs):
     return mean_acc, confidence_interval
 
 
-def evaluate_neuron_options(df, optimizer_name="SGD", hidden_neurons_list=None, n_runs=10, ci=0.95, test_size=0.4):
+def evaluate_neuron_options(df, optimizer_name="SGD", hidden_neurons_list=None,
+                            n_runs=10, ci=0.95, test_size=0.4):
     if hidden_neurons_list is None:
         hidden_neurons_list = [5, 10, 15, 20]
     mean_accuracies = []
@@ -337,7 +338,7 @@ def evaluate_learning_rate(df, best_neuron_option, optimizer_name="SGD" ,learnin
          Investigate the effect of this change in the number of hidden layers (using SGD). """
 
 
-def evaluate_hidden_layers(df, best_learning_rate, optimizer_name="Adam", hidden_layers_list=None,
+def evaluate_hidden_layers(df, best_learning_rate, optimizer_name="SGD", hidden_layers_list=None,
                            n_runs=5, ci=0.95, test_size=0.4):
     if hidden_layers_list is None:
         hidden_layers_list = [1, 2, 3]
@@ -383,7 +384,7 @@ def evaluate_hidden_layers(df, best_learning_rate, optimizer_name="Adam", hidden
     plt.ylim(0.65, 0.77)  # Adjust based on your actual values
     print(f"\nBest option: {best_hidden_layers} hidden layer(s) with accuracy {best_accuracy:.5f}")
     save_plot(f'4_{optimizer_name}-Accuracy-vs-Hidden-Layers')
-    plt.show(block=True)
+    plt.show(block=False)
     print(f'--------------------------------------------------------------------------')
     return best_hidden_layers, best_accuracy
 
@@ -457,8 +458,8 @@ def main():
     n_runs = 10
     sgd_best_neuron_option = evaluate_neuron_options(df_abalone, n_runs=n_runs, hidden_neurons_list=hidden_neuron_list)
     """ Investigate the effect of learning rate (using SGD) """
-    sgd_learning_rate_list = [0.1, 0.01, 0.001]        #  [0.1, 0.01, 0.001, 0.0001]
-    sgd_best_learning_rate = evaluate_learning_rate(df_abalone, sgd_best_neuron_option, learning_rate_list=sgd_learning_rate_list)
+    learning_rate_list = [0.1, 0.01, 0.001, 0.0001]
+    sgd_best_learning_rate = evaluate_learning_rate(df_abalone, sgd_best_neuron_option, learning_rate_list=learning_rate_list)
     """ Investigate the effect of a varying number of hidden layers """
     hidden_layers_list =  [1, 2, 3]
     sgd_best_hidden_layers, sgd_best_accuracy = evaluate_hidden_layers(df_abalone, sgd_best_learning_rate,  hidden_layers_list=hidden_layers_list)
@@ -469,9 +470,8 @@ def main():
     adam_best_neuron_option = evaluate_neuron_options(df_abalone, optimizer_name="Adam",
                                                  n_runs=n_runs, hidden_neurons_list=hidden_neuron_list)
     """ Investigate the effect of learning rate (using Adam) """
-    adam_learning_rate_list = [0.01, 0.001, 0.0001]     #  [0.1, 0.01, 0.001, 0.0001]
     adam_best_learning_rate = evaluate_learning_rate(df_abalone, adam_best_neuron_option, optimizer_name="Adam",
-                                                learning_rate_list=adam_learning_rate_list)
+                                                learning_rate_list=learning_rate_list)
     """ Investigate the effect of a varying number of hidden layers """
     adam_best_hidden_layers, adam_best_accuracy = evaluate_hidden_layers(df_abalone, adam_best_learning_rate, optimizer_name="Adam",
                            hidden_layers_list=hidden_layers_list)
