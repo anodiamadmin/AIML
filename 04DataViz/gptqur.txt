@@ -1,0 +1,17 @@
+The following data frame "df_percent_renewable" gives the Percentage of Renewable Energy produced by each of australia's states and territories from the year 2008-09 to 2022-23
+  State    2008-09    2009-10    2010-11    2011-12    2012-13    2013-14    2014-15    2015-16    2016-17    2017-18    2018-19    2019-20    2020-21    2021-22    2022-23
+0   NSW   3.108051   5.372473   5.947930   6.670075   8.571103   8.176745   8.662622  11.691128  12.529114  13.384470  15.571342  18.967941  24.412118  29.780621  33.638863
+1   VIC   5.510015   6.580962  10.105791   8.664720  12.159308  12.767904  12.301594  14.820097  16.519118  18.900224  21.895105  24.524686  29.702120  35.148448  39.215869
+2   QLD   3.927020   3.531472   3.665516   4.141325   5.212478   6.292108   6.044804   6.463077   6.497351   7.053663  10.770810  14.416639  17.955995  20.464952  24.257208
+3    WA   3.180835   3.027527   3.329246   5.558366   6.488425   6.619993   6.940394   6.652979   7.462511   7.749003   8.973120  10.255595  14.165775  16.568269  17.170121
+4    SA  14.760857  15.723822  22.266921  26.845610  29.504108  37.473156  39.854430  41.250401  46.962770  46.800993  50.401151  54.962394  61.100093  68.832982  73.263969
+
+Write a funstion to 
+
+write a function to produce an mpeg file for the visualization of the above data in choropleth map. For the first 1 second the mpeg will show the data of the year 2008-09, for the next 1 second for 2009-10, then for 1 second year 2010-11 and so on up to 2022-23.
+
+Use the states.geojson file attached for the states and territory boundaries and map for the choropleth map.
+
+Use color code 'red' for values near the lowest range (3.0), through 'reddish-orange', 'orange', 'orangish-yellow', 'yellowish-green', 'green', 'dark-green'.
+
+The produced mpeg will be stored in RenewableAustralia.mpeg file in the same directory.
