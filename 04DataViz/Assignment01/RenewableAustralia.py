@@ -1,13 +1,13 @@
 import os
 import json
+import time
 import numpy as np
-import logging
-import imageio.v2 as imageio
 import pandas as pd
+from PIL import Image
 import geopandas as gpd
 import plotly.express as px
+import imageio.v2 as imageio
 import plotly.graph_objects as go
-from dash import Dash, dcc, html, Input, Output
 
 
 def assign_state_codes(df_state_energy):
@@ -47,35 +47,27 @@ def config_options():
 def draw_choropleth_animated(df_percent_renewable, df_renewable, df_nonrenewable):
     with open('australian-states-polygons.geojson', 'r') as f:
         geojson_data = json.load(f)
-
     centroids = {
         1: {"lat": -32.0, "lon": 147.0},  # NSW
-        2: {"lat": -38.5, "lon": 146.0},  # VIC
+        2: {"lat": -39.5, "lon": 146.0},  # VIC
         3: {"lat": -21.0, "lon": 143.0},  # QLD
-        4: {"lat": -28.0, "lon": 122.0},  # WA
+        4: {"lat": -26.0, "lon": 122.0},  # WA
         5: {"lat": -29.0, "lon": 135.0},  # SA
-        6: {"lat": -43.5, "lon": 146.5},  # TAS
+        6: {"lat": -42.0, "lon": 151.0},  # TAS
         7: {"lat": -20.0, "lon": 134.0},  # NT
     }
-
     years = [col for col in df_percent_renewable.columns if col not in ['state_code', 'State']]
     years.sort()
-    start_idx = years.index("2008-09")
-    end_idx = years.index("2022-23")
-    years = years[start_idx:end_idx + 1]
-
+    years = years[years.index("2008-09"): years.index("2022-23") + 1]
     df_percent = df_percent_renewable.copy()
     df_ren = df_renewable.copy()
     df_nonren = df_nonrenewable.copy()
     df_percent['state_code'] = df_percent['state_code'].astype(int)
-
     images = []
-
     for year in years:
         df = df_percent.copy()
         df['capped'] = df[year].clip(lower=1, upper=100)
         df['log_color'] = np.log10(df['capped'])
-
         fig = px.choropleth(
             df,
             geojson=geojson_data,
@@ -88,9 +80,9 @@ def draw_choropleth_animated(df_percent_renewable, df_renewable, df_nonrenewable
                 "#ffff00", "#adff2f", "#7fff00", "#32cd32", "#228b22"
             ],
         )
-
+        # Create annotation labels
         annotations = []
-        for idx, row in df.iterrows():
+        for _, row in df.iterrows():
             code = row['state_code']
             centroid = centroids.get(code)
             if not centroid:
@@ -98,7 +90,8 @@ def draw_choropleth_animated(df_percent_renewable, df_renewable, df_nonrenewable
             state_name = row['State']
             renewable = df_ren.loc[df_ren['state_code'] == code, year].values[0]
             nonrenewable = df_nonren.loc[df_nonren['state_code'] == code, year].values[0]
-            text_lines = [f"<b>{state_name}</b>"]
+            percent = renewable / (renewable + nonrenewable) * 100
+            text_lines = [f"<b>{state_name}: {percent:.1f}%</b>"]
             if state_name == "NSW":
                 text_lines.append("including ACT")
             text_lines.append(f"♻️{renewable/1000:.1f} ❌{nonrenewable/1000:.1f}")
@@ -111,25 +104,18 @@ def draw_choropleth_animated(df_percent_renewable, df_renewable, df_nonrenewable
                 textfont=dict(size=11, color="black"),
                 hoverinfo='skip'
             ))
-
         for trace in annotations:
             fig.add_trace(trace)
-
         tick_vals = np.log10([1, 3.3, 10, 33, 100])
-        tick_texts = ['1%', '3.3%', '10%', '33%', '100%']
         fig.update_coloraxes(
             colorbar=dict(
                 tickvals=tick_vals,
-                ticktext=tick_texts,
-                title=dict(
-                    text='Renewable Power Generation Percentage',
-                    side='right'
-                )
+                ticktext=['1%', '3.3%', '10%', '33%', '100%'],
+                title=dict(text='Renewable Power Generation Percentage', side='right')
             ),
             cmin=np.log10(1),
             cmax=np.log10(100)
         )
-
         fig.update_geos(
             fitbounds="locations",
             visible=False,
@@ -137,61 +123,64 @@ def draw_choropleth_animated(df_percent_renewable, df_renewable, df_nonrenewable
             center=dict(lat=-27, lon=133),
             showcountries=False
         )
-
-        # Layout and annotations
         fig.update_layout(
             margin=dict(t=120, b=80, l=10, r=10),
-            height=1024,  # Portrait orientation
+            height=1024,
             width=768,
             paper_bgcolor="white"
         )
-
-        # Static heading
         fig.add_annotation(
-            text="<b>Renewable Power Generated (TWh)</b>",
+            text="<b>Renewable Power Generation (%)</b>",
             xref="paper", yref="paper",
-            x=0.5, y=1.08,
-            showarrow=False,
+            x=0.5, y=1.08, showarrow=False,
             font=dict(size=18, color="black"),
             xanchor="center"
         )
         fig.add_annotation(
             text="<b>in Australian States & Territories</b>",
             xref="paper", yref="paper",
-            x=0.5, y=1.02,
-            showarrow=False,
+            x=0.5, y=1.02, showarrow=False,
             font=dict(size=18, color="black"),
             xanchor="center"
         )
-
-        # Dynamic year subtitle
         fig.add_annotation(
             text=f"<b>Financial Year: {year}</b>",
             xref="paper", yref="paper",
-            x=0.5, y=0.96,
-            showarrow=False,
-            font=dict(size=14, color="black"),
+            x=0.5, y=0.96, showarrow=False,
+            font=dict(size=18, color="red"),
             xanchor="center"
         )
-
-        # Static footer index
         fig.add_annotation(
             text="Index: ♻️⇒Renewable(TWh) | ❌⇒Non-renewable(TWh)",
             xref="paper", yref="paper",
-            x=0.5, y=-0.05,
-            showarrow=False,
+            x=0.5, y=-0.05, showarrow=False,
             font=dict(size=12, color="black"),
             xanchor="center"
         )
-
-        # Save temporary image
         temp_path = f"temp_{year}.png"
         fig.write_image(temp_path, width=768, height=1024)
-        images.append(imageio.imread(temp_path))
-
+        time.sleep(0.2)  # Allow time for rendering to disk
+        try:
+            img = Image.open(temp_path)
+            if img.getbbox():  # Check if image has non-zero content
+                images.append(imageio.imread(temp_path))
+        except Exception as e:
+            print(f"Skipping {year} due to rendering error: {e}")
+    # Truncate initial blank/black frames if any accidentally got through
+    valid_images = []
+    for img in images:
+        if np.array(img).mean() > 5:  # skip almost-black frames
+            valid_images.append(img)
+    if not valid_images:
+        print("No valid frames found.")
+        return
+    # Save video
+    imageio.mimsave("RenewableAustralia.mp4", valid_images, fps=1)
+    print(f"Saved animation with {len(valid_images)} frames.")
+    # Skip the first 3 frames (to avoid blank/black screens)
+    trimmed_images = images[3:] if len(images) > 3 else images
     # Save to MP4
-    imageio.mimsave("RenewableAustralia.mp4", images, fps=1)
-
+    imageio.mimsave("RenewableAustralia.mp4", trimmed_images, fps=1)
     # Cleanup
     for f in os.listdir():
         if f.startswith("temp_") and f.endswith(".png"):
