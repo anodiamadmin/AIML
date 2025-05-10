@@ -1,18 +1,19 @@
+import os
+import json
+import numpy as np
+import logging
+import imageio.v2 as imageio
 import pandas as pd
 import geopandas as gpd
 import plotly.express as px
-import json
-import numpy as np
-from dash import Dash, dcc, html, Output, Input
-import logging
 import plotly.graph_objects as go
+from dash import Dash, dcc, html, Input, Output
 
 
 def assign_state_codes(df_state_energy):
     """Adds state_code and removes 'State' column from both dataframes."""
-    state_code_map = {'NSW': 1, 'VIC': 2, 'QLD': 3, 'SA': 4, 'WA': 5, 'TAS': 6, 'NT': 7, 'ACT': 8}
-    df_state_energy['state_code'] = df_state_energy['State'].map(state_code_map).astype(int)   # Map state codes
-    # df_state_energy.drop(columns='State', inplace=True)    # Drop the original State column
+    state_code_map = {'NSW': 1, 'VIC': 2, 'QLD': 3, 'WA': 4, 'SA': 5, 'TAS': 6, 'NT': 7, 'ACT': 8}
+    df_state_energy['state_code'] = df_state_energy['State'].map(state_code_map).astype(int)
     return df_state_energy
 
 
@@ -47,15 +48,14 @@ def draw_choropleth_animated(df_percent_renewable, df_renewable, df_nonrenewable
     with open('australian-states-polygons.geojson', 'r') as f:
         geojson_data = json.load(f)
 
-    # Static mapping: centroids for the states (approximate lat/lon)
     centroids = {
-        1: {"lat": -33.5, "lon": 147.0},   # NSW
-        2: {"lat": -37.0, "lon": 145.0},   # VIC
-        3: {"lat": -21.0, "lon": 145.0},   # QLD
-        4: {"lat": -28.5, "lon": 133.5},   # SA
-        5: {"lat": -31.0, "lon": 122.0},   # WA
-        6: {"lat": -20.0, "lon": 134.0},   # NT
-        7: {"lat": -42.0, "lon": 146.5}    # TAS
+        1: {"lat": -32.0, "lon": 147.0},  # NSW
+        2: {"lat": -38.5, "lon": 146.0},  # VIC
+        3: {"lat": -21.0, "lon": 143.0},  # QLD
+        4: {"lat": -28.0, "lon": 122.0},  # WA
+        5: {"lat": -29.0, "lon": 135.0},  # SA
+        6: {"lat": -43.5, "lon": 146.5},  # TAS
+        7: {"lat": -20.0, "lon": 134.0},  # NT
     }
 
     years = [col for col in df_percent_renewable.columns if col not in ['state_code', 'State']]
@@ -69,27 +69,9 @@ def draw_choropleth_animated(df_percent_renewable, df_renewable, df_nonrenewable
     df_nonren = df_nonrenewable.copy()
     df_percent['state_code'] = df_percent['state_code'].astype(int)
 
-    app = Dash(__name__)
-    app.layout = html.Div([
-        html.H1(id='title', style={'textAlign': 'center'}),
-        dcc.Graph(id='choropleth'),
-        dcc.Interval(id='interval', interval=1000, n_intervals=0, max_intervals=len(years)-1),
-        dcc.Store(id='year-index', data=0)
-    ])
+    images = []
 
-    @app.callback(
-        Output('choropleth', 'figure'),
-        Output('title', 'children'),
-        Output('year-index', 'data'),
-        Input('interval', 'n_intervals'),
-        Input('year-index', 'data')
-    )
-    def update_map(n_intervals, year_idx):
-        if year_idx >= len(years):
-            year_idx = len(years) - 1
-        year = years[year_idx]
-
-        # Prepare main choropleth data
+    for year in years:
         df = df_percent.copy()
         df['capped'] = df[year].clip(lower=1, upper=100)
         df['log_color'] = np.log10(df['capped'])
@@ -101,32 +83,25 @@ def draw_choropleth_animated(df_percent_renewable, df_renewable, df_nonrenewable
             color='log_color',
             featureidkey='properties.STATE_CODE',
             projection='mercator',
-            title='',
             color_continuous_scale=[
                 "#8b0000", "#ff0000", "#ff4500", "#ffa500", "#ffd700",
                 "#ffff00", "#adff2f", "#7fff00", "#32cd32", "#228b22"
-            ]
+            ],
         )
 
-        # Add annotations
         annotations = []
         for idx, row in df.iterrows():
             code = row['state_code']
             centroid = centroids.get(code)
             if not centroid:
                 continue
-
             state_name = row['State']
             renewable = df_ren.loc[df_ren['state_code'] == code, year].values[0]
             nonrenewable = df_nonren.loc[df_nonren['state_code'] == code, year].values[0]
-
-            # Format annotation text
             text_lines = [f"<b>{state_name}</b>"]
             if state_name == "NSW":
                 text_lines.append("including ACT")
-            text_lines.append(f"Renewable: {renewable:,.0f} GWh")
-            text_lines.append(f"Non-renewable: {nonrenewable:,.0f} GWh")
-
+            text_lines.append(f"♻️{renewable/1000:.1f} ❌{nonrenewable/1000:.1f}")
             annotations.append(go.Scattergeo(
                 lon=[centroid["lon"]],
                 lat=[centroid["lat"]],
@@ -140,26 +115,87 @@ def draw_choropleth_animated(df_percent_renewable, df_renewable, df_nonrenewable
         for trace in annotations:
             fig.add_trace(trace)
 
-        # Update visuals
         tick_vals = np.log10([1, 3.3, 10, 33, 100])
         tick_texts = ['1%', '3.3%', '10%', '33%', '100%']
         fig.update_coloraxes(
             colorbar=dict(
                 tickvals=tick_vals,
                 ticktext=tick_texts,
-                title='Renewable %'
+                title=dict(
+                    text='Renewable Power Generation Percentage',
+                    side='right'
+                )
             ),
             cmin=np.log10(1),
             cmax=np.log10(100)
         )
-        fig.update_geos(fitbounds="locations", visible=False)
-        fig.update_layout(margin={"r": 0, "t": 20, "l": 0, "b": 0})
 
-        new_year_idx = year_idx + 1 if year_idx + 1 < len(years) else year_idx
-        return fig, f'Renewable Energy by State – {year}', new_year_idx
+        fig.update_geos(
+            fitbounds="locations",
+            visible=False,
+            projection_scale=1,
+            center=dict(lat=-27, lon=133),
+            showcountries=False
+        )
 
-    logging.getLogger('werkzeug').setLevel(logging.ERROR)
-    app.run(debug=False, port=54321)
+        # Layout and annotations
+        fig.update_layout(
+            margin=dict(t=120, b=80, l=10, r=10),
+            height=1024,  # Portrait orientation
+            width=768,
+            paper_bgcolor="white"
+        )
+
+        # Static heading
+        fig.add_annotation(
+            text="<b>Renewable Power Generated (TWh)</b>",
+            xref="paper", yref="paper",
+            x=0.5, y=1.08,
+            showarrow=False,
+            font=dict(size=18, color="black"),
+            xanchor="center"
+        )
+        fig.add_annotation(
+            text="<b>in Australian States & Territories</b>",
+            xref="paper", yref="paper",
+            x=0.5, y=1.02,
+            showarrow=False,
+            font=dict(size=18, color="black"),
+            xanchor="center"
+        )
+
+        # Dynamic year subtitle
+        fig.add_annotation(
+            text=f"<b>Financial Year: {year}</b>",
+            xref="paper", yref="paper",
+            x=0.5, y=0.96,
+            showarrow=False,
+            font=dict(size=14, color="black"),
+            xanchor="center"
+        )
+
+        # Static footer index
+        fig.add_annotation(
+            text="Index: ♻️⇒Renewable(TWh) | ❌⇒Non-renewable(TWh)",
+            xref="paper", yref="paper",
+            x=0.5, y=-0.05,
+            showarrow=False,
+            font=dict(size=12, color="black"),
+            xanchor="center"
+        )
+
+        # Save temporary image
+        temp_path = f"temp_{year}.png"
+        fig.write_image(temp_path, width=768, height=1024)
+        images.append(imageio.imread(temp_path))
+
+    # Save to MP4
+    imageio.mimsave("RenewableAustralia.mp4", images, fps=1)
+
+    # Cleanup
+    for f in os.listdir():
+        if f.startswith("temp_") and f.endswith(".png"):
+            os.remove(f)
 
 
 def main():
@@ -167,12 +203,10 @@ def main():
     config_options()    # set console display options and geojson file formats
     file_path = 'RenewableAustralia.xlsx'
     df_renewable, df_nonrenewable, df_total, df_percent_renewable = load_energy_data(file_path)
-    # Print sample output
     print(f"Renewable Energy Produced (GWh):\n{df_renewable.head()}")
     print(f"\nNon-Renewable Energy Produced (GWh):\n{df_nonrenewable.head()}")
     print(f"\nTotal Produced (GWh):\n{df_total.head()}")
     print(f"\nPercentage of Renewable Energy:\n{df_percent_renewable.head()}")
-    # draw_choropleth_log(df_percent_renewable, '2022-23')
     draw_choropleth_animated(df_percent_renewable, df_renewable, df_nonrenewable)
 
 
