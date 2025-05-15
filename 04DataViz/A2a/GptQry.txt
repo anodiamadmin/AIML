@@ -1,0 +1,39 @@
+For my Master's in Data Science, Data Visualization course I need to make a visualisation portfolio.
+
+Instructions
+------------
+Write a concise portfolio proposal (maximum 400 words) with a clear problem statement and explain how portfolio will address it effectively; outlining the following:
+
+Topic: "Renewable energy statistics in Australian states and territories"
+
+Ref: website of the Department of Climate Change, Environment and Water, Australian Government (https://www.energy.gov.au/ https://www.energy.gov.au/energy-data/australian-energy-statistics/states-and-territories)
+
+Format and context: Tableau story
+
+Intended audience: Australian citizens and government policy makers.
+
+Significance: Drive behavior change in Australia toards switching to renewable energy as a critical measure in mitigating climate change. Under the Paris Agreement (2015)
+
+Actionable insights for audiance:
+* Awareness: Australians to be aware of government and social performance in renewable energy. Visualization portfolio to reveal progress and gaps visually, fostering informed dialogue.
+* Motivation: States that are lagging can be inspired by leaders like Tasmania or the ACT. Highlighting local performance encourages civic pride or urgency for policy reform.
+* Actionability: Once individuals and policymakers understand where we stand, they are more likely to act. The visualization supports strategic behavioral shifts like:
+  - Choosing green energy plans.
+  - Installing solar panels.
+  - Supporting pro-renewable policy platforms.
+* normalize sustainable behavior and advocate for systemic reforms—reallocating fossil fuel subsidies, investing in public transport, and accelerating grid transitions.
+
+Ensure your proposal covers:
+Theme and dataset: Briefly present the theme of your portfolio, including the topic, key questions to address, and identify the dataset you will use.
+Aim and audience: Describe the aim of your portfolio (e.g. drive behaviour change, influence business decisions or policy changes, or secure funding) and the intended audience (e.g. decision-makers, general public, or other stakeholders).
+
+ and describe the context for your A2c final presentation (e.g. a pitch to stakeholders, an educational presentation, a marketing presentation, or a policy recommendation). In particular, describe the setting of your presentation, including who will view it and why.
+Justifications: Provide a rationale for your choice of theme, dataset, and format. Explain why they are relevant and valuable for your intended aim and audience.
+Keep in mind that your proposal is targeted to your online lecturer, who will provide feedback to help you refine and align your portfolio with the course objectives. Refer to the supporting activities and resources section for additional guidance.
+
+Additional information
+Your proposal must be maximum 400 words (references are not included in the word limit).
+Write your proposal using correct spelling, grammar and punctuation.
+Cite your sources and use your own words. For any content that is not your own, you must clearly acknowledge and attribute references.
+Submit your proposal as a Word or PDF document in the Turnitin submission link below.
+Check that your document has been correctly submitted and can display correctly on Turnitin. Assessments that cannot be read on screen will not be marked.

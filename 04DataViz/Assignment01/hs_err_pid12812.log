@@ -1,0 +1,255 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 134217728 bytes. Error detail: G1 virtual space
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   This process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_windows.cpp:3898), pid=12812, tid=23536
+#
+# JRE version:  (21.0.6+9) (build )
+# Java VM: OpenJDK 64-Bit Server VM (21.0.6+9-b895.109, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Djava.io.tmpdir=C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\tmp\statistics-uploader com.intellij.internal.statistic.uploader.EventLogUploader --ide-token C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\token --recorders FUS;MP;IJ_MAP;ML --device-fus 23092316fbe449d-b0bf-4fa4-9891-b0e80751ba84 --bucket-fus 225 --machine-fus 2aaecc26d190e0edff5096f7782d250b3a6c9fc4a927d8d084c1b08721ba6a99 --id-revision-fus 0 --files-fus C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\event-log-data\logs\FUS\eeed-44cf-a3ca-ca19bfac1bbe-251.23774.444-release.log --escape-fus false --device-mp 22042414f140cd2-250c-4270-be32-28368babf149 --bucket-mp 132 --machine-mp e40a9ff6148907a9848c00610f16c8df7c0fa1bd9b76d7c876d0e16e9a8a840c --id-revision-mp 0 --files-mp C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\event-log-data\logs\MP\f317-44bd-a9b3-55fd15b230d6-251.23774.444-release.log --escape-mp false --device-ij_map 23092316fbe449d-b0bf-4fa4-9891-b0e80751ba84 --bucket-ij_map 225 --machine-ij_map 2aaecc26d190e0edff5096f7782d250b3a6c9fc4a927d8d084c1b08721ba6a99 --id-revision-ij_map 0 --files-ij_map C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\event-log-data\logs\IJ_MAP\2f63-4353-b5a5-79a13125263c-251.23774.444-release.log;C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\event-log-data\logs\IJ_MAP\3a09-4b10-980f-182c4f94dc06-251.23774.444-release.log;C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\event-log-data\logs\IJ_MAP\4e06-43fd-891a-7a5dcd8b9bd9-251.23774.444-release.log;C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\event-log-data\logs\IJ_MAP\5281-4cf8-9a31-a1247e65ee84-251.23774.444-release.log;C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\event-log-data\logs\IJ_MAP\5589-4de8-8ff8-89914146d6b2-251.23774.444-release.log --escape-ij_map false --device-ml 23092316fbe449d-b0bf-4fa4-9891-b0e80751ba84 --bucket-ml 225 --machine-ml 2aaecc26d190e0edff5096f7782d250b3a6c9fc4a927d8d084c1b08721ba6a99 --id-revision-ml 0 --files-ml C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\event-log-data\logs\ML\50ba-4813-a57c-be56330fc871-251.23774.444-release.log --escape-ml false --url https://resources.jetbrains.com/storage/fus/config/v4/%s/%s.json --product PC --product-version 2025.1 --baseline-version 251 --user-agent PyCharm/251.23774.444 --extra-headers 
+
+Host: Intel(R) Core(TM) i5-6300U CPU @ 2.40GHz, 4 cores, 7G,  Windows 10 , 64 bit Build 19041 (10.0.19041.5678)
+Time: Wed May 14 11:41:26 2025 AUS Eastern Standard Time elapsed time: 0.096422 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000001b2cd4e5e00):  JavaThread "Unknown thread" [_thread_in_vm, id=23536, stack(0x00000041fe100000,0x00000041fe200000) (1024K)]
+
+Stack: [0x00000041fe100000,0x00000041fe200000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x6e5cb9]
+V  [jvm.dll+0x8c4113]
+V  [jvm.dll+0x8c666e]
+V  [jvm.dll+0x8c6d53]
+V  [jvm.dll+0x288f76]
+V  [jvm.dll+0x6e2575]
+V  [jvm.dll+0x6d602a]
+V  [jvm.dll+0x3635db]
+V  [jvm.dll+0x36b1a6]
+V  [jvm.dll+0x3bd4f6]
+V  [jvm.dll+0x3bd7c8]
+V  [jvm.dll+0x335d2c]
+V  [jvm.dll+0x336a1b]
+V  [jvm.dll+0x88b569]
+V  [jvm.dll+0x3ca6c8]
+V  [jvm.dll+0x8745b8]
+V  [jvm.dll+0x45f0de]
+V  [jvm.dll+0x460dc1]
+C  [jli.dll+0x52ab]
+C  [ucrtbase.dll+0x21bb2]
+C  [KERNEL32.DLL+0x17374]
+C  [ntdll.dll+0x4cc91]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007ffb029ca148, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+Total: 0
+
+Other Threads:
+  0x000001b2cf7d94f0 WorkerThread "GC Thread#0"                     [id=9796, stack(0x00000041fe200000,0x00000041fe300000) (1024K)]
+  0x000001b2cf7ec610 ConcurrentGCThread "G1 Main Marker"            [id=9700, stack(0x00000041fe300000,0x00000041fe400000) (1024K)]
+  0x000001b2cf7ed1d0 WorkerThread "G1 Conc#0"                       [id=16208, stack(0x00000041fe400000,0x00000041fe500000) (1024K)]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffb020b8e07]
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007ffb02a3eb30] Heap_lock - owner thread: 0x000001b2cd4e5e00
+
+Heap address: 0x0000000081a00000, size: 2022 MB, Compressed Oops mode: 32-bit
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 1.
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+GC Precious Log:
+ CardTable entry size: 512
+ Card Set container configuration: InlinePtr #cards 5 size 8 Array Of Cards #cards 12 size 40 Howl #buckets 4 coarsen threshold 1843 Howl Bitmap #cards 512 size 80 coarsen threshold 460 Card regions per heap region 1 cards per card region 2048
+
+Heap:
+ garbage-first heap   total 0K, used 0K [0x0000000081a00000, 0x0000000100000000)
+  region size 1024K, 0 young (0K), 0 survivors (0K)
+ Metaspace       used 0K, committed 0K, reserved 0K
+  class space    used 0K, committed 0K, reserved 0K
+
+Heap Regions: E=young(eden), S=young(survivor), O=old, HS=humongous(starts), HC=humongous(continues), CS=collection set, F=free, TAMS=top-at-mark-start, PB=parsable bottom
+
+Card table byte_map: [0x000001b2e2bc0000,0x000001b2e2fc0000] _byte_map_base: 0x000001b2e27b3000
+
+Marking Bits: (CMBitMap*) 0x000001b2cf7da310
+ Bits: [0x000001b2e2fc0000, 0x000001b2e4f58000)
+
+GC Heap History (0 events):
+No events
+
+Dll operation events (1 events):
+Event: 0.064 Loaded shared library C:\Program Files\JetBrains\PyCharm Community Edition 2025.1\jbr\bin\java.dll
+
+Deoptimization events (0 events):
+No events
+
+Classes loaded (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+ZGC Phase Switch (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Memory protections (0 events):
+No events
+
+Nmethod flushes (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff661290000 - 0x00007ff66129a000 	C:\Program Files\JetBrains\PyCharm Community Edition 2025.1\jbr\bin\java.exe
+0x00007ffb8bc10000 - 0x00007ffb8be08000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007ffb8aa10000 - 0x00007ffb8aad2000 	C:\Windows\System32\KERNEL32.DLL
+0x00007ffb89670000 - 0x00007ffb89966000 	C:\Windows\System32\KERNELBASE.dll
+0x00007ffb893c0000 - 0x00007ffb894c0000 	C:\Windows\System32\ucrtbase.dll
+0x00007ffb73880000 - 0x00007ffb7389b000 	C:\Program Files\JetBrains\PyCharm Community Edition 2025.1\jbr\bin\VCRUNTIME140.dll
+0x00007ffb761c0000 - 0x00007ffb761d8000 	C:\Program Files\JetBrains\PyCharm Community Edition 2025.1\jbr\bin\jli.dll
+0x00007ffb8b280000 - 0x00007ffb8b41d000 	C:\Windows\System32\USER32.dll
+0x00007ffb895c0000 - 0x00007ffb895e2000 	C:\Windows\System32\win32u.dll
+0x00007ffb8bac0000 - 0x00007ffb8baeb000 	C:\Windows\System32\GDI32.dll
+0x00007ffb892a0000 - 0x00007ffb893ba000 	C:\Windows\System32\gdi32full.dll
+0x00007ffb752a0000 - 0x00007ffb7553a000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.4355_none_60b8b9eb71f62e16\COMCTL32.dll
+0x00007ffb89b90000 - 0x00007ffb89c2d000 	C:\Windows\System32\msvcp_win.dll
+0x00007ffb8ba10000 - 0x00007ffb8baae000 	C:\Windows\System32\msvcrt.dll
+0x00007ffb8b420000 - 0x00007ffb8b44f000 	C:\Windows\System32\IMM32.DLL
+0x00007ffb7bca0000 - 0x00007ffb7bcac000 	C:\Program Files\JetBrains\PyCharm Community Edition 2025.1\jbr\bin\vcruntime140_1.dll
+0x00007ffb5aec0000 - 0x00007ffb5af4d000 	C:\Program Files\JetBrains\PyCharm Community Edition 2025.1\jbr\bin\msvcp140.dll
+0x00007ffb01d70000 - 0x00007ffb02b31000 	C:\Program Files\JetBrains\PyCharm Community Edition 2025.1\jbr\bin\server\jvm.dll
+0x00007ffb8bb20000 - 0x00007ffb8bbcf000 	C:\Windows\System32\ADVAPI32.dll
+0x00007ffb8acf0000 - 0x00007ffb8ad8f000 	C:\Windows\System32\sechost.dll
+0x00007ffb89dd0000 - 0x00007ffb89ef3000 	C:\Windows\System32\RPCRT4.dll
+0x00007ffb89ad0000 - 0x00007ffb89af7000 	C:\Windows\System32\bcrypt.dll
+0x00007ffb8ad90000 - 0x00007ffb8adfb000 	C:\Windows\System32\WS2_32.dll
+0x00007ffb89100000 - 0x00007ffb8914b000 	C:\Windows\SYSTEM32\POWRPROF.dll
+0x00007ffb6fbf0000 - 0x00007ffb6fc17000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007ffb7c0a0000 - 0x00007ffb7c0aa000 	C:\Windows\SYSTEM32\VERSION.dll
+0x00007ffb89030000 - 0x00007ffb89042000 	C:\Windows\SYSTEM32\UMPDC.dll
+0x00007ffb87ac0000 - 0x00007ffb87ad2000 	C:\Windows\SYSTEM32\kernel.appcore.dll
+0x00007ffb7bc90000 - 0x00007ffb7bc9a000 	C:\Program Files\JetBrains\PyCharm Community Edition 2025.1\jbr\bin\jimage.dll
+0x00007ffb877d0000 - 0x00007ffb879b4000 	C:\Windows\SYSTEM32\DBGHELP.DLL
+0x00007ffb6ed60000 - 0x00007ffb6ed94000 	C:\Windows\SYSTEM32\dbgcore.DLL
+0x00007ffb89b00000 - 0x00007ffb89b82000 	C:\Windows\System32\bcryptPrimitives.dll
+0x00007ffb73860000 - 0x00007ffb73880000 	C:\Program Files\JetBrains\PyCharm Community Edition 2025.1\jbr\bin\java.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\JetBrains\PyCharm Community Edition 2025.1\jbr\bin;C:\Windows\SYSTEM32;C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.4355_none_60b8b9eb71f62e16;C:\Program Files\JetBrains\PyCharm Community Edition 2025.1\jbr\bin\server
+
+VM Arguments:
+jvm_args: -Djava.io.tmpdir=C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\tmp\statistics-uploader 
+java_command: com.intellij.internal.statistic.uploader.EventLogUploader --ide-token C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\token --recorders FUS;MP;IJ_MAP;ML --device-fus 23092316fbe449d-b0bf-4fa4-9891-b0e80751ba84 --bucket-fus 225 --machine-fus 2aaecc26d190e0edff5096f7782d250b3a6c9fc4a927d8d084c1b08721ba6a99 --id-revision-fus 0 --files-fus C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\event-log-data\logs\FUS\eeed-44cf-a3ca-ca19bfac1bbe-251.23774.444-release.log --escape-fus false --device-mp 22042414f140cd2-250c-4270-be32-28368babf149 --bucket-mp 132 --machine-mp e40a9ff6148907a9848c00610f16c8df7c0fa1bd9b76d7c876d0e16e9a8a840c --id-revision-mp 0 --files-mp C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\event-log-data\logs\MP\f317-44bd-a9b3-55fd15b230d6-251.23774.444-release.log --escape-mp false --device-ij_map 23092316fbe449d-b0bf-4fa4-9891-b0e80751ba84 --bucket-ij_map 225 --machine-ij_map 2aaecc26d190e0edff5096f7782d250b3a6c9fc4a927d8d084c1b08721ba6a99 --id-revision-ij_map 0 --files-ij_map C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\event-log-data\logs\IJ_MAP\2f63-4353-b5a5-79a13125263c-251.23774.444-release.log;C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\event-log-data\logs\IJ_MAP\3a09-4b10-980f-182c4f94dc06-251.23774.444-release.log;C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\event-log-data\logs\IJ_MAP\4e06-43fd-891a-7a5dcd8b9bd9-251.23774.444-release.log;C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\event-log-data\logs\IJ_MAP\5281-4cf8-9a31-a1247e65ee84-251.23774.444-release.log;C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\event-log-data\logs\IJ_MAP\5589-4de8-8ff8-89914146d6b2-251.23774.444-release.log --escape-ij_map false --device-ml 23092316fbe449d-b0bf-4fa4-9891-b0e80751ba84 --bucket-ml 225 --machine-ml 2aaecc26d190e0edff5096f7782d250b3a6c9fc4a927d8d084c1b08721ba6a99 --id-revision-ml 0 --files-ml C:\Users\DELL\AppData\Local\JetBrains\PyCharmCE2025.1\event-log-data\logs\ML\50ba-4
+java_class_path (initial): C:\Program Files\JetBrains\PyCharm Community Edition 2025.1\lib\util-8.jar;C:\Program Files\JetBrains\PyCharm Community Edition 2025.1\lib\annotations.jar;C:\Program Files\JetBrains\PyCharm Community Edition 2025.1\lib\lib-client.jar;C:\Program Files\JetBrains\PyCharm Community Edition 2025.1\lib\stats.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 3                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 1                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 4                                         {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 134217728                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 2120220672                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5832780                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122912730                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122912730                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 2120220672                             {manageable} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Environment Variables:
+PATH=C:\Program Files\Python310\Scripts\;C:\Program Files\Python310\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\DELL\AppData\Local\Microsoft\WindowsApps;C:\Users\DELL\AppData\Local\GitHubDesktop\bin;C:\Program Files\JetBrains\PyCharm Community Edition 2025.1\bin;;C:\Users\DELL\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\DELL\AppData\Roaming\npm
+USERNAME=DELL
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 78 Stepping 3, GenuineIntel
+TMP=C:\Users\DELL\AppData\Local\Temp
+TEMP=C:\Users\DELL\AppData\Local\Temp
+
+
+
+
+Periodic native trim disabled
+
+JNI global refs:
+JNI global refs: 0, weak refs: 0
+
+JNI global refs memory usage: 0, weak refs: 0
+
+Process memory usage:
+Resident Set Size: 10276K (0% of 8277832K total physical memory with 524724K free physical memory)
+
+OOME stack traces (most recent first):
+Classloader memory used:
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 10 , 64 bit Build 19041 (10.0.19041.5678)
+OS uptime: 11 days 22:21 hours
+
+CPU: total 4 (initial active 4) (2 cores per cpu, 2 threads per core) family 6 model 78 stepping 3 microcode 0xcc, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, rtm, adx, fma, vzeroupper, clflush, clflushopt, rdtscp, f16c
+Processor Information for the first 4 processors :
+  Max Mhz: 2501, Current Mhz: 2501, Mhz Limit: 2501
+
+Memory: 4k page, system-wide physical 8083M (512M free)
+TotalPageFile size 20945M (AvailPageFile size 54M)
+current process WorkingSet (physical memory assigned to process): 10M, peak: 10M
+current process commit charge ("private bytes"): 51M, peak: 179M
+
+vm_info: OpenJDK 64-Bit Server VM (21.0.6+9-b895.109) for windows-amd64 JRE (21.0.6+9-b895.109), built on 2025-03-26 by "builduser" with MS VC++ 16.10 / 16.11 (VS2019)
+
+END.

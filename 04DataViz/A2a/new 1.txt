@@ -1,0 +1,21 @@
+A. Data sets:
+Australian Government - Department of Climate Change, the Environment and Water (https://www.energy.gov.au/)
+https://www.energy.gov.au/publications/australian-energy-update-2024
+
+Table D: Australian energy consumption, by state and territory, by detailed fuel, energy units (XLSX 107 KB)
+https://www.energy.gov.au/sites/default/files/2024-08/australian_energy_statistics_2024_table_d.xlsx
+
+Table R: Australian renewable energy consumption, energy units (XLSX 43 KB): https://www.energy.gov.au/sites/default/files/2024-08/australian_energy_statistics_2024_table_r.xlsx
+
+
+B. Preliminary data exploration, analysis, and visualisation
+Perform a preliminary exploration and analysis of your chosen dataset. This might include, but is not limited to:
+Getting familiar with your dataset and its characteristics,
+Performing data cleaning if applicable,
+Performing a preliminary data analysis,
+Designing some preliminary data visualisations.
+
+"Consumption by fuel" tab of "Table R" contains yearly consumption of energy in Peta Jules (PJ) for the entire Australia in the following fuel types for the financial years of 2015-16 through 2022-23:
+Biomass (wood and other b, bagasse), Municpal and industrial waste, Biogas (landfill gas, other biogas), Biofuels (ethanol, biodiesel, other liquid biofuels), Wind power, Hydro power, Solar PV and Solar hot water
+
+"AUS" tab of "Table D" contains yearly consumption of energy in Peta Jules (PJ) for the entire Australia in the following fuel types for the financial years of 2015-16 through 2022-23:
