@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="12c685d5-d08c-44e1-a191-60f559788303" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../A2a/Data/australian_energy_statistics_2024_table_d.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../A2a/Data/australian_energy_statistics_2024_table_r.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../A2a/new 1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/.idea/Assignment01.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/.idea/aws.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/.idea/dictionaries/project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/RenewableAustralia.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/RenewableAustralia.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/RenewableAustralia.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/australian-states-polygons.geojson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/australian-states.geojson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/frames/frame_00.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/frames/frame_01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/frames/frame_02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/frames/frame_03.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/frames/frame_04.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/frames/frame_05.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/frames/frame_06.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/frames/frame_07.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/frames/frame_08.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/frames/frame_09.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/frames/frame_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/frames/frame_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/frames/frame_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/frames/frame_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/frames/frame_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment01/hs_err_pid12812.log" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2x9eLxIK9OSYvlGntoFQlhqBkLg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-348a24fa61fa-5312c7369657-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-251.23774.444" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="12c685d5-d08c-44e1-a191-60f559788303" name="Changes" comment="" />
+      <created>1747354674807</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1747354674807</updated>
+    </task>
+    <servers />
+  </component>
+</project>
