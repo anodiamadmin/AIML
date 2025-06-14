@@ -1,0 +1,93 @@
+country,Year,co2_per_capita
+Australia,2001,18.475
+Australia,2002,18.501
+Australia,2003,18.65
+Australia,2004,19.113
+Australia,2005,19.029
+Australia,2006,19.055
+Australia,2007,19.064
+Australia,2008,18.944
+Australia,2009,18.689
+Australia,2010,18.297
+Australia,2011,17.965
+Australia,2012,17.775
+Australia,2013,17.174
+Australia,2014,16.644
+Australia,2015,16.765
+Australia,2016,16.868
+Australia,2017,16.733
+Australia,2018,16.544
+Australia,2019,16.316
+Australia,2020,15.506
+Australia,2021,14.987
+Australia,2022,14.67
+Australia,2023,14.478
+China,2001,2.916
+China,2002,3.188
+China,2003,3.74
+China,2004,4.007
+China,2005,4.49
+China,2006,4.927
+China,2007,5.267
+China,2008,5.624
+China,2009,5.878
+China,2010,6.378
+China,2011,7.008
+China,2012,7.141
+China,2013,7.22
+China,2014,7.198
+China,2015,7.065
+China,2016,6.953
+China,2017,7.085
+China,2018,7.282
+China,2019,7.526
+China,2020,7.647
+China,2021,8.026
+China,2022,7.964
+China,2023,8.367
+European Union,2001,8.68
+European Union,2002,8.618
+European Union,2003,8.769
+European Union,2004,8.753
+European Union,2005,8.696
+European Union,2006,8.697
+European Union,2007,8.549
+European Union,2008,8.332
+European Union,2009,7.616
+European Union,2010,7.815
+European Union,2011,7.519
+European Union,2012,7.402
+European Union,2013,7.208
+European Union,2014,6.847
+European Union,2015,6.906
+European Union,2016,6.838
+European Union,2017,6.844
+European Union,2018,6.682
+European Union,2019,6.355
+European Union,2020,5.734
+European Union,2021,6.104
+European Union,2022,5.904
+European Union,2023,5.422
+United States,2001,20.781
+United States,2002,20.713
+United States,2003,20.731
+United States,2004,20.878
+United States,2005,20.737
+United States,2006,20.261
+United States,2007,20.309
+United States,2008,19.396
+United States,2009,17.793
+United States,2010,18.259
+United States,2011,17.657
+United States,2012,16.852
+United States,2013,17.12
+United States,2014,17.111
+United States,2015,16.486
+United States,2016,15.958
+United States,2017,15.69
+United States,2018,16.05
+United States,2019,15.578
+United States,2020,13.89
+United States,2021,14.794
+United States,2022,14.871
+United States,2023,14.299
