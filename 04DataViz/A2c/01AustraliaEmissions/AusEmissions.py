@@ -3,6 +3,10 @@ import matplotlib.animation as animation
 import pandas as pd
 import numpy as np
 import matplotlib.image as mpimg
+from matplotlib import rcParams
+
+# Set global font to Oxygen
+rcParams['font.family'] = 'Oxygen'
 
 # Load data
 df = pd.read_excel("AustraliaEmissions.xlsx")
@@ -33,10 +37,11 @@ ax1.set_xlim(2004, 2036)
 ax1.set_ylim(0, max(co2[~np.isnan(co2)]) * 1.1)
 ax2.set_ylim(0, max(gdp[~np.isnan(gdp)]) * 1.3)
 
-ax1.set_ylabel("CO₂ Emissions (Million Tons)", color='dimgray', fontsize=12)
-ax2.set_ylabel("GDP (Billion AU$)", color='#ff5c5c', fontsize=12)
-ax1.set_xlabel("Year", fontsize=12)
-ax1.set_title("Australia: CO₂ Emissions Target", fontsize=14)
+# Set axis labels and title (bold)
+ax1.set_ylabel("CO$_2$ Emissions (Million Tons)", color='dimgray', fontsize=12, fontweight='bold')
+ax2.set_ylabel("GDP (Billion AU$)", color='#ff5c5c', fontsize=12, fontweight='bold')
+ax1.set_xlabel("Year", fontsize=12, fontweight='bold')
+ax1.set_title("Australia: CO$_2$ Emissions Target", fontsize=14, fontweight='bold')
 
 # Background image
 fig.figimage(bg_img, xo=0, yo=0, zorder=0, alpha=0.4)
@@ -46,9 +51,10 @@ co2_line, = ax1.plot([], [], color='dimgray', linewidth=6, zorder=2, label='CO�
 gdp_line, = ax2.plot([], [], color='#ff5c5c', linewidth=3, zorder=3, label='GDP')
 projection_line, = ax1.plot([], [], linestyle='dotted', color='black', linewidth=2, zorder=5)
 
-# Tick colors
-ax1.tick_params(axis='y', labelcolor='dimgray')
-ax2.tick_params(axis='y', labelcolor='#ff5c5c')
+# Tick label colors (normal weight)
+ax1.tick_params(axis='y', labelcolor='dimgray', labelsize=10)
+ax2.tick_params(axis='y', labelcolor='#ff5c5c', labelsize=10)
+ax1.tick_params(axis='x', labelsize=10)
 
 # Reference lines and labels
 co2_2005 = df[df['year'] == 2005]['co2'].values[0]
@@ -57,11 +63,17 @@ annotation_color = 'dimgray'
 
 # Horizontal & vertical reference lines
 h1 = ax1.axhline(y=co2_2005, color=annotation_color, linestyle='dotted', linewidth=2, zorder=10)
-t1 = ax1.text(2030, co2_2005 + 5, f"2005 Emission Level ({co2_2005:.1f})", color=annotation_color,
-              fontsize=10, ha='right', zorder=11)
+t1 = ax1.text(
+    2030, co2_2005 + 5,
+    f"2005 Emission Level ({co2_2005:.1f})",
+    color=annotation_color, fontsize=10, fontweight='normal', ha='right', zorder=11
+)
 h2 = ax1.axhline(y=co2_2030_target, color=annotation_color, linestyle='dotted', linewidth=2, zorder=10)
-t2 = ax1.text(2030, co2_2030_target + 5, f"2030 Target Level (43% cut) ({co2_2030_target:.1f})",
-              color=annotation_color, fontsize=10, ha='right', zorder=11)
+t2 = ax1.text(
+    2030, co2_2030_target + 5,
+    f"2030 Target Level (43% cut) ({co2_2030_target:.1f})",
+    color=annotation_color, fontsize=10, fontweight='normal', ha='right', zorder=11
+)
 v1 = ax1.axvline(x=2005, color=annotation_color, linestyle='dotted', linewidth=2, zorder=10)
 v2 = ax1.axvline(x=2030, color=annotation_color, linestyle='dotted', linewidth=2, zorder=10)
 

@@ -1,0 +1,16 @@
+Write me a python program that does the following:
+Reads the "CO2PerCapita.csv" file from the current directory.
+
+The CO2PerCapita.csv file has 4 columns:
+country: can have values = 'Australia', 'United States', 'European Union', 'China'
+Year: 2001 till 2023 for each of the above countries
+co2_per_capita: for each year for each country
+
+Draws Line Plots in a .gif file year by year from 2001 till 2023 for the CO2 Emission per capita (in metric tons) by Australia, compared against United States, European Union and China.
+Y axis: CO2 Emission per capita (in metric tons) by Countries
+use the local file "Sydney.jpg" as background with alpha = 0.3.
+Line Plot for every year should appear after 1 second.
+X axis should be from 2000 to 2024.
+Font should be Oxygen. All field names, axis names, chart names, Index etc. and units should be Bold font.
+X labels, Y labes, pointings, markings and labels should be normal (non bold) font. 
+save the gif file as "gridEmission.gif" in the same directory.

@@ -1,0 +1,17 @@
+Write me a python program that does the following:
+Reads the "gridEmission.xlsx" file from the current directory.
+Draws Line Plots in a .gif file year by year from 2015 till 2023 for EmissionIntensity (measured in tons per gigawatt hour (t/GWh)) and renewablePercentage (percentage electricity / power generated in Australia from renewable sources).
+The plot should have dual Y axis.
+Left Y axis: Renewable Percentage should be a bright green line chart of line-width = 4
+Right Y axis: Emission Intensity should be a dark grey line chart of line-width = 4
+use the file "Sydney.jpg" as background with alpha = 0.3.
+Line Plot for every year should appear after 1 second.
+X axis should be from 2014 to 2031.
+year 2030 should have a dotted light blue vertical line of linewidth = 2.
+82% renewablePercentage should have a dotted light blue horizontal line of linewidth = 2 with a label "Target for 2030: 82% Renewable Energy"
+
+After the line plots are drawn for Renewable Percentage and Emission Intensity, draw a dark green dotted straight line of linewidth = 4 from the point (x=2023, y=35.14) to the point (x=2030, y=82), indicating the path required to meet the 2030 renewable energy target.
+
+Font should be Oxygen. All field names, axis names, chart names, Index etc. and units should be Bold font.
+X labels, Y labes, pointings, markings and labels should be normal (non bold) font. 
+save the gif file as "gridEmission.gif" in the same directory.
