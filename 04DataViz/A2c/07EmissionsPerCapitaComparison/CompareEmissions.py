@@ -6,8 +6,8 @@ import os
 
 # Configuration
 csv_file = "CO2PerCapita.csv"
-bg_image_file = "Sydney.jpg"
-output_gif = "gridEmission.gif"
+bg_image_file = "AustraliaLeader.png"
+output_gif = "emissionCompare.gif"
 frames_dir = "frames_emission"
 os.makedirs(frames_dir, exist_ok=True)
 

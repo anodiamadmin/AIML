@@ -41,7 +41,7 @@ ax2.set_ylim(0, max(gdp[~np.isnan(gdp)]) * 1.3)
 ax1.set_ylabel("CO$_2$ Emissions (Million Tons)", color='dimgray', fontsize=12, fontweight='bold')
 ax2.set_ylabel("GDP (Billion AU$)", color='#ff5c5c', fontsize=12, fontweight='bold')
 ax1.set_xlabel("Year", fontsize=12, fontweight='bold')
-ax1.set_title("Australia: CO$_2$ Emissions Target", fontsize=14, fontweight='bold')
+ax1.set_title("Australia: CO$_2$ Emissions", fontsize=14, fontweight='bold')
 
 # Background image
 fig.figimage(bg_img, xo=0, yo=0, zorder=0, alpha=0.4)

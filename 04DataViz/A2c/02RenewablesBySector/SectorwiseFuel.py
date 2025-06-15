@@ -5,21 +5,22 @@ import os
 import matplotlib.image as mpimg
 from matplotlib import rcParams
 from PIL import Image
+from scipy.stats import alpha  # Optional, unused in current script
 
 # Set global font
 rcParams['font.family'] = 'Oxygen'
 
 def set_background_image(ax, image_path):
-    """Set stretched background image behind entire plot."""
+    """Set stretched background image behind entire plot with 50% opacity."""
     img = mpimg.imread(image_path)
-    ax.imshow(img, aspect='auto', extent=[0, 1, 0, 1], transform=ax.transAxes, zorder=0)
+    ax.imshow(img, aspect='auto', extent=[0, 1, 0, 1], transform=ax.transAxes, zorder=0, alpha=0.5)
 
 def main():
     # File and directory setup
     excel_file = "SectorwiseFuel.xlsx"
     gif_file = "SectorwiseEnergyAnimation.gif"
     frames_dir = "frames_sectorwise_energy"
-    bg_image_path = "SydneyBG.png"
+    bg_image_path = "SydneyBg.jpg"
     os.makedirs(frames_dir, exist_ok=True)
 
     # Load data
@@ -51,7 +52,7 @@ def main():
         df_pivot[['NonRenewable', 'Renewable']].plot(
             kind='bar',
             stacked=True,
-            color=['#a6977f', '#4cff4c'],
+            color=['#c6a77f', '#4cff4c'],
             ax=ax,
             zorder=2
         )
@@ -103,11 +104,11 @@ def main():
         gif_file,
         save_all=True,
         append_images=images[1:],
-        duration=2000,  # milliseconds per frame
+        duration=1000,  # milliseconds per frame
         loop=0
     )
 
-    print(f"✅ Animation saved as: {gif_file}")
+    print(f"Animation saved as: {gif_file}")
 
 if __name__ == "__main__":
     main()
