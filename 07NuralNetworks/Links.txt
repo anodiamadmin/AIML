@@ -1,0 +1,19 @@
+P - 1
+-----
+Anirban: after 14/08/2025
+1. ML & Data Mining: Uni Notes & Materials, Youtube
+2. CNN & RNN Theory: Uni Notes & Materials, Youtube
+3. TF, Keras: https://www.youtube.com/watch?v=Mubj_fqiAv8&list=PLeo1K3hjS3uu7CxAacxVndI4bE_o3BDtO&index=1
+
+Sayan: after 14/08/2025
+4. LLM, Prompt Engg, NLP Theory: Youtube, Coursera
+5. NLP: https://www.youtube.com/watch?v=diOXCK7I2wA&list=PLw3N0OFSAYSEC_XokEcX8uzJmEZSoNGuS&index=1
+
+Ref material:
+Deep Learning: https://www.youtube.com/watch?v=YFNKnUhm_-s&list=PLZoTAELRMXVPGU70ZGsckrMdr0FteeRUi&index=1
+
+-------------------------------
+
+P - 2
+-----
+Pytorch: Washington Uni: https://www.youtube.com/watch?v=ZOhiRHEeoBw&list=PLjy4p-07OYzuy_lHcRW8lPTLPTTOmUpmi&index=1
