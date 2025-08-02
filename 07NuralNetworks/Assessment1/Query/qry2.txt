@@ -1,0 +1,137 @@
+Query 1: Context information: Attachment: a2.zip file
+----------------------
+This is for my Masters in Data Science, Neural Networks Deep Learning Assignment.
+a2.zip contains the following files:
+anbn.py
+encoder.py
+endoder_main.py
+encoder_model.py
+frac.py
+frac_main.py
+kuzu.py
+kuzu_main.py
+reber.py
+seq_models.py
+seq_plot.py
+seq_train.py
+Instructions:
+we will be implementing and training various neural network models for four different tasks, and analysing the results. we need to complete and submit three Python files 
+1. frac.py
+2. encoder.py
+3. kuzu.py
+and a written report a2.pdf/ a2.docx (in pdf/ word format)
+This assessment is comprised of 4 parts with multiple steps in each part. The steps require us to complete actions using the files provided and/or record the findings in the report.
+You do not need to reply anything now. This is just for the context information. Save this chat under my profile with the name "Part 2 Encoder Networks". I shall provide subsequent prompts in that chat, for you to answer:
+--------------------------------
+Query 2: Attachment: encoder-aus.jpeg
+In Part 2 you will be editing the file encoder.py to create a dataset which, when run in combination with encoder_main.py, produces the following image 'encoder-aus.jpeg' (which is intended to be a stylized map of Australia).
+You should first run your code by typing
+python3 encoder_main.py --target star16
+Note that the target is determined by the tensor star16 in encoder.py, which has 16 rows and 8 columns, indicating that there are 16 inputs and 8 outputs. The inputs use a one-hot encoding and are generated in the form of an identity matrix using torch.eye()
+The above is still for ChatGPT's context information. The final question will follow: 
+
+[3 marks] - Create by hand a dataset in the form of a tensor called aus26 in the file encoder.py which, when run with the following command, will produce an image essentially the same as the one shown above (but possibly rotated or reflected).
+
+python3 encoder_main.py --target aus26
+
+The pattern of dots and lines must be identical, except for the possible rotation or reflection. Note in particular the six "anchor points" in the corners and on the edge of the figure. Your tensor should have 26 rows and 20 columns. Include the final image in your report, and include the tensor aus26 in your file encoder.py
+---------------------------------
+Query 3:
+below is the plot_hidden function
+def plot_hidden(net):
+    # plot the hidden unit dynamics of the network
+    plt.xlim(-1,1), plt.ylim(-1,1) # limits of x and y axes
+
+    # input to hidden weights and biases
+    weight = net.in_hid.weight.data.cpu()
+    bias   = net.in_hid.bias.data.cpu()
+
+    num_in  = net.in_hid.weight.data.size()[1]
+    num_out = net.hid_out.weight.data.size()[0]
+
+    # draw a dot to show where each input is mapped to in hidden unit space
+    P = torch.tanh(weight + bias.unsqueeze(1).repeat(1,num_in))
+    plt.plot(P[0,:],P[1,:],'bo')
+
+    # draw a line interval to show the decision boundary of each output
+    for i in range(num_out):
+
+        A = net.hid_out.weight.data.cpu()[i,0]
+        B = net.hid_out.weight.data.cpu()[i,1]
+        C = net.hid_out.bias.data.cpu()[i]
+
+        j = 0;
+        if A == 0:
+            if B != 0:
+                y0 = -C/B
+                if -1 < y0 and y0 < 1:
+                    j = 2
+                    plt.plot([-1,1],[y0,y0])
+        elif B == 0:
+            if A != 0:
+                x0 = -C/A
+                if -1 < x0 and x0 < 1:
+                    plt.plot([x0,x0],[-1,1])
+        else:
+            x = torch.zeros(2)
+            y = torch.zeros(2)
+            y0 = (A-C)/B
+            if -1 <= y0 and y0 <= 1:
+                x[j] = -1
+                y[j] =  y0
+                j = j+1
+            y0 = (-A-C)/B
+            if -1 <= y0 and y0 <= 1:
+                x[j] =  1
+                y[j] =  y0
+                j = j+1
+            x0 = (B-C)/A
+            if j < 2 and -1 <= x0 and x0 <= 1:
+                x[j] =  x0
+                y[j] = -1
+                j = j+1
+            x0 = (-B-C)/A
+            if j < 2 and -1 <= x0 and x0 <= 1:
+                x[j] =  x0
+                y[j] =  1
+                j = j+1
+            if j > 1:
+                plt.plot(x,y)
+
+-------------------------------------------------
+Query 4: Attachment: Diagram.png. Australia.png
+I have finally edited the file 'encoder.py'. uodated aus26 as below.
+aus26 = torch.Tensor([
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],  # bottom-left anchor
+  [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1],  # top-left anchor
+  [1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0],  # bottom-right anchor
+  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],  # top-right anchor
+  [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0],  # mid-left edge anchor (0, 6)
+  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0],  # mid-right edge anchor (10, 5)
+  [1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0],  # WA (4, 9) Pt#1
+    [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],  # NT (5, 9) Pt#2
+    [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],  # NT (5, 8) Pt#3
+    [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],  # NT (6, 8) Pt#4
+    [1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],  # QLD (7, 9) Pt#5
+    [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],  # QLD (8, 8) Pt#6
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],  # QLD (9, 7) Pt#7
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],  # QLD (9, 6) Pt#8
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],  # NSW (9, 5) Pt#9
+    [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0],  # NSW (8, 4) Pt#10
+    [1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0],  # VIC (7, 4) Pt#11
+    [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],  # SA (6, 5) Pt#12
+    [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],  # SA (5, 5) Pt#13
+    [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0],  # WA (4, 4) Pt#14
+    [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0],  # WA (3, 4) Pt#15
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],  # WA (2, 5) Pt#16
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],  # WA (2, 6) Pt#17
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],  # WA (2, 7) Pt#18
+    [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],  # WA (3, 8) Pt#19
+    [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]  # TAS (8, 2) Pt#20
+])
+I have used the attached Diagram.png for planning. It has been drawn by superimposing an Australia Map on a 10X10 grid and pointing the borders on the grid.
+
+The final/ resulting Aistralia.png produced bu the encoder network is also attached. It seems to be a mirror image of the actual map of Audtarlia because Tasmania is on the bottom right, instead of bottom left. Give an explanation of why the image is a horiontal reflection.
+
+Give me a very strong rightup for my report.pdf file for the Encoder Networks assignment.
+

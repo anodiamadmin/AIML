@@ -1,0 +1,111 @@
+Query 1: Context information: Attachment: a2.zip file
+----------------------
+This is for my Masters in Data Science, Neural Networks Deep Learning Assignment.
+a2.zip contains the following files:
+anbn.py
+encoder.py
+endoder_main.py
+encoder_model.py
+frac.py
+frac_main.py
+kuzu.py
+kuzu_main.py
+reber.py
+seq_models.py
+seq_plot.py
+seq_train.py
+Instructions:
+we will be implementing and training various neural network models for four different tasks, and analysing the results. we need to complete and submit three Python files 
+1. frac.py
+2. encoder.py
+3. kuzu.py
+and a written report a2.pdf/ a2.docx (in pdf/ word format)
+This assessment is comprised of 4 parts with multiple steps in each part. The steps require us to complete actions using the files provided and/or record the findings in the report.
+You do not need to reply anything now. This is just for the context information. Save this chat under my profile with the name "Anirban Assignment 2". I shall provide subsequent prompts in that chat, for you to answer:
+------------------------------------------
+Query 2: Part 1 - Fractal Classification Task: Attachment: fractral.jpeg file
+For Part 1 we will be training a network to distinguish dots in the fractal pattern shown in the attached file 'fractral.jpeg'. The supplied code in a2.zip in the file 'frac_main.py' loads the training data from fractal.csv, applies the specified neural network model and produces a graph of the resulting function, along with the data. For this task there is no test set as such, but we instead judge the generalization by plotting the function computed by the network and making a visual assessment. This part of the assessment is comprised of seven steps:
+Step 1 [1 mark] - Provide code for a Pytorch Module called Full3Net which implements a 3-layer fully connected neural network with two hidden layers using tanh activation, followed by the output layer with one node and sigmoid activation. Your network should have the same number of hidden nodes in each layer, specified by the variable (argument) hid. The hidden layer activations (after applying tanh) should be stored into self.hid1 and self.hid2 so they can be graphed afterwards.
+-------------------------------------------
+Query 3: What should I write in the written report a2.pdf/ a2.docx about this (Part 1: Step 1) ?
+-------------------------------------------
+Query 4: Step 2 [1 mark] - In Python on your computer, train your network by typing
+
+python3 frac_main.py --net full3 --hid ⟨hid⟩
+
+Try to determine a number of hidden nodes close to the minimum required for the network to be trained successfully (although, it need not be the absolute minimum). You may need to run the network several times before finding a set of initial weights that allows it to converge. (If it trains for a couple of minutes and seems to be stuck in a local minimum, kill it with ⟨cntrl⟩-c and run it again). You are free to adjust the learning rate and initial weight size if you want to. The graph_output() method will generate a picture of the function computed by your Network and store it in the plot subdirectory with a name like out_full3_?.png. You should include this picture in your report, as well as a calculation of the total number of independent parameters in your network (based on the number of hidden nodes you have chosen).
+
+Give me step by step instructions to complete step 2.
+-------------------------------------------
+Query 5: Create the formula for:
+The total number of independent parameters in the network and explain with 10 hidden units (I think the previous calculations were incorrent)
+
+isn't the sum of P1, P2 and P3 = hid**2 + 5 hid + 1 instead of hid**2 + 4 hid + 1?
+P1 = 2⋅hid + hid = 3⋅hid
+P2 = hid**2 + hid
+P3 = hid + 1
+------------------------------------------
+Query 6: Give me a set of probable commands to run:
+Question says: You may need to run the network several times before finding a set of initial weights that allows it to converge. (If it trains for a couple of minutes and seems to be stuck in a local minimum, kill it with ⟨cntrl⟩-c and run it again). You are free to adjust the learning rate and initial weight size if you want to.
+I have run the following:
+python frac_main.py --net full3 --hid 30
+python frac_main.py --net full3 --hid 20
+python frac_main.py --net full3
+python frac_main.py --net full3 --hid 8
+python frac_main.py --net full3 --hid 6
+How do I change initial weights and adjust the learning rate and initial weight size? Give me the commands
+------------------------------------------
+Query 6: Step 3 [1 mark] - Provide code for a Pytorch Module called Full4Net which implements a 4-layer network, the same as Full3Net but with an additional hidden layer. All three hidden layers should have the same number of nodes (hid). The hidden layer activations (after applying tanh) should be stored into self.hid1, self.hid2 and self.hid3.
+Example Run: python frac_main.py --net full4 --hid 20 --lr 0.001 --init 0.1
+------------------------------------------
+Query 7: [2 mark]
+Provide code for a Pytorch Module called DenseNet which implements a 3-layer densely connected neural network. Your network should be the same as Full3Net except that it should also include shortcut connections from the input to the second hidden layer and output layer, and from the first hidden layer to the second hidden layer and output layer. Each hidden layer should have hid units and tanh activation, and the output node should have sigmoid activation. The hidden layer activations (after applying tanh) should be stored into self.hid1 and self.hid2. Specifically, the hidden and output activations should be calculated according to the following equations. (Note that there are various ways to implement these equations in PyTorch; for example, using a separate nn.Parameter for each individual bias and weight matrix, or combining several of them into nn.Linear and making use of torch.cat()).
+h1j	= tanh( b1j + Σ k  w10 jk xk )
+h2i	= tanh( b2i + Σ k  w20 ik xk + Σ j  w21 ij  h1j )
+out	= sigmoid( bout + Σ k  w30 k xk + Σ j  w31 j  h1j + Σ i  w32 i  h2i )
+------------------------------------------
+Query 8: [2 mark]
+write content for the report a2.pdf/ a2.docx
+------------------------------------------
+Query 9: [1 mark]
+Train your Dense Network by typing
+
+python3 frac_main.py --net dense --hid ⟨hid⟩
+
+As before, try to determine a number of hidden nodes close to the minimum required for the network to be trained successfully. You should include the graphs of the output and all the hidden nodes in both layers in your report, as well as a calculation of the total number of independent parameters in your network.
+------------------------------------------
+Query 10: 
+give me the formula for the number of independent parameters in Dense Net, given the equations for its architecture are:
+h1j	= tanh( b1j + Σ k  w10 jk xk )
+h2i	= tanh( b2i + Σ k  w20 ik xk + Σ j  w21 ij  h1j )
+out	= sigmoid( bout + Σ k  w30 k xk + Σ j  w31 j  h1j + Σ i  w32 i  h2i )
+
+
+[1 mark]
+Briefly discuss (for the report):
+1. the total number of independent parameters in each of the three networks (using the number of hidden nodes determined by your experiments) and the approximate number of epochs required to train each type of network.
+
+Formula for the number of independent parameters in:
+1. fully connected 3 layer network: hid**2 + 5*hid + 1 (Provide a description for the deduction of the formula)
+2. fully connected 4 layer network: 2*hid**2 + 6*hid + 1 (Provide a description for the deduction of the formula)
+3. Dense Net: has to be calculated from: hid**2 + 8*hid + 3 (Provide a description for the deduction of the formula)
+
+approximate number of epochs required to train each type of network is as follows:
+1. fully connected 3 layer network: 
+ - with 30 hidden units: stabilizes after 103700 epochs, Accuracy reached 100%
+ - with 8, 10, 20 hidden units: learning continues till 200000 epochs with accuracy increasing and loss decreasing with fluctuations.
+ - with 7 Hidden Units: learning stops/ stagnates at 35000 epochs
+ - with 4 Hidden Units: learning stops/ stagnates 20000 epochs
+2. fully connected 4 layer network:
+ - with 20 hidden units: stabilizes after 92000 epochs, Accuracy reached 100%
+ - with 4 Hidden Units: very fluctuating
+3. Dense Net:
+ - 20 hidden units: stabilizes after 8800 epochs, Accuracy reached 100%
+ - 6 Hidden Units: learning stops/ stagnates at 50000 epochs
+------------------------------------------
+Query 11: 
+2. Briefly discuss (for the report):
+a qualitative description of the functions computed by the different layers of Full4Net and DenseNet,
+------------------------------------------
+Query 12: 
+the qualitative difference, if any, between the overall function (i.e. output as a function of input) computed by the three networks.
