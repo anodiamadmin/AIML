@@ -94,6 +94,6 @@ while epoch < args.epochs and loss > args.stop:
             plt.show()
 
 plot_hidden(net)
-plt.savefig('australiaOriginal.png',format='png')
+plt.savefig('australia.png',format='png')
 plt.savefig('australia.jpg')
 plt.show()
