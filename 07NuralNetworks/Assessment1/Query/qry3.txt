@@ -371,6 +371,12 @@ Step 4 [4 marks] - Briefly discuss the following points:
 
 Query 10:
 --------------------------------------------
+Implement a convolutional network called NetConv, with two convolutional layers plus one fully connected layer, all using relu activation function, followed by the output layer, using log softmax. You are free to choose for yourself the number and size of the filters, meta parameter values (learning rate and momentum), and whether to use max pooling or a fully convolutional architecture. Run the code by typing:
+
+python3 kuzu_main.py --net conv 
+
+Your network should consistently achieve at least 93% accuracy on the test set after 10 training epochs. Copy the final accuracy and confusion matrix into your report, and include a calculation of the total number of independent parameters in the network.
+
 Number of parameters for the Convolutional Neural Network is calculated once as:
  - Conv1: (10 × 5 × 5 × 1) + 10 = 260
  - Conv2: (20 × 5 × 5 × 10) + 20 = 5,020
@@ -416,3 +422,5 @@ class NetConv(nn.Module):
         x = F.relu(self.fc1(x))  # (B,128)
         x = self.out(x)  # (B,10)
         return F.log_softmax(x, dim=1)
+
+What is the correct number of parameters, as per the code and why?
