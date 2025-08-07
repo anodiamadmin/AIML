@@ -1,0 +1,582 @@
+Query 1:
+-----------------------------------------------
+Attachments: hidden_unit_dynamics_anbncn.jpeg, finite_state_machine_for_Reber_Grammar.jpeg, seq_train.py, seq_plot.py, colormap_jet.jpeg, 'Picture1.png'
+Question:
+Part 4 - Hidden Unit Dynamics for Recurrent Networks
+In Part 4 you will be investigating the hidden unit dynamics of recurrent networks trained on language prediction tasks, using the supplied code seq_train.py and seq_plot.py.
+This part of the assessment is comprised of seven steps:
+Step 1 [2 marks] - Train a Simple Recurrent Network (SRN) on the Reber Grammar prediction task by typing
+python3 seq_train.py --lang reber
+This SRN has 7 inputs, 2 hidden units and 7 outputs. The trained networks are stored every 10000 epochs, in the net subdirectory. After the training finishes, plot the hidden unit activations at epoch 50000 by typing
+python3 seq_plot.py --lang reber --epoch 50
+The dots should be arranged in discernable clusters by color. If they are not, run the code again until the training is successful. The hidden unit activations are printed according to their "state", using the colormap "jet": colormap_jet.jpeg
+Based on this colormap, annotate your figure (either electronically, or with a pen on a printout) by drawing a circle around the cluster of points corresponding to each state in the state machine, and drawing arrows between the states, with each arrow labelled with its corresponding symbol. Include the annotated figure in your report.
+
+The final diagram 'Picture1.png' shows the output of the hidden unit activations after 50,000 epochs. We can see a clear separation for each of the states. We can see the applicable activations for each state.
+
+The outputs of the final epochs from running "python seq_plot.py --lang reber --epoch 50" is given below:
+
+(venv) PS D:\AIML\07NuralNetworks\Assessment1\a2> python seq_plot.py --lang reber --epoch 50
+-----
+state = 012366666666654
+symbol= BTXXTTTTTTTTVVE
+label = 013311111111556
+true probabilities:
+     B    T    S    X    P    V    E
+1 [0.  0.5 0.  0.  0.5 0.  0. ]
+2 [0.  0.  0.5 0.5 0.  0.  0. ]
+3 [0.  0.  0.5 0.5 0.  0.  0. ]
+6 [0.  0.5 0.  0.  0.  0.5 0. ]
+6 [0.  0.5 0.  0.  0.  0.5 0. ]
+6 [0.  0.5 0.  0.  0.  0.5 0. ]
+6 [0.  0.5 0.  0.  0.  0.5 0. ]
+6 [0.  0.5 0.  0.  0.  0.5 0. ]
+6 [0.  0.5 0.  0.  0.  0.5 0. ]
+6 [0.  0.5 0.  0.  0.  0.5 0. ]
+6 [0.  0.5 0.  0.  0.  0.5 0. ]
+6 [0.  0.5 0.  0.  0.  0.5 0. ]
+5 [0.  0.  0.  0.  0.5 0.5 0. ]
+4 [0. 0. 0. 0. 0. 0. 1.]
+hidden activations and output probabilities [BTSXPVE]:
+1 [1. 1.] [0.   0.46 0.   0.   0.5  0.05 0.  ]
+2 [-0.75 -0.88] [0.   0.   0.43 0.56 0.   0.   0.  ]
+3 [ 0.32 -0.98] [0.   0.   0.6  0.36 0.   0.03 0.  ]
+6 [ 0.82 -0.13] [0.   0.45 0.01 0.01 0.02 0.51 0.  ]
+6 [ 0.81 -0.12] [0.   0.45 0.01 0.01 0.02 0.51 0.  ]
+6 [ 0.81 -0.13] [0.   0.44 0.01 0.01 0.02 0.52 0.  ]
+6 [ 0.82 -0.12] [0.   0.45 0.01 0.01 0.02 0.51 0.  ]
+6 [ 0.81 -0.12] [0.   0.45 0.01 0.01 0.02 0.51 0.  ]
+6 [ 0.81 -0.13] [0.   0.45 0.01 0.01 0.02 0.51 0.  ]
+6 [ 0.82 -0.12] [0.   0.46 0.01 0.01 0.02 0.51 0.  ]
+6 [ 0.81 -0.13] [0.   0.45 0.01 0.01 0.02 0.51 0.  ]
+6 [ 0.81 -0.13] [0.   0.45 0.01 0.01 0.02 0.51 0.  ]
+5 [-0.29  1.  ] [0.   0.02 0.   0.   0.44 0.54 0.  ]
+4 [-1.    0.96] [0.   0.   0.   0.   0.   0.   0.99]
+epoch: 8
+error: 0.0008
+-----
+state = 01654
+symbol= BPVVE
+label = 04556
+true probabilities:
+     B    T    S    X    P    V    E
+1 [0.  0.5 0.  0.  0.5 0.  0. ]
+1 [0.  0.5 0.  0.  0.5 0.  0. ]
+6 [0.  0.5 0.  0.  0.  0.5 0. ]
+5 [0.  0.  0.  0.  0.5 0.5 0. ]
+4 [0. 0. 0. 0. 0. 0. 1.]
+hidden activations and output probabilities [BTSXPVE]:
+1 [1. 1.] [0.   0.46 0.   0.   0.5  0.05 0.  ]
+6 [ 0.8  -0.13] [0.   0.44 0.01 0.01 0.02 0.52 0.  ]
+5 [-0.29  1.  ] [0.   0.02 0.   0.   0.44 0.54 0.  ]
+4 [-1.    0.96] [0.   0.   0.   0.   0.   0.   0.99]
+epoch: 9
+error: 0.0005
+
+Give me the writeup for Step 1 
+
+Query 2:
+-----------------------------------------------
+Attachments: Figure_2.png, Picture2.png
+
+Step 2 [1 mark] - Train an SRN on the anbn language prediction task by typing
+ 
+python3 seq_train.py --lang anbn
+ 
+The anbn language is a concatenation of a random number of A's followed by an equal number of B's. The SRN has 2 inputs, 2 hidden units and 2 outputs.
+Look at the predicted probabilities of A and B as the training progresses. The first B in each sequence and all A's after the first A are not deterministic and can only be predicted in a probabilistic sense. But, if the training is successful, all other symbols should be correctly predicted. In particular, the network should predict the last B in each sequence as well as the subsequent A. The error should be consistently below 0.01. If the network appears to have learned the task successfully, you can stop it at any time using ⟨cntrl⟩-c. If it appears to be stuck in a local minimum, you can stop it and run the code again until it is successful. After the training finishes, plot the hidden unit activations by typing
+
+python3 seq_plot.py --lang anbn --epoch 100
+Include the resulting figure in your report. The states are again printed according to the colormap "jet". Note, however, that these "states" are not unique but are instead used to count either the number of A's we have seen or the number of B's we are still expecting to see.
+
+'Figure_2.png' shows the output of the hidden unit activations after 100,000 epochs.
+
+The outputs of the final epochs from running "python seq_plot.py --lang anbn --epoch 100" is given below:
+-----
+color = 012101234321012345654321012345432101210
+symbol= AABBAAAABBBBAAAAAABBBBBBAAAAABBBBBAABBA
+label = 001100001111000000111111000001111100110
+hidden activations and output probabilities:
+A [0.23 0.92] [0.87 0.13]
+B [0.76 1.  ] [0.87 0.13]
+B [-0.98 -0.18] [0. 1.]
+A [-1.    0.91] [0.96 0.04]
+A [0.24 1.  ] [0.93 0.07]
+A [0.76 1.  ] [0.87 0.13]
+A [0.86 0.97] [0.82 0.18]
+B [0.88 0.92] [0.76 0.24]
+B [-0.98 -0.73] [0. 1.]
+B [-1.   -0.58] [0. 1.]
+B [-1. -0.] [0.02 0.98]
+A [-1.    0.98] [0.98 0.02]
+A [0.24 1.  ] [0.93 0.07]
+A [0.76 1.  ] [0.87 0.13]
+A [0.86 0.97] [0.82 0.18]
+A [0.88 0.92] [0.76 0.24]
+A [0.88 0.87] [0.68 0.32]
+B [0.88 0.82] [0.58 0.42]
+B [-0.98 -0.87] [0. 1.]
+B [-1.   -0.83] [0. 1.]
+B [-1.   -0.76] [0. 1.]
+B [-1.   -0.61] [0. 1.]
+B [-1.  -0.1] [0.01 0.99]
+A [-1.    0.96] [0.97 0.03]
+A [0.24 1.  ] [0.93 0.07]
+A [0.76 1.  ] [0.87 0.13]
+A [0.86 0.97] [0.82 0.18]
+A [0.88 0.92] [0.76 0.24]
+B [0.88 0.87] [0.68 0.32]
+B [-0.98 -0.81] [0. 1.]
+B [-1.   -0.75] [0. 1.]
+B [-1.   -0.57] [0. 1.]
+B [-1.    0.03] [0.02 0.98]
+A [-1.    0.98] [0.98 0.02]
+A [0.24 1.  ] [0.93 0.07]
+B [0.76 1.  ] [0.87 0.13]
+B [-0.98 -0.2 ] [0. 1.]
+A [-1.   0.9] [0.96 0.04]
+epoch: 9
+error: 0.0048
+
+Based on the jet colormap, 'Figure_2.png' has been annotatedby drawing an elipse around the cluster of points corresponding to each state, and drawing arrows between the states, with each arrow labelled with its corresponding symbol/ Character. 'Picture2.png' shows the final output. Include this annotated figure and its description in your report.  
+
+Give me the writeup for Step 2 
+
+Query 3:
+--------------------------------------------
+Attachments: Figure_2.png, Picture2.png
+
+Step 3 [1 mark] - Briefly explain how the anbn prediction task is achieved by the network, based on the figure you generated in Step 2 (attached Figure_2.png and Picture2.png). Specifically, you should describe how the hidden unit activations change as the string is processed, and how it can correctly predict the last B in each sequence as well as the following A.
+
+Query 4:
+-------------------------------------------
+Attachments: anbncn_3d_hidden_plot.png; angleded_anbncn_3d_hidden_plot.png; Anotated_anbncn_3d_hidden_plot.png
+Step 4 [1 mark] - Train an SRN on the anbncn language prediction task by typing
+python3 seq_train.py --lang anbncn
+The SRN now has 3 inputs, 3 hidden units and 3 outputs. Again, the "state" is used to count up the A's and count down the B's and C's. Continue training (re-starting, if necessary) for 200k epochs, or until the network can reliably predict all the C's as well as the subsequent A, and the error is consistently in the range of 0.01 or 0.02.
+"""
+Content of seq_train.py
+"""
+parser = argparse.ArgumentParser()
+# language options
+parser.add_argument('--lang', type=str, default='reber', help='reber, anbn or anbncn')
+parser.add_argument('--embed', type=bool, default=False, help='embedded or not (reber)')
+parser.add_argument('--length', type=int, default=0, help='min (reber) or max (anbn)')
+# network options
+parser.add_argument('--model', type=str, default='srn', help='srn or lstm')
+parser.add_argument('--hid', type=int, default=0, help='number of hidden units')
+# optimizer options
+parser.add_argument('--optim', type=str, default='adam', help='sgd or adam')
+parser.add_argument('--lr', type=float, default=0.001, help='learning rate')
+parser.add_argument('--mom', type=float, default=0, help='momentum (srn)')
+parser.add_argument('--init', type=float, default=0.001, help='initial weight size (srn)')
+# training options
+parser.add_argument('--epoch', type=int, default=0, help='number of training epochs (\'000s)')
+parser.add_argument('--out_path', type=str, default='net', help='outputs path')
+args = parser.parse_args()
+if args.lang == 'reber':
+    num_class = 7
+    hid_default = 2
+    epoch_default = 50
+    lang = lang_reber(args.embed,args.length)
+elif args.lang == 'anbn':
+    num_class = 2
+    hid_default = 2
+    epoch_default = 100
+    if args.length == 0:
+        args.length = 8
+    lang = lang_anbn(num_class,args.length)
+elif args.lang == 'anbncn':
+    num_class = 3
+    hid_default = 3
+    epoch_default = 200
+    if args.length == 0:
+        args.length = 8
+    lang = lang_anbn(num_class,args.length)
+if args.hid == 0:
+    args.hid = hid_default
+if args.epoch == 0:
+    args.epoch = epoch_default
+if args.model == 'srn':
+    net = SRN_model(num_class,args.hid,num_class)
+    for m in list(net.parameters()):
+        m.data.normal_(0,args.init)
+elif args.model == 'lstm':
+    net = LSTM_model(num_class,args.hid,num_class)
+if args.optim == 'adam':
+    optimizer = optim.Adam(net.parameters(), lr=args.lr,
+                           weight_decay=0.00001)
+else:
+    optimizer = optim.SGD(net.parameters(), lr=args.lr,
+                      momentum=args.mom, weight_decay=0.00001)
+loss_function = F.nll_loss
+np.set_printoptions(suppress=True,precision=2,sign=' ')
+for epoch in range((args.epoch*1000)+1):
+    net.zero_grad()
+    input, seq, target, state = lang.get_sequence()
+    label  = seq[1:]
+    net.init_hidden()
+    hidden, output = net(input)
+    log_prob = F.log_softmax(output, dim=2)
+    prob_out = torch.exp(log_prob)
+    loss = F.nll_loss(log_prob.squeeze(), label.squeeze())
+    loss.backward()
+    optimizer.step()
+    if epoch % 1000 == 0:
+        # Check accuracy during training
+        with torch.no_grad():
+            net.eval()
+            input, seq, target, state = lang.get_sequence()
+            label = seq[1:]
+            net.init_hidden()
+            hidden, output = net(input)
+            log_prob = F.log_softmax(output, dim=2)
+            prob_out = torch.exp(log_prob)            
+            lang.print_outputs(epoch, seq, state, hidden, target, output)
+            sys.stdout.flush()
+            net.train()
+        if epoch % 10000 == 0:
+            path = args.out_path+'/'
+            torch.save(net.state_dict(),path+'%s_%s%d_%d.pth'
+                       %(args.lang,args.model,args.hid,epoch/1000))
+---------------
+After the training finishes, plot the hidden unit activations by typing
+python3 seq_plot.py --lang anbncn --epoch 200
+
+Increase number of sequences: If you only sample --num_plot=10, and most sequences have similar structure, the plot might look sparse or clustered.
+Try increasing:
+python3 seq_plot.py --lang anbncn --epoch 200 --num_plot 50
+
+"""
+   Contents of seq_plot.py
+"""
+parser = argparse.ArgumentParser()
+parser.add_argument('--lang', type=str, default='reber', help='reber, anbn or anbncn')
+parser.add_argument('--embed', type=bool, default=False, help='embedded or not (reber)')
+parser.add_argument('--length', type=int, default=0, help='min (reber) or max (anbn)')
+# network options
+parser.add_argument('--model', type=str, default='srn', help='srn or lstm')
+parser.add_argument('--hid', type=int, default=0, help='number of hidden units')
+# visualization options
+parser.add_argument('--out_path', type=str, default='net', help='outputs path')
+parser.add_argument('--epoch', type=int, default=100, help='epoch to load from')
+parser.add_argument('--num_plot', type=int, default=10, help='number of plots')
+args = parser.parse_args()
+if args.lang == 'reber':
+    num_class = 7
+    hid_default = 2
+    lang = lang_reber(args.embed,args.length)
+    if args.embed:
+        max_state = 18
+    else:
+        max_state =  6
+elif args.lang == 'anbncn':
+    num_class = 3
+    hid_default = 3
+    if args.length == 0:
+        args.length = 8
+    lang = lang_anbn(num_class,args.length)
+    max_state = args.length
+if args.hid == 0:
+    args.hid = hid_default
+if args.model == 'srn':
+    net = SRN_model(num_class,args.hid,num_class)
+elif args.model == 'lstm':
+    net = LSTM_model(num_class,args.hid,num_class)
+path = args.out_path+'/'
+net.load_state_dict(torch.load(path+'%s_%s%d_%d.pth'
+                    %(args.lang,args.model,args.hid,args.epoch)))
+np.set_printoptions(suppress=True,precision=2)
+for weight in net.parameters():
+    print(weight.data.numpy())
+if args.hid == 2:
+    plt.plot(net.H0.data[0],net.H0.data[1],'bx') 
+elif args.hid == 3:    
+    fig = plt.figure()
+    ax = Axes3D(fig)
+    ax.plot(net.H0.data[0],net.H0.data[1],net.H0.data[2],'bx') 
+with torch.no_grad():
+    net.eval()
+    for epoch in range(args.num_plot):
+        input, seq, target, state = lang.get_sequence()
+        label = seq[1:]
+        net.init_hidden()
+        hidden_seq, output = net(input)
+        hidden = hidden_seq.squeeze()
+        lang.print_outputs(epoch, seq, state, hidden, target, output)
+        sys.stdout.flush()
+        if args.hid == 2:
+            plt.scatter(hidden[:,0],hidden[:,1], c=state[1:],
+                        cmap='jet', vmin=0, vmax=max_state)
+        else:
+            ax.scatter(hidden[:,0],hidden[:,1],hidden[:,2],
+                       c=state[1:], cmap='jet',
+                       vmin=0, vmax=max_state)
+    plt.show()
+---------------
+The default output is shown in attached "anbncn_3d_hidden_plot.png" file
+
+Rotate the figure in 3 dimensions to get one or more good view(s) of the points in hidden unit space.
+
+The figure was rotated with various values of elevation, azimuth and roll until the angle: ax.view_init(elev=45, azim=-160, roll=-45) was discovered that shows the best seperation of hidden unit clusters for As, Bs and Cs
+The best view of the points in hidden unit space is attached in attached file: angled_anbncn_3d_hidden_plot.png
+
+The attached file Anotated_anbncn_3d_hidden_plot.png shows the manual classification of hidden unit clusters for As, Bs and Cs
+
+Give me the write-up for Step 4.
+
+Query 5
+-------------------------------------
+Step 5 [1 mark] - Briefly explain how the anbncn prediction task is achieved by the network, based on the figure you generated in Question 4. Specifically, you should describe how the hidden unit activations change as the string is processed, and how it can correctly predict the last B in each sequence as well as all of the C's and the following A.
+
+Query 6
+-------------------------------------
+Step 6 [3 marks] - This question is intended to be more challenging. Train an LSTM network to predict the Embedded Reber Grammar, by typing
+ 
+python3 seq_train.py --lang reber --embed True --model lstm --hid 4
+ 
+You can adjust the number of hidden nodes if you wish. Once the training is successful, try to analyse the behaviour of the LSTM and explain how the task is accomplished (this might involve modifying the code so that it returns and prints out the context units as well as the hidden units).
+
+Query 7:
+----------------------------------------
+code for class LSTM_model(nn.Module): inside seq_models.py is as follows:
+
+class LSTM_model(nn.Module):
+    def __init__(self,num_input,num_hid,num_out,batch_size=1,num_layers=1):
+        super().__init__()
+        self.num_hid = num_hid
+        self.batch_size = batch_size
+        self.num_layers = num_layers
+        self.W = nn.Parameter(torch.Tensor(num_input, num_hid * 4))
+        self.U = nn.Parameter(torch.Tensor(num_hid, num_hid * 4))
+        self.hid_bias = nn.Parameter(torch.Tensor(num_hid * 4))
+        self.V = nn.Parameter(torch.Tensor(num_hid, num_out))
+        self.out_bias = nn.Parameter(torch.Tensor(num_out))
+        self.init_weights()
+    def init_weights(self):
+        stdv = 1.0 / math.sqrt(self.num_hid)
+        for weight in self.parameters():
+            weight.data.uniform_(-stdv, stdv)
+    def init_hidden(self):
+        return(torch.zeros(self.num_layers, self.batch_size, self.num_hid),
+               torch.zeros(self.num_layers, self.batch_size, self.num_hid))
+    def forward(self, x, init_states=None):
+        """Assumes x is of shape (batch, sequence, feature)"""
+        batch_size, seq_size, _ = x.size()
+        hidden_seq = []
+        if init_states is None:
+            h_t, c_t = (torch.zeros(batch_size,self.num_hid).to(x.device), 
+                        torch.zeros(batch_size,self.num_hid).to(x.device))
+        else:
+            h_t, c_t = init_states
+        NH = self.num_hid
+        for t in range(seq_size):
+            x_t = x[:, t, :]
+            # batch the computations into a single matrix multiplication
+            gates = x_t @ self.W + h_t @ self.U + self.hid_bias
+            i_t, f_t, g_t, o_t = (
+                torch.sigmoid(gates[:, :NH]),     # input gate
+                torch.sigmoid(gates[:, NH:NH*2]), # forget gate
+                torch.tanh(gates[:, NH*2:NH*3]),  # new values
+                torch.sigmoid(gates[:, NH*3:]),   # output gate
+            )
+            c_t = f_t * c_t + i_t * g_t
+            h_t = o_t * torch.tanh(c_t)
+            hidden_seq.append(h_t.unsqueeze(0))
+        hidden_seq = torch.cat(hidden_seq, dim=0)
+        # reshape from (sequence, batch, feature)
+        #           to (batch, sequence, feature)
+        hidden_seq = hidden_seq.transpose(0,1).contiguous()
+        output = hidden_seq @ self.V + self.out_bias
+        return hidden_seq, output
+Give me the updated version of the class.
+
+Query 8:
+--------------------------------------------
+Inside the LSTM_model class (in seq_models.py), the forward() method was modified to also return the cell state sequence.
+
+the previous version of the forward() method is as below:
+     def forward(self, x, init_states=None):
+         """Assumes x is of shape (batch, sequence, feature)"""
+         batch_size, seq_size, _ = x.size()
+         hidden_seq = []
+         if init_states is None:
+             h_t, c_t = (torch.zeros(batch_size,self.num_hid).to(x.device),
+                         torch.zeros(batch_size,self.num_hid).to(x.device))
+         else:
+             h_t, c_t = init_states
+
+         NH = self.num_hid
+         for t in range(seq_size):
+             x_t = x[:, t, :]
+             # batch the computations into a single matrix multiplication
+             gates = x_t @ self.W + h_t @ self.U + self.hid_bias
+             i_t, f_t, g_t, o_t = (
+                 torch.sigmoid(gates[:, :NH]),     # input gate
+                 torch.sigmoid(gates[:, NH:NH*2]), # forget gate
+                 torch.tanh(gates[:, NH*2:NH*3]),  # new values
+                 torch.sigmoid(gates[:, NH*3:]),   # output gate
+             )
+             c_t = f_t * c_t + i_t * g_t
+             h_t = o_t * torch.tanh(c_t)
+             hidden_seq.append(h_t.unsqueeze(0))
+         hidden_seq = torch.cat(hidden_seq, dim=0)
+         # reshape from (sequence, batch, feature)
+         #           to (batch, sequence, feature)
+         hidden_seq = hidden_seq.transpose(0,1).contiguous()
+         output = hidden_seq @ self.V + self.out_bias
+         return hidden_seq, output
+
+The new forward() method is as below:
+    def forward(self, x, init_states=None):
+        """
+        x shape: (batch, sequence_length, input_dim)
+        Returns:
+            hidden_seq: all h_t (batch, seq_len, hidden_dim)
+            output: logits (batch, seq_len, output_dim)
+            cell_seq: all c_t (batch, seq_len, hidden_dim)
+        """
+        batch_size, seq_size, _ = x.size()
+        hidden_seq = []
+        cell_seq = []
+
+        if init_states is None:
+            h_t, c_t = self.init_hidden()
+            h_t, c_t = h_t.to(x.device), c_t.to(x.device)
+        else:
+            h_t, c_t = init_states
+
+        NH = self.num_hid
+        for t in range(seq_size):
+            x_t = x[:, t, :]  # (batch, input_dim)
+            gates = x_t @ self.W + h_t @ self.U + self.hid_bias  # (batch, 4*hidden)
+
+            i_t = torch.sigmoid(gates[:, :NH])            # input gate
+            f_t = torch.sigmoid(gates[:, NH:NH*2])        # forget gate
+            g_t = torch.tanh(gates[:, NH*2:NH*3])          # cell candidate
+            o_t = torch.sigmoid(gates[:, NH*3:])           # output gate
+
+            c_t = f_t * c_t + i_t * g_t                    # updated cell state
+            h_t = o_t * torch.tanh(c_t)                    # updated hidden state
+
+            hidden_seq.append(h_t.unsqueeze(0))
+            cell_seq.append(c_t.unsqueeze(0))
+
+        # Convert to shape: (batch, seq_len, hidden_dim)
+        hidden_seq = torch.cat(hidden_seq, dim=0).transpose(0, 1).contiguous()
+        cell_seq = torch.cat(cell_seq, dim=0).transpose(0, 1).contiguous()
+
+        output = hidden_seq @ self.V + self.out_bias
+
+        return hidden_seq, output, cell_seq
+
+explain what this method does and why the changes were made. why is it significant for LSTM Embedded Reber Grammar:
+
+
+Query 9:
+-----------------------------------------------------
+Output of the following command:
+python seq_plot.py --lang reber --embed True --model lstm --hid 4 --epoch 50 --num_plot 1
+[[ 1.73  2.57  3.27  1.61 -2.02  0.56  1.66  4.22 -1.01  2.03 -2.24 -2.27
+   2.7  -5.5   2.42  1.63]
+ [ 0.13 -0.57 -1.39 -2.36  0.56  2.85 -2.46 -0.98 -0.31  1.24  0.07 -3.19
+   0.96  2.53 -0.79 -4.45]
+ [ 2.81  0.4   0.9   1.54  1.83  3.37  0.08 -2.02  2.72 -1.74  2.52  0.6
+   4.03  3.86  1.63  2.4 ]
+ [ 0.38  3.1  -1.72  1.47 -0.48 -1.67 -0.27 -2.25  1.06  1.26  0.49 -1.92
+  -0.23  4.4  -1.36  2.26]
+ [ 0.09  0.21  0.84  3.5   1.31  1.79  1.02  3.92 -0.23  1.03 -0.01 -0.82
+   1.8   2.16  1.6   0.68]
+ [-0.78  1.67  1.08 -0.08  0.66 -0.77 -0.4   1.54  1.58 -2.33  0.96 -2.88
+  -1.67  2.35  0.28 -1.67]
+ [ 0.64  0.41  4.33  0.47  1.66  1.59 -3.39  1.13  1.95 -0.7  -4.32 -0.15
+  -3.43 -1.65  3.23  2.18]]
+[[ 1.11 -1.21 -0.71  1.05  0.1  -0.16 -1.08  1.98  0.98 -2.25  2.26  1.12
+  -1.62  0.68  0.86  3.72]
+ [-1.99 -2.37 -2.2   3.04 -2.18 -1.14  1.52  0.53  1.61 -0.64 -0.94  2.92
+  -1.68 -0.23 -0.78  7.91]
+ [-0.55 -1.43 -1.82  2.6  -0.58  0.07 -0.14  1.42 -0.76  0.54 -0.57  1.19
+  -1.05 -1.01 -1.88 -0.66]
+ [-0.65 -3.14 -0.93  0.71 -0.6   0.34  0.5  -1.23 -0.38 -0.2  -0.72 -0.27
+  -0.27 -3.67 -0.9   1.69]]
+[ 1.61  2.48  1.82  2.5   0.59  0.92 -0.39 -0.48  0.03  0.23  0.12 -1.02
+  1.17  0.63  2.98  1.68]
+[[-9.31 -1.29 -0.16  0.33 -1.43  0.62 13.53]
+ [12.16  1.96  1.18  1.5  -4.23  0.04 -8.91]
+ [-3.63 -3.04  4.43  4.29 -2.35  2.37  2.49]
+ [ 5.02 -0.94  5.37  5.37 -2.94 -3.16  4.3 ]]
+[-6.27  0.89  0.79  0.31 -0.19 -0.95 -5.08]
+t=0
+  hidden: [-0.61  0.01 -0.74 -0.73]
+  cell:   [-0.73  0.97 -0.97 -0.98]
+t=1
+  hidden: [-0.57  0.96 -0.29 -0.  ]
+  cell:   [-0.66  1.93 -0.31 -0.11]
+t=2
+  hidden: [ 0.13  0.01 -0.85 -0.76]
+  cell:   [ 0.14  2.15 -1.28 -1.  ]
+t=3
+  hidden: [ 0.6   0.99  0.65 -0.01]
+  cell:   [ 0.74  2.78  0.8  -0.27]
+t=4
+  hidden: [0.05 0.23 0.22 0.64]
+  cell:   [0.64 0.23 0.43 0.76]
+t=5
+  hidden: [ 0.34  0.64  0.12 -0.73]
+  cell:   [ 0.78  0.86  0.19 -0.93]
+t=6
+  hidden: [ 0.51  0.84  0.21 -0.81]
+  cell:   [ 1.08  1.22  0.23 -1.44]
+t=7
+  hidden: [ 0.05 -0.59  0.64 -0.95]
+  cell:   [ 1.03 -0.68  0.8  -1.81]
+t=8
+  hidden: [ 0.18  0.3   0.76 -0.02]
+  cell:   [ 0.19  0.31  1.01 -2.78]
+t=9
+  hidden: [ 0.78 -0.34  0.76  0.11]
+  cell:   [ 1.12 -0.36  1.09  0.11]
+t=10
+  hidden: [ 0.02 -0.14 -0.75 -0.26]
+  cell:   [ 1.92 -1.07 -0.98 -0.27]
+t=11
+  hidden: [ 0.92 -0.23  0.55 -0.  ]
+  cell:   [ 1.87 -0.24  0.64 -0.11]
+-----
+state =  0 1 2 3 4 5 8 8 7 5 6 9 18
+symbol= BTBTXXTVPSETE
+label = 0101331542616
+true probabilities:
+     B    T    S    X    P    V    E
+1 [0.  0.5 0.  0.  0.5 0.  0. ]
+2 [1. 0. 0. 0. 0. 0. 0.]
+3 [0.  0.5 0.  0.  0.5 0.  0. ]
+4 [0.  0.  0.5 0.5 0.  0.  0. ]
+5 [0.  0.  0.5 0.5 0.  0.  0. ]
+8 [0.  0.5 0.  0.  0.  0.5 0. ]
+8 [0.  0.5 0.  0.  0.  0.5 0. ]
+7 [0.  0.  0.  0.  0.5 0.5 0. ]
+5 [0.  0.  0.5 0.5 0.  0.  0. ]
+6 [0. 0. 0. 0. 0. 0. 1.]
+9 [0. 1. 0. 0. 0. 0. 0.]
+18 [0. 0. 0. 0. 0. 0. 1.]
+hidden activations and output probabilities [BTSXPVE]:
+1 [-0.61  0.01 -0.74 -0.73] [0.   0.52 0.   0.   0.48 0.   0.  ]
+2 [-0.57  0.96 -0.29 -0.  ] [1. 0. 0. 0. 0. 0. 0.]
+3 [ 0.13  0.01 -0.85 -0.76] [0.   0.54 0.   0.   0.45 0.01 0.  ]
+4 [ 0.6   0.99  0.65 -0.01] [0.   0.   0.48 0.5  0.   0.01 0.  ]
+5 [0.05 0.23 0.22 0.64] [0.  0.  0.6 0.4 0.  0.  0. ]
+8 [ 0.34  0.64  0.12 -0.73] [0.   0.52 0.01 0.01 0.02 0.45 0.  ]
+8 [ 0.51  0.84  0.21 -0.81] [0.   0.39 0.01 0.01 0.   0.59 0.  ]
+7 [ 0.05 -0.59  0.64 -0.95] [0.   0.   0.   0.   0.48 0.51 0.  ]
+5 [ 0.18  0.3   0.76 -0.02] [0.   0.   0.59 0.39 0.   0.02 0.  ]
+6 [ 0.78 -0.34  0.76  0.11] [0. 0. 0. 0. 0. 0. 1.]
+9 [ 0.02 -0.14 -0.75 -0.26] [0.   0.56 0.   0.   0.44 0.   0.  ]
+18 [ 0.92 -0.23  0.55 -0.  ] [0. 0. 0. 0. 0. 0. 1.]
+epoch: 0
+error: 0.0015
+final: 0.0554
+----------------------------------------------
+Question to answer:
+Once the training is successful, try to analyse the behaviour of the LSTM and explain how the task is accomplished (this might involve modifying the code so that it returns and prints out the context units as well as the hidden units)
+

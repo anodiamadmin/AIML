@@ -83,7 +83,11 @@ for epoch in range((args.epoch*1000)+1):
     label  = seq[1:]
 
     net.init_hidden()
-    hidden, output = net(input)
+    if args.model == 'lstm':
+        hidden, output, cell = net(input)
+    else:
+        hidden, output = net(input)
+    # hidden, output = net(input)
     log_prob = F.log_softmax(output, dim=2)
     prob_out = torch.exp(log_prob)
     loss = F.nll_loss(log_prob.squeeze(), label.squeeze())
@@ -100,7 +104,11 @@ for epoch in range((args.epoch*1000)+1):
             label = seq[1:]
             
             net.init_hidden()
-            hidden, output = net(input)
+            if args.model == 'lstm':
+                hidden, output, cell = net(input)
+            else:
+                hidden, output = net(input)
+            # hidden, output = net(input)
             log_prob = F.log_softmax(output, dim=2)
             prob_out = torch.exp(log_prob)
             

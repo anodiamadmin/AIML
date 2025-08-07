@@ -72,8 +72,13 @@ if args.hid == 2:
     plt.plot(net.H0.data[0],net.H0.data[1],'bx') 
 elif args.hid == 3:    
     fig = plt.figure()
-    ax = Axes3D(fig)
-    ax.plot(net.H0.data[0],net.H0.data[1],net.H0.data[2],'bx') 
+    ax = fig.add_subplot(111, projection='3d')  # better than Axes3D(fig)
+    # ax.view_init(elev=45, azim=-160, roll=-45)
+    ax.set_xlabel("Hidden Unit 1")
+    ax.set_ylabel("Hidden Unit 2")
+    ax.set_zlabel("Hidden Unit 3")
+    # ax = Axes3D(fig)
+    # ax.plot(net.H0.data[0],net.H0.data[1],net.H0.data[2],'bx')
     
 with torch.no_grad():
     net.eval()
@@ -84,10 +89,36 @@ with torch.no_grad():
         label = seq[1:]
 
         net.init_hidden()
-        hidden_seq, output = net(input)
+        if args.model == 'lstm':
+            hidden_seq, output, cell_seq = net(input)
+            # # Optional: plot cell dimension as a line:
+            # c_t = cell_seq[0].cpu().detach().numpy()  # (seq_len, hidden_dim)
+            #
+            # # Plot cell state trajectory - each cell dimension as a line
+            # plt.figure(figsize=(10, 6))
+            # for i in range(c_t.shape[1]):
+            #     plt.plot(range(c_t.shape[0]), c_t[:, i], label=f'Cell Unit {i}')
+            #
+            # plt.title('LSTM Cell State Trajectories over Time')
+            # plt.xlabel('Timestep')
+            # plt.ylabel('Cell State Value')
+            # plt.legend()
+            # plt.grid(True)
+            # plt.tight_layout()
+            # plt.show()
+
+        else:
+            hidden_deq, output = net(input)
+        # hidden_seq, output = net(input)
 
         hidden = hidden_seq.squeeze()
-        
+        cell = cell_seq.squeeze()
+
+        for t in range(hidden_seq.shape[1]):
+            print(f"t={t}")
+            print(f"  hidden: {hidden_seq[0, t].detach().numpy()}")
+            print(f"  cell:   {cell_seq[0, t].detach().numpy()}")
+
         lang.print_outputs(epoch, seq, state, hidden, target, output)
         sys.stdout.flush()
 
@@ -95,8 +126,8 @@ with torch.no_grad():
             plt.scatter(hidden[:,0],hidden[:,1], c=state[1:],
                         cmap='jet', vmin=0, vmax=max_state)
         else:
-            ax.scatter(hidden[:,0],hidden[:,1],hidden[:,2],
+            plt.scatter(hidden[:,0],hidden[:,1],hidden[:,2],
                        c=state[1:], cmap='jet',
                        vmin=0, vmax=max_state)
-
+    plt.savefig("ERG_3d_hidden_plot.png")
     plt.show()
