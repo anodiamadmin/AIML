@@ -115,9 +115,11 @@ with torch.no_grad():
         cell = cell_seq.squeeze()
 
         for t in range(hidden_seq.shape[1]):
+            print(f"******************************************")
             print(f"t={t}")
             print(f"  hidden: {hidden_seq[0, t].detach().numpy()}")
             print(f"  cell:   {cell_seq[0, t].detach().numpy()}")
+            print(f"******************************************")
 
         lang.print_outputs(epoch, seq, state, hidden, target, output)
         sys.stdout.flush()

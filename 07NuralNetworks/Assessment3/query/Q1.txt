@@ -1,0 +1,2 @@
+For this assignment you will be writing a Pytorch program which takes images of cats as input and learns to classify them into eight different breeds, using images that we provide.
+
