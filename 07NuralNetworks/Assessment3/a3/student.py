@@ -63,6 +63,12 @@ class Network(nn.Module):
     def __init__(self):
         super().__init__()
         # Create a vanilla ResNet-18 with random initialization (no external weights)
+        # no external pretrained weights are downloaded
+        # — it just constructs the ResNet-18 architecture with random initialization, entirely locally.
+        # That’s allowed because:
+        # It uses only approved packages (torchvision.models is part of torchvision).
+        # It doesn’t fetch anything from the internet.
+        # It doesn’t inject any extra data outside your provided dataset.
         self.backbone = models.resnet18(weights=None, num_classes=8)
 
         # Small-input tweak: disable the initial 3x downsampling from maxpool
@@ -73,6 +79,11 @@ class Network(nn.Module):
         # Optional: Slightly stronger regularization just before the classifier
         # by adding dropout on the pooled features (inserted via forward)
         self.dropout = nn.Dropout(p=0.2)
+
+        # More small-image performance, we can also set the following to remove the very
+        # first downsample (then the model downsamples only in later stages).
+        # This often helps on 64–96px images.
+        self.backbone.conv1.stride = (1, 1)
 
     def forward(self, x):
         # Copy of torchvision ResNet forward, but we slip in dropout before fc
@@ -136,5 +147,5 @@ scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=8, gamma=0.5)
 dataset = "./data"
 train_val_split = 0.8
 # ResNet-18 is heavier than the earlier CNN; keep batch size moderate for CPU
-batch_size = 32     #64
-epochs = 15         #25
+batch_size = 32     #64     # smaller batch size for quicker training
+epochs = 15         #25     # lesser epochs for quicker training
