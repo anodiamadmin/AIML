@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 """
-student.py — ResNet18-SE (width=1.0) tuned for 80×80 training images
+student.py — ResNet18-SE (width=1.0) tuned for 80×80 images, AdamW + lighter augments
 
-Compliant with assignment:
-- Only torch/torchvision + std libs; no pretrained weights.
-- Model size ~47 MB (FP32), under 50 MB.
-- CPU/GPU agnostic (device chosen in config.py / a3main.py).
+Changes vs previous:
+- Train on full set: train_val_split = 1 (use validation.py on your 400 held-out images)
+- Optimizer: AdamW (lr=3e-4, weight_decay=5e-4) for smoother CPU training
+- Label smoothing: 0.05 (down from 0.10)
+- RandAugment magnitude: 6 (down from 8) + keep RandomErasing(p=0.25)
+- Model: ResNet-18 with SE in every block, small-image stem (3×3, stride=2), no pretrained weights
+- Scheduler: CosineAnnealingLR across all epochs
 
-Design for accuracy:
-- Strong, sane augmentation at 80×80 (no upscaling).
-- ResNet-18 with SE in every block, small-image stem (3×3, stride=2, no maxpool).
-- Regularization: label smoothing, dropout, weight decay, RandomErasing.
-- Optim: SGD + momentum + Nesterov; Scheduler: CosineAnnealingLR.
+Compliant: only torch/torchvision + std libs; model < 50MB.
 """
 
 from typing import List
@@ -30,10 +29,9 @@ def transform(mode):
                                      std=[0.5, 0.5, 0.5])  # scale to ~[-1,1]
     if mode == 'train':
         return transforms.Compose([
-            # Stay native: random crop within 80x80 (adds scale/ratio variety)
             transforms.RandomResizedCrop(IMG_SIZE, scale=(0.5, 1.0), ratio=(0.8, 1.25)),
             transforms.RandomHorizontalFlip(p=0.5),
-            transforms.RandAugment(num_ops=2, magnitude=8),
+            transforms.RandAugment(num_ops=2, magnitude=6),
             transforms.ColorJitter(brightness=0.15, contrast=0.15, saturation=0.15),
             transforms.RandomGrayscale(p=0.10),
             transforms.ToTensor(),
@@ -162,13 +160,17 @@ net = Network()
 # =========================
 # Loss / Optimizer / Scheduler
 # =========================
-loss_func = nn.CrossEntropyLoss(label_smoothing=0.10)
+# Lighter label smoothing to avoid underfitting
+loss_func = nn.CrossEntropyLoss(label_smoothing=0.05)
 
-optimizer = optim.SGD(
+# AdamW tends to be smoother/stabler on CPU with strong augments
+optimizer = optim.AdamW(
     net.parameters(),
-    lr=0.1, momentum=0.9, nesterov=True, weight_decay=5e-4
+    lr=3e-4,
+    weight_decay=5e-4
 )
 
+# Kaiming init for conv/linear; BN gamma=1, beta=0
 def weights_init(m):
     if isinstance(m, nn.Conv2d):
         nn.init.kaiming_normal_(m.weight, nonlinearity='relu')
@@ -185,13 +187,13 @@ def weights_init(m):
             nn.init.zeros_(m.bias)
 
 # Cosine anneal over full training; a3main.py calls scheduler.step() each epoch
-epochs = 70
+epochs = 80
 scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
 
 # =========================
 # Training meta
 # =========================
 dataset = "./data"
-train_val_split = 0.8
-batch_size = 256   # drop to 192/128 if you hit RAM limits
+train_val_split = 1        # <— train on ALL data; use validation.py for held-out eval
+batch_size = 256           # drop to 192/128 if RAM is tight
 # epochs defined above
