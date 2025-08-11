@@ -194,6 +194,6 @@ scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
 # Training meta
 # =========================
 dataset = "./data"
-train_val_split = 1        # <— train on ALL data; use validation.py for held-out eval
+train_val_split = 0.8        # <— train on ALL data; use validation.py for held-out eval
 batch_size = 256           # drop to 192/128 if RAM is tight
 # epochs defined above
