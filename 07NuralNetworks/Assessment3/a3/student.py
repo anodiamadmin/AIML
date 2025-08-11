@@ -185,7 +185,7 @@ def weights_init(m):
             nn.init.zeros_(m.bias)
 
 # Cosine anneal over full training; a3main.py calls scheduler.step() each epoch
-epochs = 70
+epochs = 60
 scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
 
 # =========================
