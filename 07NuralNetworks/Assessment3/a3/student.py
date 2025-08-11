@@ -1,151 +1,197 @@
+#!/usr/bin/env python3
 """
-   cnn.py
+student.py — ResNet18-SE (width=1.0) tuned for 80×80 training images
 
-   UNSW ZZEN9444 Neural Networks and Deep Learning
+Compliant with assignment:
+- Only torch/torchvision + std libs; no pretrained weights.
+- Model size ~47 MB (FP32), under 50 MB.
+- CPU/GPU agnostic (device chosen in config.py / a3main.py).
 
-ResNet-18 version (no external assets / no pretrained weights):
-- Backbone: torchvision.models.resnet18(weights=None) with num_classes=8.
-- Small-input tweak: keep the 7x7 stem but REMOVE the initial maxpool to retain more
-  spatial detail for 80x80 images (improves early signal for small inputs).
-- Augmentation: mild random crop/flip/rotation; normalize to [-1,1].
-- Loss/Optim: CrossEntropy + Adam (lr=1e-3, weight_decay=1e-4).
-- Scheduler: StepLR every 8 epochs (gamma=0.5).
-- Size: ~11.7M params (≈47MB in FP32), fits under 50MB limit.
-
-This file is backend-agnostic; a3main.py/config.py handle device selection.
+Design for accuracy:
+- Strong, sane augmentation at 80×80 (no upscaling).
+- ResNet-18 with SE in every block, small-image stem (3×3, stride=2, no maxpool).
+- Regularization: label smoothing, dropout, weight decay, RandomErasing.
+- Optim: SGD + momentum + Nesterov; Scheduler: CosineAnnealingLR.
 """
 
+from typing import List
 import torch
 import torch.nn as nn
 import torch.optim as optim
 import torchvision.transforms as transforms
-import torchvision.models as models
 
+# =========================
+# Transforms (80x80 native)
+# =========================
+IMG_SIZE = 80
 
-############################################################################
-######     Specify transform(s) to be applied to the input images     ######
-############################################################################
 def transform(mode):
-    """
-    Different transforms for training and testing. Images are 80x80 RGB.
-    """
     normalize = transforms.Normalize(mean=[0.5, 0.5, 0.5],
                                      std=[0.5, 0.5, 0.5])  # scale to ~[-1,1]
-
     if mode == 'train':
         return transforms.Compose([
-            transforms.Resize((80, 80)),
-            transforms.RandomResizedCrop(80, scale=(0.9, 1.0), ratio=(0.95, 1.05)),
+            # Stay native: random crop within 80x80 (adds scale/ratio variety)
+            transforms.RandomResizedCrop(IMG_SIZE, scale=(0.5, 1.0), ratio=(0.8, 1.25)),
             transforms.RandomHorizontalFlip(p=0.5),
-            transforms.RandomRotation(degrees=10),
+            transforms.RandAugment(num_ops=2, magnitude=8),
+            transforms.ColorJitter(brightness=0.15, contrast=0.15, saturation=0.15),
+            transforms.RandomGrayscale(p=0.10),
             transforms.ToTensor(),
             normalize,
+            transforms.RandomErasing(p=0.25, scale=(0.02, 0.2), ratio=(0.3, 3.3), value=0),
         ])
     elif mode == 'test':
         return transforms.Compose([
-            transforms.Resize((80, 80)),
-            transforms.CenterCrop(80),
+            transforms.Resize((IMG_SIZE, IMG_SIZE)),
             transforms.ToTensor(),
             normalize,
         ])
     else:
         return transforms.Compose([
-            transforms.Resize((80, 80)),
+            transforms.Resize((IMG_SIZE, IMG_SIZE)),
             transforms.ToTensor(),
             normalize,
         ])
 
+# =========================
+# Model: ResNet18 with SE
+# =========================
+def conv3x3(in_planes, out_planes, stride=1):
+    return nn.Conv2d(in_planes, out_planes, kernel_size=3, stride=stride,
+                     padding=1, bias=False)
 
-############################################################################
-######   Define the Module to process the images and produce labels   ######
-############################################################################
+class SEModule(nn.Module):
+    """Squeeze-and-Excitation (channel attention)."""
+    def __init__(self, channels: int, reduction: int = 16):
+        super().__init__()
+        hidden = max(channels // reduction, 8)
+        self.pool = nn.AdaptiveAvgPool2d(1)
+        self.fc = nn.Sequential(
+            nn.Linear(channels, hidden, bias=True),
+            nn.ReLU(inplace=True),
+            nn.Linear(hidden, channels, bias=True),
+            nn.Sigmoid()
+        )
+
+    def forward(self, x):
+        b, c, _, _ = x.size()
+        s = self.pool(x).view(b, c)
+        s = self.fc(s).view(b, c, 1, 1)
+        return x * s
+
+class BasicBlockSE(nn.Module):
+    expansion = 1
+    def __init__(self, in_planes, planes, stride=1, use_se=True):
+        super().__init__()
+        self.conv1 = conv3x3(in_planes, planes, stride)
+        self.bn1   = nn.BatchNorm2d(planes)
+        self.relu  = nn.ReLU(inplace=True)
+        self.conv2 = conv3x3(planes, planes, 1)
+        self.bn2   = nn.BatchNorm2d(planes)
+        self.se    = SEModule(planes) if use_se else nn.Identity()
+
+        self.downsample = None
+        if stride != 1 or in_planes != planes:
+            self.downsample = nn.Sequential(
+                nn.Conv2d(in_planes, planes, kernel_size=1, stride=stride, bias=False),
+                nn.BatchNorm2d(planes)
+            )
+
+    def forward(self, x):
+        identity = x
+        out = self.relu(self.bn1(self.conv1(x)))
+        out = self.bn2(self.conv2(out))
+        out = self.se(out)
+        if self.downsample is not None:
+            identity = self.downsample(x)
+        out = self.relu(out + identity)
+        return out
+
+class ResNet18SE(nn.Module):
+    def __init__(self, num_classes=8, drop_p=0.30):
+        super().__init__()
+        # Standard ResNet-18 widths
+        c1, c2, c3, c4 = 64, 128, 256, 512
+
+        # Small-image stem: 3x3 stride=2 (80 -> 40), no initial maxpool
+        self.stem = nn.Sequential(
+            nn.Conv2d(3, c1, kernel_size=3, stride=2, padding=1, bias=False),
+            nn.BatchNorm2d(c1),
+            nn.ReLU(inplace=True),
+        )
+
+        # Stages [2,2,2,2] with strides [1,2,2,2] → 40→20→10→5
+        self.layer1 = self._make_layer(BasicBlockSE, in_planes=c1, planes=c1, blocks=2, stride=1, use_se=True)
+        self.layer2 = self._make_layer(BasicBlockSE, in_planes=c1, planes=c2, blocks=2, stride=2, use_se=True)
+        self.layer3 = self._make_layer(BasicBlockSE, in_planes=c2, planes=c3, blocks=2, stride=2, use_se=True)
+        self.layer4 = self._make_layer(BasicBlockSE, in_planes=c3, planes=c4, blocks=2, stride=2, use_se=True)
+
+        self.avgpool = nn.AdaptiveAvgPool2d(1)
+        self.dropout = nn.Dropout(p=drop_p)
+        self.fc = nn.Linear(c4, num_classes)
+
+    def _make_layer(self, block, in_planes, planes, blocks: int, stride: int, use_se: bool):
+        layers: List[nn.Module] = []
+        layers.append(block(in_planes, planes, stride=stride, use_se=use_se))
+        for _ in range(1, blocks):
+            layers.append(block(planes, planes, stride=1, use_se=use_se))
+        return nn.Sequential(*layers)
+
+    def forward(self, x):
+        x = self.stem(x)
+        x = self.layer1(x)
+        x = self.layer2(x)
+        x = self.layer3(x)
+        x = self.layer4(x)
+        x = self.avgpool(x)
+        x = torch.flatten(x, 1)
+        x = self.dropout(x)
+        x = self.fc(x)
+        return x
+
 class Network(nn.Module):
     def __init__(self):
         super().__init__()
-        # Create a vanilla ResNet-18 with random initialization (no external weights)
-        # no external pretrained weights are downloaded
-        # — it just constructs the ResNet-18 architecture with random initialization, entirely locally.
-        # That’s allowed because:
-        # It uses only approved packages (torchvision.models is part of torchvision).
-        # It doesn’t fetch anything from the internet.
-        # It doesn’t inject any extra data outside your provided dataset.
-        self.backbone = models.resnet18(weights=None, num_classes=8)
-
-        # Small-input tweak: disable the initial 3x downsampling from maxpool
-        # (keep 7x7 conv stride=2, but removing maxpool preserves more detail for 80x80).
-        # For even more detail, you could also set stride=1, but we keep stride=2 to remain close to stock.
-        self.backbone.maxpool = nn.Identity()
-
-        # Optional: Slightly stronger regularization just before the classifier
-        # by adding dropout on the pooled features (inserted via forward)
-        self.dropout = nn.Dropout(p=0.2)
-
-        # More small-image performance, we can also set the following to remove the very
-        # first downsample (then the model downsamples only in later stages).
-        # This often helps on 64–96px images.
-        self.backbone.conv1.stride = (1, 1)
-
+        self.model = ResNet18SE(num_classes=8, drop_p=0.30)
     def forward(self, x):
-        # Copy of torchvision ResNet forward, but we slip in dropout before fc
-        x = self.backbone.conv1(x)
-        x = self.backbone.bn1(x)
-        x = self.backbone.relu(x)
-        # self.backbone.maxpool is Identity (no-op)
+        return self.model(x)
 
-        x = self.backbone.layer1(x)
-        x = self.backbone.layer2(x)
-        x = self.backbone.layer3(x)
-        x = self.backbone.layer4(x)
-
-        x = self.backbone.avgpool(x)
-        x = torch.flatten(x, 1)
-        x = self.dropout(x)
-        x = self.backbone.fc(x)  # 8 classes
-        return x
-
-
-# Instantiate the network
+# Instantiate model
 net = Network()
 
+# =========================
+# Loss / Optimizer / Scheduler
+# =========================
+loss_func = nn.CrossEntropyLoss(label_smoothing=0.10)
 
-############################################################################
-######      Specify the optimizer and loss function                   ######
-############################################################################
-loss_func = nn.CrossEntropyLoss()
-optimizer = optim.Adam(net.parameters(), lr=1e-3, weight_decay=1e-4)
+optimizer = optim.SGD(
+    net.parameters(),
+    lr=0.1, momentum=0.9, nesterov=True, weight_decay=5e-4
+)
 
-
-############################################################################
-######  Custom weight initialization and lr scheduling are optional   ######
-############################################################################
 def weights_init(m):
-    """
-    He/Kaiming init for Conv/Linear; BatchNorm to 1/0.
-    a3main.py calls net.apply(weights_init) once at start.
-    """
     if isinstance(m, nn.Conv2d):
         nn.init.kaiming_normal_(m.weight, nonlinearity='relu')
-        if m.bias is not None:
+        if getattr(m, "bias", None) is not None:
             nn.init.zeros_(m.bias)
     elif isinstance(m, nn.Linear):
-        # ResNet fc follows ReLU features; Kaiming is fine here too
         nn.init.kaiming_normal_(m.weight, nonlinearity='relu')
-        if m.bias is not None:
+        if getattr(m, "bias", None) is not None:
             nn.init.zeros_(m.bias)
     elif isinstance(m, nn.BatchNorm2d):
-        nn.init.ones_(m.weight)
-        nn.init.zeros_(m.bias)
-    # Skip other modules (Identities, Pooling, etc.)
+        if getattr(m, "weight", None) is not None:
+            nn.init.ones_(m.weight)
+        if getattr(m, "bias", None) is not None:
+            nn.init.zeros_(m.bias)
 
-# Halve LR every 8 epochs
-scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=8, gamma=0.5)
+# Cosine anneal over full training; a3main.py calls scheduler.step() each epoch
+epochs = 70
+scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
 
-
-############################################################################
-#######              Metaparameters and training options              ######
-############################################################################
+# =========================
+# Training meta
+# =========================
 dataset = "./data"
 train_val_split = 0.8
-# ResNet-18 is heavier than the earlier CNN; keep batch size moderate for CPU
-batch_size = 32     #64     # smaller batch size for quicker training
-epochs = 15         #25     # lesser epochs for quicker training
+batch_size = 256   # drop to 192/128 if you hit RAM limits
+# epochs defined above
