@@ -27,9 +27,9 @@ import torchvision.transforms as transforms
 # Transforms (80x80 native) or (96x96) or (128x128)
 # =========================
 # Keep everything at 80x80 to match dataset’s native resolution.
-# IMG_SIZE = 80     # native resolution
+# IMG_SIZE = 80 # native resolution
 # Some accuracy gain is expected as the minute features are magnified.
-# IMG_SIZE = 96   # Standard Transform
+# IMG_SIZE = 96 # Standard Transform
 # Considerable accuracy gain is expected as the minute features are magnified.
 # Model size will not increase as it is independent of input size.
 # Training time will be increased by (128/96)^2 = 16/9 =~ 1.8 times
@@ -39,7 +39,7 @@ def transform(mode):
     """
     Return a torchvision transform pipeline.
     - For 'train': use strong but stable augmentation to improve generalization.
-    - For 'test': deterministic resize + normalize only (no augmentation).
+    - For 'test': deterministic resize and normalize only (no augmentation).
     """
     # Normalize RGB channels to roughly [-1, 1]
     normalize = transforms.Normalize(mean=[0.5, 0.5, 0.5],
@@ -57,7 +57,7 @@ def transform(mode):
             transforms.ColorJitter(brightness=0.12, contrast=0.12, saturation=0.12),
             # Occasionally drop color to force reliance on shape/texture
             transforms.RandomGrayscale(p=0.10),
-            # Convert PIL image to Tensor (C,H,W) in [0,1]
+            # Convert PIL image to Tensor (C, H, W) in [0,1]
             transforms.ToTensor(),
             # Normalize to [-1,1]-ish
             normalize,
@@ -123,7 +123,7 @@ class StochasticDepth(nn.Module):
     DropPath / Stochastic Depth:
     - Randomly drop the residual branch during training with prob p
     - Scale kept paths by 1/(1-p) to preserve expectation
-    - Acts per sample, broadcast over (Chanels C, Height H, Width W)
+    - Acts per sample, broadcast over (Channels C, Height H, Width W)
     """
     def __init__(self, p: float = 0.0):
         super().__init__()
@@ -338,6 +338,6 @@ scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
 # Training meta (read by a3main.py)
 # =========================
 dataset = "./data"   # training root: folders '0'..'7' under ./data
-train_val_split = 1  # train on ALL available training images
-batch_size = 128     # 256 if RAM permits. Bump down to 192/128 if hit RAM limits
+train_val_split = 1  # train on ALL available training images as Validation will be done on a separate set of images
+batch_size = 128     # 256 if RAM permits. Bump down to 192/128/64 if hit RAM limits
 # epochs defined above so scheduler knows T_max

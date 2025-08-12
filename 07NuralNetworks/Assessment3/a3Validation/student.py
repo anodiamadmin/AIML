@@ -338,6 +338,6 @@ scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
 # Training meta (read by a3main.py)
 # =========================
 dataset = "./data"   # training root: folders '0'..'7' under ./data
-train_val_split = 0.8  # train on ALL available training images
+train_val_split = 1  # train on ALL available training images as a validation-set is held out aside
 batch_size = 128     # 256 if RAM permits. Bump down to 192/128 if hit RAM limits
 # epochs defined above so scheduler knows T_max

@@ -1,2 +1,6 @@
-For this assignment you will be writing a Pytorch program which takes images of cats as input and learns to classify them into eight different breeds, using images that we provide.
-
+Provide a written report (word docx file), discussing the following points (Total 14 marks):
+1. Selection/ choice of architecture, algorithms and enhancements: Clear justification for selected architecture, algorithms, and enhancements, including consideration of possible alternatives. (4 marks)
+2. Selection/ choice of loss function and optimiser: Clear justification for choice of loss function and optimiser, including consideration of possible alternatives. (2 marks)
+3. Selection/ choice of image transformations: Judicious selection of image transformations with clear explanation, including consideration of possible alternatives. (2 marks)
+4. Tuning of metaparameters: Technically sound and clearly justified. (2 marks)
+5. Use of validation set, and any other steps taken to improve generalization and avoid overfitting (apart from the criteria listed above): Validation set was used correctly with clear explanation of how it was used. Any additional steps taken to avoid overfitting are either explained here, or included in the criteria listed above. (3 marks)
