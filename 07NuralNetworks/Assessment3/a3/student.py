@@ -330,7 +330,7 @@ def weights_init(m):
 
 # Cosine annealing across the whole training run.
 # NOTE: a3main.py calls scheduler.step() once per epoch.
-epochs = 1
+epochs = 50
 scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
 
 
