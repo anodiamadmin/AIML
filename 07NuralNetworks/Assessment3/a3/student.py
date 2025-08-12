@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
 student.py — ResNet18-SE (80x80) with Stochastic Depth + tiny TTA (flip)
-Compliant with your assignment:
-- Only approved libraries (torch/torchvision + stdlib)
+Compliance with assignment conditions:
+- Uses only approved libraries (torch/torchvision + stdlib)
 - No pretrained weights (all layers randomly initialized)
 - Model size < 50MB (≈ ResNet-18 width=1.0 with SE; ~47MB FP32)
-- CPU/GPU agnostic (device chosen by config.py / a3main.py)
+- CPU/GPU agnostic (device chosen by config.py and a3main.py)
 
 Core ideas to fight overfitting yet keep accuracy high:
 - Strong but stable data augmentation at 80x80 (no upscaling)
@@ -17,20 +17,16 @@ Core ideas to fight overfitting yet keep accuracy high:
 - Tiny eval-time TTA: average logits of {image, horizontal flip} for a small bump
 """
 
-# ---- standard typing helper for clearer signatures
-from typing import List
-
 # ---- PyTorch / TorchVision core
 import torch
 import torch.nn as nn
 import torch.optim as optim
 import torchvision.transforms as transforms
 
-
 # =========================
 # Transforms (80x80 native)
 # =========================
-# We keep everything at 80x80 to match your dataset’s native resolution.
+# Keep everything at 80x80 to match dataset’s native resolution.
 IMG_SIZE = 80
 
 def transform(mode):
@@ -121,7 +117,7 @@ class StochasticDepth(nn.Module):
     DropPath / Stochastic Depth:
     - Randomly drop the residual branch during training with prob p
     - Scale kept paths by 1/(1-p) to preserve expectation
-    - Acts per sample, broadcast over (C,H,W)
+    - Acts per sample, broadcast over (Chanels C, Height H, Width W)
     """
     def __init__(self, p: float = 0.0):
         super().__init__()
@@ -141,6 +137,7 @@ class BasicBlockSE(nn.Module):
     """
     ResNet BasicBlock with optional SE and Stochastic Depth on the residual branch.
     Structure: Conv3x3 -> BN -> ReLU -> Conv3x3 -> BN -> SE -> (DropPath) -> +skip -> ReLU
+    BN => Batch Normalization; SE => Squeeze-and-Excitation (from the SENet architecture)
     """
     expansion = 1
 
@@ -191,6 +188,7 @@ class ResNet18SE(nn.Module):
     - Stages [2,2,2,2] with strides [1,2,2,2] -> 40->20->10->5 feature maps
     - SE in every block; Stochastic Depth increases linearly across blocks
     - GAP -> Dropout -> FC(8)
+    SE => Squeeze-and-Excitation; GAP => Global Average Pooling; FC(8) => Fully Connected layer with 8 outputs
     """
     def __init__(self, num_classes=8, drop_p=0.40, drop_path_max=0.10):
         super().__init__()
@@ -242,6 +240,7 @@ class ResNet18SE(nn.Module):
         """
         Single forward path (no TTA).
         Used for both training and as the base path in eval-time TTA.
+        TTA => Test-Time Augmentation
         """
         x = self.stem(x)     # 80x80 -> 40x40
         x = self.layer1(x)   # 40x40
@@ -290,14 +289,14 @@ net = Network()
 # CrossEntropy with light label smoothing (0.05) reduces overconfidence
 loss_func = nn.CrossEntropyLoss(label_smoothing=0.05)
 
-# SGD + momentum + Nesterov often yields better validation with BN than AdamW
+# Stochastic Gradient Descent + momentum + Nesterov often yields better validation with Batch Normalization than Adam Decoupled Weight Decay
 # lr=0.08 works well here with cosine annealing over 50 epochs
 optimizer = optim.SGD(
     net.parameters(),
     lr=0.08,
     momentum=0.9,
     nesterov=True,
-    weight_decay=1e-3,   # decoupled L2-style regularization
+    weight_decay=1e-3,   # decoupled L2-style regularization (Decoupled Weight Decay Regularization)
 )
 
 def weights_init(m):
@@ -330,6 +329,6 @@ scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
 # Training meta (read by a3main.py)
 # =========================
 dataset = "./data"   # training root: folders '0'..'7' under ./data
-train_val_split = 1  # train on ALL available training images (use your external validation.py for holdout)
-batch_size = 256     # bump down to 192/128 if you hit RAM limits
-# epochs is defined above so scheduler knows T_max
+train_val_split = 1  # train on ALL available training images
+batch_size = 256     # bump down to 192/128 if hit RAM limits
+# epochs defined above so scheduler knows T_max
