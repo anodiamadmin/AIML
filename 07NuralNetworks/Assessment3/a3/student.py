@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 student.py — ResNet18-SE (80x80) with Stochastic Depth + tiny TTA (flip)
-Compliance with assignment conditions:
+Compliance with given conditions:
 - Uses only approved libraries (torch/torchvision + stdlib)
 - No pretrained weights (all layers randomly initialized)
 - Model size < 50MB (≈ ResNet-18 width=1.0 with SE; ~47MB FP32)
@@ -24,10 +24,16 @@ import torch.optim as optim
 import torchvision.transforms as transforms
 
 # =========================
-# Transforms (80x80 native)
+# Transforms (80x80 native) or (96x96) or (128x128)
 # =========================
 # Keep everything at 80x80 to match dataset’s native resolution.
-IMG_SIZE = 80
+# IMG_SIZE = 80     # native resolution
+# Some accuracy gain is expected as the minute features are magnified.
+# IMG_SIZE = 96   # Standard Transform
+# Considerable accuracy gain is expected as the minute features are magnified.
+# Model size will not increase as it is independent of input size.
+# Training time will be increased by (128/96)^2 = 16/9 =~ 1.8 times
+IMG_SIZE = 128  # High performance
 
 def transform(mode):
     """
