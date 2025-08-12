@@ -4,7 +4,7 @@ student.py — ResNet18-SE (80x80) with Stochastic Depth + tiny TTA (flip)
 Compliance with given conditions:
 - Uses only approved libraries (torch/torchvision + stdlib)
 - No pretrained weights (all layers randomly initialized)
-- Model size < 50MB (≈ ResNet-18 width=1.0 with SE; ~47MB FP32)
+- Model size < 50MB (≈ ResNet-18 width=1.0 with SE; ~47MB FP32 (float32))
 - CPU/GPU agnostic (device chosen by config.py and a3main.py)
 
 Core ideas to fight overfitting yet keep accuracy high:
@@ -27,9 +27,9 @@ import torchvision.transforms as transforms
 # Transforms (80x80 native) or (96x96) or (128x128)
 # =========================
 # Keep everything at 80x80 to match dataset’s native resolution.
-IMG_SIZE = 80     # native resolution
+# IMG_SIZE = 80     # native resolution
 # Some accuracy gain is expected as the minute features are magnified.
-# IMG_SIZE = 96   # Standard Transform
+IMG_SIZE = 96   # Standard Transform
 # Considerable accuracy gain is expected as the minute features are magnified.
 # Model size will not increase as it is independent of input size.
 # Training time will be increased by (128/96)^2 = 16/9 =~ 1.8 times
@@ -190,8 +190,8 @@ class BasicBlockSE(nn.Module):
 class ResNet18SE(nn.Module):
     """
     ResNet-18 (width=1.0) backbone adapted for 80x80 images:
-    - Small-image stem: 3x3, stride=2 (80->40), no initial maxpool
-    - Stages [2,2,2,2] with strides [1,2,2,2] -> 40->20->10->5 feature maps
+    - Small-image stem: 3x3, stride=2 (128->64), no initial maxpool
+    - Stages [2,2,2,2] with strides [1,2,2,2] -> 64->32->16->8 feature maps
     - SE in every block; Stochastic Depth increases linearly across blocks
     - GAP -> Dropout -> FC(8)
     SE => Squeeze-and-Excitation; GAP => Global Average Pooling; FC(8) => Fully Connected layer with 8 outputs
@@ -202,11 +202,14 @@ class ResNet18SE(nn.Module):
         # Standard ResNet-18 channel sizes per stage
         c1, c2, c3, c4 = 64, 128, 256, 512
 
-        # Stem: early downsample to 40x40 while keeping small-kernel detail
+        # Stem: early downsample to 64x64 while keeping small-kernel detail
         self.stem = nn.Sequential(
             nn.Conv2d(3, c1, kernel_size=3, stride=2, padding=1, bias=False),  # 80 -> 40
             nn.BatchNorm2d(c1),
             nn.ReLU(inplace=True),
+            # Optional (if 128×128 is too slow on CPU): Add a tiny maxpool after the stem to shrink earlier
+            # keeps accuracy reasonable while cutting FLOPs
+            nn.MaxPool2d(kernel_size=2, stride=2),  # 64->32 (then stages: 32->16->8->4)
         )
 
         # Prepare a per-block DropPath schedule (8 total blocks in ResNet-18)
@@ -335,6 +338,6 @@ scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
 # Training meta (read by a3main.py)
 # =========================
 dataset = "./data"   # training root: folders '0'..'7' under ./data
-train_val_split = 1  # train on ALL available training images
-batch_size = 256     # bump down to 192/128 if hit RAM limits
+train_val_split = 0.8  # train on ALL available training images
+batch_size = 128     # 256 if RAM permits. Bump down to 192/128 if hit RAM limits
 # epochs defined above so scheduler knows T_max
