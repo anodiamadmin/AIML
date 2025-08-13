@@ -7,7 +7,7 @@ Usage:
 
 Outputs a set of PNGs:
   activations_stem.png
-  activations_layer1_block1.png
+  tiger_activations_layer1_block1.png
   ...
   activations_layer4_block2.png
 """
