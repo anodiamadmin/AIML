@@ -1,0 +1,1 @@
+Is the original ResNet-18 designed for ImageNet-scale inputs of size (224×224)px?
