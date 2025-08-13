@@ -2,9 +2,9 @@ The previous version of the report's "Validation Set Usage" section says the fol
 -----------------
 Although the project specification allows for train_val_split = 1 (training on all available images), during experimentation, a temporary hold-out validation split (e.g., 95:5) was created to tune learning rate, dropout rate, stochastic depth probability, and augmentation parameters. This separation ensured that all optimization decisions were informed by unseen data rather than the training set, thereby minimizing the risk of overfitting.
 Metrics computed on the validation set included:
-•	Top-1 classification accuracy
-•	Cross-entropy loss trend
-•	Confusion matrix to identify breed-specific misclassifications
+ - Top-1 classification accuracy
+ - Cross-entropy loss trend
+ - Confusion matrix to identify breed-specific misclassifications
 By monitoring these metrics across epochs, optimal stopping points and scheduler configurations were identified before final training on the full dataset.
 --------------------
 I have 8 classes of cats with 1000 images of each. I took out 50 images from each class for validation (400 validation images). I trained with remaining 950 images from each class (15600 training images).
