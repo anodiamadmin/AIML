@@ -1,1 +1,13 @@
+Hadoop Tutorial:
 https://www.youtube.com/watch?v=Uv96qQ3uC6Y&list=PLWPirh4EWFpENnR0p1JvhJkyTK1M0sOLR
+
+VM Installation:
+https://www.youtube.com/watch?v=DhVjgI57Ino&t=938s
+
+Java JDK Installation on Ubuntu VM:
+https://www.youtube.com/watch?v=UwytmFFQF6Y
+
+Hadoop Installation: (On Ubuntu VM)
+ - Resize Ubuntu desktop
+ - 
+https://www.youtube.com/watch?v=R_kid1CHuOw
