@@ -26,3 +26,17 @@ class Visualizer:
 
         plt.tight_layout()
         plt.show()
+
+    def show_image_by_index(visualizer, dataset, index):
+        samples = list(dataset.unbatch().take(index + 1))
+        image, actual_label = samples[index]
+        image_batch = tf.expand_dims(image, axis=0)
+        prediction = visualizer.model.predict(image_batch, verbose=0)
+        predicted_label = visualizer.test_infected(prediction[0][0])
+
+        import matplotlib.pyplot as plt
+        plt.imshow(image.numpy())
+        plt.title(f"Actual: {visualizer.label_names[actual_label.numpy()]}, Predicted: {predicted_label}")
+        plt.axis("off")
+        plt.show()
+

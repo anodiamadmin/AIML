@@ -15,7 +15,10 @@ def main():
         dataset.test,   # use processed test dataset
         dataset.label_names
     )
-    visualizer.show_predictions(num_samples_to_show=10)
+    # visualizer.show_predictions(num_samples_to_show=10)
+
+    # Show image at given index
+    visualizer.show_image_by_index(dataset.test, 4000)
 
 if __name__ == "__main__":
     main()
