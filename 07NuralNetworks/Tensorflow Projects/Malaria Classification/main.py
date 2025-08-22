@@ -6,20 +6,16 @@ def main():
     # Load dataset
     dataset = MalariaDataset(im_size=224, batch_size=32)
 
-    # Load pretrained model (instead of training again)
+    # Load pretrained model
     malaria_model = MalariaModel.load("models/anodiamlenet_continued.keras")
 
-    # Visualize predictions
+    # Visualize predictions on processed test data
     visualizer = Visualizer(
         malaria_model,
-        dataset.ds,   # the raw TFDS dataset
+        dataset.test,   # use processed test dataset
         dataset.label_names
     )
-    visualizer.show_predictions(
-        num_samples_to_show=10,
-        train_count=int(0.7 * dataset.ds_info.splits["train"].num_examples),
-        val_count=int(0.15 * dataset.ds_info.splits["train"].num_examples),
-    )
+    visualizer.show_predictions(num_samples_to_show=10)
 
 if __name__ == "__main__":
     main()
