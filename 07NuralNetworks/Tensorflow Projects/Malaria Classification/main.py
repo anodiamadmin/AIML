@@ -15,6 +15,8 @@ def main():
         dataset.test,   # use processed test dataset
         dataset.label_names
     )
+
+    # Show predictions for a number of samples
     # visualizer.show_predictions(num_samples_to_show=10)
 
     # Show image at given index
