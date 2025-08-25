@@ -28,18 +28,20 @@ class MalariaDataset:
         total_examples = self.ds_info.splits["train"].num_examples
         train_count = int(total_examples * self.train_ratio)
         val_count = int(total_examples * self.val_ratio)
+        test_count = total_examples - train_count - val_count
 
         train_ds = self.ds.take(train_count)
         val_ds = self.ds.skip(train_count).take(val_count)
-        test_ds = self.ds.skip(train_count + val_count)
+        test_ds = self.ds.skip(train_count + val_count).take(test_count)
 
         self.train = (
             train_ds.map(self._resize_rescale)
-            .shuffle(1000).batch(self.batch_size)
+            .shuffle(buffer_size=8, reshuffle_each_iteration=True).batch(self.batch_size)
             .prefetch(tf.data.AUTOTUNE)
         )
         self.val = (
             val_ds.map(self._resize_rescale)
+            .shuffle(buffer_size=8, reshuffle_each_iteration=True)
             .batch(self.batch_size)
             .prefetch(tf.data.AUTOTUNE)
         )
