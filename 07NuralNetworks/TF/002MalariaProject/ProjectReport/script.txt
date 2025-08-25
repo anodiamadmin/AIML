@@ -22,7 +22,7 @@ We achieved the best performance with an 80-10-10 train-test-validation split, b
 
 Slide-6:
 Heading: Results and Accuracy:
-This graph highlights how well our model performed with early stopping. The training accuracy climbs rapidly above 90%, while the validation accuracy improves steadily before stabilizing. The red test accuracy line remains consistently high at around 94%. When validation accuracy stopped improving, early stopping kicked in, preventing overfitting and locking in strong performance. Overall, this shows that our LeNet-based CNN not only learns quickly but also generalizes well, making it reliable for identifying malaria-infected cells.
+This graph highlights how well our model performed with early stopping. The training accuracy climbs rapidly above 96.3%, while the validation accuracy improves steadily before stabilizing. The red test accuracy line remains consistently high at around 94%. When validation accuracy stopped improving, early stopping kicked in, preventing overfitting and locking in strong performance. Overall, this shows that our LeNet-based CNN not only learns quickly but also generalizes well, making it reliable for identifying malaria-infected cells.
 
 
 Slide-7:
@@ -31,7 +31,7 @@ Heading: Sample Positive and Negative Activations:
 
 Slide-8:
 Heading: Conclusion and the Way Forward:
-
+Our LeNet-based CNN successfully distinguishes malaria-infected from healthy red blood cells with high accuracy, validating deep learning as a reliable diagnostic aid. Moving forward, larger datasets, advanced architectures, and real-world clinical validation could further improve robustness. Such AI-driven systems can support early, scalable malaria detection across endemic regions.
 
 Given the above scripts and headings for the project titled "CNN LeNet for Malaria Pathology: Parasitized vs. Uninfected Red Blood Cells" 
 Given the attached slides.pptx for the respective slides of the project presentation.
