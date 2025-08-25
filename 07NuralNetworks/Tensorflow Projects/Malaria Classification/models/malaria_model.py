@@ -11,18 +11,18 @@ class MalariaModel:
     def _build_model(self):
         model = models.Sequential([
             layers.InputLayer(input_shape=(self.im_size, self.im_size, 3)),
-            layers.Conv2D(6, 5, activation='relu'),
+            layers.Conv2D(filters=6, kernel_size=5, strides=1, padding='valid', activation='relu'),
             layers.BatchNormalization(),
-            layers.MaxPooling2D(2),
-            layers.Conv2D(16, 5, activation='relu'),
+            layers.MaxPooling2D(pool_size=2, strides=2),
+            layers.Conv2D(filters=16, kernel_size=5, strides=1, padding='valid', activation='relu'),
             layers.BatchNormalization(),
-            layers.MaxPooling2D(2),
+            layers.MaxPooling2D(pool_size=2, strides=2),
             layers.Flatten(),
-            layers.Dense(100, activation='relu'),
+            layers.Dense(units=100, activation='relu'),
             layers.BatchNormalization(),
-            layers.Dense(10, activation='relu'),
+            layers.Dense(units=10, activation='relu'),
             layers.BatchNormalization(),
-            layers.Dense(1, activation='sigmoid')
+            layers.Dense(units=1, activation='sigmoid')
         ])
         return model
 
@@ -33,7 +33,7 @@ class MalariaModel:
             metrics=[tf.keras.metrics.BinaryAccuracy()]
         )
 
-    def train(self, train_ds, val_ds, epochs=15):
+    def train(self, train_ds, val_ds, epochs=7):
         return self.model.fit(train_ds, validation_data=val_ds, epochs=epochs)
 
     def evaluate(self, test_ds):

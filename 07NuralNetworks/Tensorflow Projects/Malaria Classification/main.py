@@ -6,21 +6,39 @@ def main():
     # Load dataset
     dataset = MalariaDataset(im_size=224, batch_size=32)
 
-    # Load pretrained model
-    malaria_model = MalariaModel.load("models/anodiamlenet_continued.keras")
+    # Initialize a new model (from scratch)
+    malaria_model = MalariaModel(im_size=224, lr=0.01)
 
-    # Visualize predictions on processed test data
+    # Train the model
+    # malaria_model.train(dataset.train, dataset.val, epochs=6)
+
+    # # Evaluate the model
+    # malaria_model.evaluate(dataset.test)
+
+    # # Save the trained model
+    # malaria_model.save("models/malaria_model.keras")
+
+    # Load the model (if needed)
+    malaria_model = MalariaModel.load("models/malaria_model.keras")
+
+    # Visualize predictions
     visualizer = Visualizer(
         malaria_model,
-        dataset.test,   # use processed test dataset
-        dataset.label_names
+        dataset.test,
+        dataset.label_names,
     )
-
-    # Show predictions for a number of samples
-    # visualizer.show_predictions(num_samples_to_show=10)
-
-    # Show image at given index
-    visualizer.show_image_by_index(dataset.test, 4000)
+    
+    train_count = len(dataset.train)
+    val_count = len(dataset.val)
+    
+    visualizer.show_test_sample_by_index(
+        test_sample_index=4001,
+        train_examples=train_count,
+        val_examples=val_count,
+        test_dataset=dataset.test,
+        label_names=dataset.label_names,
+        BATCH_SIZE=dataset.batch_size
+    )
 
 if __name__ == "__main__":
     main()

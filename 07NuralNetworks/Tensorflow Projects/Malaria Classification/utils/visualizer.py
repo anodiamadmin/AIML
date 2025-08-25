@@ -1,5 +1,8 @@
 import matplotlib.pyplot as plt
 import tensorflow as tf
+import numpy as np
+import tensorflow_datasets as tfds
+from math import floor
 
 class Visualizer:
     def __init__(self, model, dataset, label_names):
@@ -10,33 +13,38 @@ class Visualizer:
     def test_infected(self, prediction):
         return "Parasitized" if prediction >= 0.5 else "Uninfected"
 
-    def show_predictions(self, num_samples_to_show=5):
-        print("Predictions on processed test samples:")
+    def show_test_sample_by_index(self, test_sample_index, train_examples, val_examples, test_dataset, label_names, BATCH_SIZE):
+        np.set_printoptions(precision=7, suppress=True)
 
-        plt.figure(figsize=(15, num_samples_to_show * 3))
-        for i, (image, actual_label) in enumerate(self.dataset.unbatch().take(num_samples_to_show)):
-            image_batch = tf.expand_dims(image, axis=0)
-            prediction = self.model.predict(image_batch, verbose=0)
-            predicted_label = self.test_infected(prediction[0][0])
+        # Load the original dataset again to access raw images
+        ds_malaria_raw, ds_malaria_info_raw = tfds.load('malaria', as_supervised=True, with_info=True, shuffle_files=False)
+        ds_malaria_raw = ds_malaria_raw["train"]
 
-            plt.subplot(num_samples_to_show, 1, i + 1)
-            plt.imshow(image.numpy())
-            plt.title(f"Actual: {self.label_names[actual_label.numpy()]}, Predicted: {predicted_label}")
+        # Calculate the original index of the sample in the raw dataset
+        original_sample_index = train_examples + val_examples + test_sample_index
+
+        # Get the raw image and label for the specified original sample index
+        for i, (image_raw, label_raw) in enumerate(ds_malaria_raw):
+            if i == original_sample_index:
+                break
+
+        batch_num = floor(test_sample_index / BATCH_SIZE)
+        sample_in_batch = test_sample_index % BATCH_SIZE
+
+        # Iterate through the processed dataset to get the batch
+        for image_batch, label_batch in test_dataset.skip(batch_num).take(1):
+            predicted_label = self.test_infected(self.model.predict(np.expand_dims(image_batch[sample_in_batch], axis=0))[0][0])
+            print(f"Predicted as: {predicted_label}")
+
+            label_of_sample = label_batch.numpy()[sample_in_batch]
+            actual_label = label_names[label_of_sample]
+            print(f"Label of the {test_sample_index}-th sample in test_dataset is: {actual_label}")
+            print(f"Original index in raw dataset: {original_sample_index}")
+
+            # Display the original raw image
+            import matplotlib.pyplot as plt
+            plt.imshow(image_raw.numpy())
+            plt.title(f"Original Image (Actual Label: {label_names[label_raw.numpy()]})")
             plt.axis("off")
-
-        plt.tight_layout()
-        plt.show()
-
-    def show_image_by_index(visualizer, dataset, index):
-        samples = list(dataset.unbatch().take(index + 1))
-        image, actual_label = samples[index]
-        image_batch = tf.expand_dims(image, axis=0)
-        prediction = visualizer.model.predict(image_batch, verbose=0)
-        predicted_label = visualizer.test_infected(prediction[0][0])
-
-        import matplotlib.pyplot as plt
-        plt.imshow(image.numpy())
-        plt.title(f"Actual: {visualizer.label_names[actual_label.numpy()]}, Predicted: {predicted_label}")
-        plt.axis("off")
-        plt.show()
+            plt.show()
 
