@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import tensorflow as tf
 import numpy as np
 import tensorflow_datasets as tfds
 from math import floor
@@ -21,7 +20,8 @@ class Visualizer:
         ds_malaria_raw = ds_malaria_raw["train"]
 
         # Calculate the original index of the sample in the raw dataset
-        original_sample_index = train_examples + val_examples + test_sample_index
+        test_start_index = train_examples + val_examples
+        original_sample_index = test_start_index + test_sample_index
 
         # Get the raw image and label for the specified original sample index
         for i, (image_raw, label_raw) in enumerate(ds_malaria_raw):
@@ -38,11 +38,10 @@ class Visualizer:
 
             label_of_sample = label_batch.numpy()[sample_in_batch]
             actual_label = label_names[label_of_sample]
-            print(f"Label of the {test_sample_index}-th sample in test_dataset is: {actual_label}")
+            # print(f"Label of the {test_sample_index}-th sample in test_dataset is: {actual_label}")
             print(f"Original index in raw dataset: {original_sample_index}")
 
             # Display the original raw image
-            import matplotlib.pyplot as plt
             plt.imshow(image_raw.numpy())
             plt.title(f"Original Image (Actual Label: {label_names[label_raw.numpy()]})")
             plt.axis("off")

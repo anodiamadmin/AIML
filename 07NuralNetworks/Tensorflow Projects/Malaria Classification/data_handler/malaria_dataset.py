@@ -11,7 +11,7 @@ class MalariaDataset:
 
         # Load dataset
         self.ds, self.ds_info = tfds.load(
-            'malaria', as_supervised=True, with_info=True, shuffle_files=True
+            'malaria', as_supervised=True, with_info=True, shuffle_files=False
         )
         self.ds = self.ds["train"]
         self.label_names = self.ds_info.features["label"].names

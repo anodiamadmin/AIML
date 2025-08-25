@@ -7,7 +7,7 @@ def main():
     dataset = MalariaDataset(im_size=224, batch_size=32)
 
     # Initialize a new model (from scratch)
-    malaria_model = MalariaModel(im_size=224, lr=0.01)
+    # malaria_model = MalariaModel(im_size=224, lr=0.01)
 
     # Train the model
     # malaria_model.train(dataset.train, dataset.val, epochs=6)
@@ -28,11 +28,12 @@ def main():
         dataset.label_names,
     )
     
-    train_count = len(dataset.train)
-    val_count = len(dataset.val)
+    train_count = sum(1 for _ in dataset.train.unbatch())
+    val_count = sum(1 for _ in dataset.val.unbatch())
+    # print(f"Train examples: {train_count}, Validation examples: {val_count}")
     
     visualizer.show_test_sample_by_index(
-        test_sample_index=4001,
+        test_sample_index=4123,
         train_examples=train_count,
         val_examples=val_count,
         test_dataset=dataset.test,
