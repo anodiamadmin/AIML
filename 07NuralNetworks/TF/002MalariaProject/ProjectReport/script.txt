@@ -24,14 +24,14 @@ Slide-6:
 Heading: Results and Accuracy:
 This graph highlights how well our model performed with early stopping. The training accuracy climbs rapidly above 96.3%, while the validation accuracy improves steadily before stabilizing. The red test accuracy line remains consistently high at around 94%. When validation accuracy stopped improving, early stopping kicked in, preventing overfitting and locking in strong performance. Overall, this shows that our LeNet-based CNN not only learns quickly but also generalizes well, making it reliable for identifying malaria-infected cells.
 
-
 Slide-7:
-Heading: Sample Positive and Negative Activations:
-
+Heading: Sample Feature-Maps for Positive & Negative Examples :
+Let us take a deeper look on how the CNN distinguishes malaria-positive and negative red blood cells. For the parasitized example, convolutional layers progressively detect irregular structures caused by Plasmodium parasites, reinforcing a positive classification. Conversely, for the uninfected cell, smooth, ring-like structures are learned layer by layer, guiding the model toward a negative classification. The final sigmoid activation outputs high probability for infection in the first case and low probability in the second, confirming correct predictions.
 
 Slide-8:
 Heading: Conclusion and the Way Forward:
 Our LeNet-based CNN successfully distinguishes malaria-infected from healthy red blood cells with high accuracy, validating deep learning as a reliable diagnostic aid. Moving forward, larger datasets, advanced architectures, and real-world clinical validation could further improve robustness. Such AI-driven systems can support early, scalable malaria detection across endemic regions.
+For further exploration, our code, models and experiments are all available on Google Colab and GitHub. Key references include LeNet and TensorFlow documentation, which guided this project’s design and implementation.
 
 Given the above scripts and headings for the project titled "CNN LeNet for Malaria Pathology: Parasitized vs. Uninfected Red Blood Cells" 
 Given the attached slides.pptx for the respective slides of the project presentation.
