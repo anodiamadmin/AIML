@@ -1,6 +1,7 @@
 import os
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
+from utils.utils import prediction_time
 import math
 from data_handler.data_processor import DataProcessor
 from model_build.malaria_model_trainer import MalariaModelTrainer
@@ -153,6 +154,15 @@ def main():
         index=16,  # <- choose any valid index
         im_size=224
     )
+
+    # --- Measure single-sample prediction time (milliseconds) ---
+    test_index = 12  # choose any valid index
+    test_sample = next(iter(test_ds.skip(test_index).take(1)))  # (image, label)
+
+    pred_label, prob, elapsed_ms = prediction_time(loaded_best_model, test_sample, im_size=im_size)
+    print(f"[Timing] Single-sample prediction took {elapsed_ms:.2f} ms "
+          f"(pred={pred_label}, prob={prob:.4f}, index={test_index})")
+
 
 if __name__ == "__main__":
     main()

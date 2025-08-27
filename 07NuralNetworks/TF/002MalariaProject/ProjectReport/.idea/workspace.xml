@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c63477d-3d47-4641-a91a-abab595ea8fb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/script.txt" beforeDir="false" afterPath="$PROJECT_DIR$/script.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/slides.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/slides.pptx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Tensorflow Projects/Malaria Classification/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Tensorflow Projects/Malaria Classification/.idea/Malaria Classification.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Tensorflow Projects/Malaria Classification/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Tensorflow Projects/Malaria Classification/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Tensorflow Projects/Malaria Classification/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Tensorflow Projects/Malaria Classification/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Tensorflow Projects/Malaria Classification/data_handler/malaria_dataset.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Tensorflow Projects/Malaria Classification/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Tensorflow Projects/Malaria Classification/models/malaria_model.keras" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Tensorflow Projects/Malaria Classification/models/malaria_model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Tensorflow Projects/Malaria Classification/test_setup.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Tensorflow Projects/Malaria Classification/utils/visualizer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DataModelCode/utils/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/../DataModelCode/utils/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,23 +16,23 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="31rwtnA4rJg1etbiFadiDE3uF8s" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.online_voice_gen.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.online_voice_gen.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
