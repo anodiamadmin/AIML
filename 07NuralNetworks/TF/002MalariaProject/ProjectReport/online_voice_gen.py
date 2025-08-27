@@ -1,0 +1,41 @@
+import pyttsx3
+
+text = """Automating Malaria Pathology using Computer Vision.
+Malaria diagnosis traditionally relies on microscopic inspection of stained blood smears. Trained pathologists identify the presence of Plasmodium parasites within red blood cells, which appear as distinct ring-like or irregular structures. Differentiating infected from uninfected cells is crucial, but the process is time-consuming, labor-intensive, and prone to human error.
+
+The Malaria Endemic.
+This choropleth map highlights the global burden of malaria. In 2000, 108 countries reported active malaria endemic zones, shown in red, green, and yellow. By 2023, the number reduced to 83 countries, still marked in red. The most severely impacted regions remain Africa, South Asia, and parts of Latin America.
+
+Training Dataset.
+This slide shows examples from our training dataset. We used 27,556 labeled cell images from the TensorFlow “malaria” dataset, each tagged as uninfected or parasitized. Parasitized cells reveal dark, irregular Plasmodium structures inside, while uninfected cells appear clear and uniform. These distinguishing features are what our CNN learns to detect.
+
+CNN LeNet Model Architecture.
+As the task is relatively simple, we implemented CNN LeNet architecture for malaria detection. Input images were first resized to 224×224×3 pixels before entering the network. The model begins with two convolutional layers (6 and 16 filters), each followed by batch normalization and max pooling to extract features. Kernel size of 5 was used as there are not many complicated features to learn in the Convolution layers.
+The output of the Convolution layers are next flattened and passed through dense layers of 100 and 10 neurons with ReLU activation. Finally, a sigmoid output layer classifies cells as parasitized or uninfected, enabling efficient binary classification.
+
+Model Summary, Parameter Counts and Optimal Hyper Parameters.
+The LeNet model contains about 4.5 million trainable parameters. The first convolutional layers are lightweight, with 456 and 2,416 parameters respectively. Most parameters come from the fully connected dense layer with 100 units, contributing over 4.49 million. Batch normalization layers add a few hundred each, while the final dense layers with 10 and 1 neurons add just over 1,000 combined. This distribution shows that parameter complexity is dominated by the dense layers rather than convolutional filters.
+We achieved the best performance with an 80:10:10 train-test-validation split, batch size of 32, Adam optimizer at a 0.01 learning rate, and binary cross-entropy loss. Early stopping limited training to 8–9 epochs, preventing overfitting.
+
+Results and Accuracy.
+This graph highlights how well our model performed with early stopping. The training accuracy climbs rapidly above 96.3%, while the validation accuracy improves steadily before stabilizing. The red test accuracy line remains consistently high at around 94%. When validation accuracy stopped improving, early stopping kicked in, preventing overfitting and locking in strong performance. Overall, this shows that our LeNet-based CNN not only learns quickly but also generalizes well, making it reliable for identifying malaria-infected cells.
+
+Sample Feature-Maps for Positive & Negative Examples.
+Let us take a deeper look on how the CNN distinguishes malaria-positive and negative red blood cells. For the parasitized example, convolutional layers progressively detect irregular structures caused by Plasmodium parasites, reinforcing a positive classification. Conversely, for the uninfected cell, smooth, ring-like structures are learned layer by layer, guiding the model toward a negative classification. Due to usage of ReLU activation and Batch Normalization, some activations appear blank or blacked out, which is normal. The final sigmoid activation outputs low probability indicating parasitized in the first case and high probability indicating uninfected in the second, confirming correct predictions.
+
+Conclusion and the Way Forward.
+Our LeNet-based CNN successfully distinguishes malaria-infected from healthy red blood cells with high accuracy, validating deep learning as a reliable diagnostic aid. Moving forward, larger datasets, advanced architectures, and real-world clinical validation could further improve robustness. Such AI-driven systems can support early, scalable malaria detection across endemic regions.
+For further exploration, our code, models and experiments are all available on Google Colab and GitHub. Key references include LeNet and TensorFlow documentation, which guided this project’s design and implementation."""
+
+engine = pyttsx3.init()
+engine.setProperty('rate', 135)   # speaking speed
+voices = engine.getProperty('voices')
+# Try to pick a female voice if available
+for v in voices:
+    if "female" in v.name.lower() or "zira" in v.name.lower():
+        engine.setProperty('voice', v.id)
+        break
+
+engine.save_to_file(text, "malaria_presentation_online.mp3")
+engine.runAndWait()
+print("Saved malaria_presentation_online.mp3")
