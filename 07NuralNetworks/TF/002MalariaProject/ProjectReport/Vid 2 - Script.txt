@@ -1,0 +1,17 @@
+Slide 1: Intro
+
+“In the last video, we built a malaria classifier using TensorFlow’s Sequential API. But Sequential is limited — it only supports simple, straight-line models, with very little room for customization. By using the power of Object-Oriented Programming and TensorFlow, we can abstract away the heavy math and think of deep learning as reusable building blocks. Instead of writing raw matrix multiplications, we just connect layers like Lego pieces. Today, we will show you three ways to do that: the Functional API, Model Subclassing, and Custom Layers.”
+
+Slide 2: Two Flexible Approaches
+
+"With the Functional API, we can design models like Lego — connecting layers in flexible, non-linear ways. This makes it perfect for complex architectures such as multi-input or multi-output models. Model Subclassing, on the other hand, gives us full freedom. We write our own class, define the call function, and completely control how the forward pass works. This approach is the most flexible, and it really brings object-oriented programming into the spotlight. So while the Functional API is structured and clean, subclassing is like a blank canvas. Together, they give us two powerful ways to move beyond Sequential.”
+
+Slide 3: Going Past the Standard Layers
+
+“Sometimes, even with Functional API or Subclassing, the built-in layers just don’t cut it. That’s where custom layers come in. We can define exactly how a layer behaves — from how weights are initialized, to how activations are applied, to any special logic we want to include. This gives us full transparency and control over what’s happening under the hood. Another benefit is reusability. Instead of rewriting the same math in multiple places, we can package it into our own layer and plug it into any model, just like a built-in one. So custom layers are our way of pushing TensorFlow beyond the defaults — creating new building blocks that expand what our models can do.”
+
+Slide 4: Same Accuracy, More Flexibility
+
+“So far, we have built the same malaria classifier using different approaches. The accuracy stayed the same, but the way we expressed the model changed dramatically. That’s the real power of TensorFlow’s flexibility. With Functional API, we get clean, Lego-like connections. With Model Subclassing, we unlock full object-oriented freedom. And with Custom Layers, we can design entirely new building blocks. Together, these tools show us that deep learning isn’t just about accuracy — it’s also about creativity, reusability, and control.”
+
+Slide 5: Model Performance Metrics
