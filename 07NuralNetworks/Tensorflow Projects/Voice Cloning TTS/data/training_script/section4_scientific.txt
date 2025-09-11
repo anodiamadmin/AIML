@@ -1,0 +1,7 @@
+SECTION 4 – SCIENTIFIC JARGON
+-------------------------------------
+In Deep Learning, neural networks consist of layers such as convolutional, recurrent, and transformer blocks.
+Backpropagation is used to minimize the loss function through gradient descent.
+Reinforcement Learning is based on agents, states, actions, and rewards.
+Bayesian inference helps quantify uncertainty in predictions.
+Generative Adversarial Networks, or GANs, consist of a generator and a discriminator competing in a zero-sum game.

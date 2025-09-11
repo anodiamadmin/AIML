@@ -1,0 +1,6 @@
+SECTION 1 – ARTIFICIAL INTELLIGENCE
+-------------------------------------
+Artificial Intelligence, or AI, is the simulation of human intelligence by machines.
+It includes tasks such as reasoning, learning, problem-solving, perception, and natural language understanding.
+Popular subfields include Machine Learning, Deep Learning, Computer Vision, and Natural Language Processing.
+AI is now embedded in products ranging from recommendation systems to autonomous vehicles.

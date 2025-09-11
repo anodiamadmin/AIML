@@ -1,0 +1,7 @@
+SECTION 5 – DOMAIN APPLICATIONS
+-------------------------------------
+Artificial Intelligence has wide applications.
+In healthcare, AI supports medical imaging, drug discovery, and personalized medicine.
+In finance, machine learning detects fraud and optimizes trading strategies.
+In education, adaptive learning platforms adjust content to the student’s progress.
+In natural language processing, large language models now generate text, summarize documents, and even translate across languages.
