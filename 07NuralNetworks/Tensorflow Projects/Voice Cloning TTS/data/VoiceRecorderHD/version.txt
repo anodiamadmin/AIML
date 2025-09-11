@@ -1,0 +1,62 @@
+Mini HD Audio 16 Bit Recorder V2.5 for Direct Sound by Bonissone Cristoforo
+
+(The best outstanding HQ 16 bit engine HD recorder ever)
+
+Tuesday 2 June
+*** V1.1 - Published
+
+Wednesday 3 June
+*** V1.2 - Various Fix +
+Makes save the recording when press stop button.
+
+Wednesday 3 June
+*** V1.3 - Various Fix +
+Add a blink recording field during recording.
+
+Thursday 4 June
+*** V1.4 - Various Fix +
+Added a timer into a blink recording field.
+
+Friday 5 June
+*** V1.5 - Various Fix +
+Fixed the correct time in secs.
+
+Saturday 6 June
+*** V1.6 - Various Fix +
+Increased the resolution of audio capturing, the loop is 5 time more fast now
+Added FFT code for graphics visualization of the captured audio
+
+Monday 8 June
+*** V1.7 - Various Fix +
+Added a custom audio player (MCI) for the recorded audio
+
+Tuesday 9 June
+*** V1.8 - Various Fix +
+Added a visual red VU LED for R & L Channels
+
+Wednesday 24 June
+*** V1.9 - Various Fix +
+Revised the visual red VU LED for R & L Channels +
+increased the bit reading routine with new ASM Inline code.
+
+Wednesday 1 July
+*** V2.0 - Various Fix +
+Revised the visual VU LED (magnified) +
+add a preview play of recorded stuff
+
+Sunday 12 July 2020
+*** V2.1 - Various Fix +
+Increased the Thread Priority of audio capturing loop
+
+
+Thursday 16 July 2020
+*** V2.5 - Various Fix +
+Improved the dithering algorithm for the 16 bits,
+Improved the refresh speed of the green LEDs
+Doubled the size of channel for the transit of bit's to the recording bus
+
+Sunday 19 July 2020
+*** V2.6 - Various Fix +
+Improved audio buffer size (doubled)
+Improved the dithering algorithm for the 16 bits
+Eliminated the green LEDs for regain all disponible time for give it at the improved dithering algorithm
