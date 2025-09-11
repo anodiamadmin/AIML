@@ -1,15 +1,7 @@
-import os
 import torch
 import nltk
 from pathlib import Path
-import sys
 import shutil
-
-# ------------------------
-# Add repo folder to Python path
-# ------------------------
-# sys.path.insert(0, os.path.abspath("OpenVoice"))
-
 
 # ------------------------
 # NLTK setup
@@ -41,8 +33,9 @@ if tagger_src.exists() and not tagger_dst.exists():
 # ------------------------
 # OpenVoice / MeloTTS imports
 # ------------------------
-from openvoice import se_extractor
-from openvoice.api import ToneColorConverter
+
+from OpenVoice.openvoice import se_extractor
+from OpenVoice.openvoice.api import ToneColorConverter
 from melo.api import TTS
 
 # ------------------------
