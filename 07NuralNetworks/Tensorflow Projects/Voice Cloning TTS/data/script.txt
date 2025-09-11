@@ -1,14 +1,11 @@
-There are multiple approaches of constructing neural networks. While Sequential is simple and linear, it is not flexible enough for increasingly complex models.
-Advanced Model-building APIs like Functional, Subclassing & Custom Layers provides more Flexibility for customization when creating advanced neural architectures.
-In the current video, we will be focusing on building this liner CNN, LeNet model used for binary image classification. Layers are built sequentially as follows: Input layer with resized RGB images followed by 2 sets of Convolution layers with 6 and 16 filters and each having batch normalization and max-pooling.
-Followed by a flattening layer, 2 densely connected layers. And a sigmoid output layer. The code for Sequential Model is as displayed.
-The summary of the model including its trainable parameters at each layer is as shown.
-In the Functional API, layers are defined as functions. Each layer receives previous outputs, enabling more diverse and branched network architectures.
-In Functional API model, each layer is created by a functional call. Previous layer is passed into the present layer’s parameter. Though here, the exact same model is created using functional API, this process can create much complex architectures.
-Watch how layers created as functional calls and how previous layers are passed into present layer’s parameter.
-To extend the functional model to predict if a geographical region is having an ongoing pandemic or not, we can simply append the Geo Co-ordinates to the layer before the dense layers. This flexibility is not available in the Sequential model.
-By Model subclassing, different Layers of functional model can be encapsulated as Subclass of a Layer Object. Example, these layers marked in red shadow.
-The Feature Extractor class that inherits from Layer is used to encapsulate the two convolution layers in the LeNet model example.
-Here, exactly the same model is created as the sequential or functional models, though much complex architectures are possible here.
-Entire Network can also be encapsulated as a Model Object, instead of different layer objects.
-Finally, Custom Layers extend functionality further. Developers can design unique individual layers encapsulated as reusable objects, enhancing modularity and supporting innovative deep learning solutions.
+Prince Harry has met his father King Charles at Clarence House in London on Wednesday for their first face to face meeting since February 2024.
+
+The clues have been scattered all over the place in recent months.
+
+In his BBC interview in May, there was a distinct shift in tone from the prince.
+
+After the years of raw, emotional media appearances, the Netflix documentary series, the searing criticism of the royal family in his memoir Spare, this was a different Prince Harry in front of the cameras.
+
+"I would love a reconciliation with my family," he said. "There's no point in continuing to fight anymore. Life is precious."
+
+Prince Harry had made his position clear. He wanted to see his father but was the King feeling the same way?
