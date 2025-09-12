@@ -34,8 +34,8 @@ if tagger_src.exists() and not tagger_dst.exists():
 # OpenVoice / MeloTTS imports
 # ------------------------
 
-from OpenVoice.openvoice import se_extractor
-from OpenVoice.openvoice.api import ToneColorConverter
+from openvoice import se_extractor
+from openvoice.api import ToneColorConverter
 from melo.api import TTS
 
 # ------------------------
