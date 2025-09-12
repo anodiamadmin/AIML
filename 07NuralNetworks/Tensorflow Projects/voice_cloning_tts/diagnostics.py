@@ -34,20 +34,20 @@ def check():
     # --- MeCab ---
     try:
         import MeCab
-        print("✅ MeCab imported successfully.\n")
+        print("✅ MeCab imported successfully.")
     except ImportError as e:
         print("❌ MeCab is not installed.")
-        print("Exception details:", e, "\n")
+        print("Exception details:", e, "")
 
     # --- UniDic ---
     try:
         import MeCab
         # Attempt to initialize a tagger with UniDic
         tagger = MeCab.Tagger(".venv/Lib/site-packages/unidic")
-        print("📦 UniDic dictionary available for MeCab.\n")
+        print("📦 UniDic dictionary available for MeCab.")
     except RuntimeError as e:
         print("❌ UniDic dictionary not found for MeCab.")
-        print("Exception details:", e, "\n")
+        print("Exception details:", e)
     except ImportError:
         # MeCab not installed, skip this check
         pass
@@ -75,7 +75,7 @@ def check():
     try:
         import nltk
         nltk.data.find("taggers/averaged_perceptron_tagger_eng")
-        print("📦 'averaged_perceptron_tagger_eng' found.\n")
+        print("📦 'averaged_perceptron_tagger_eng' found.")
     except LookupError as e:
         print("❌ ERROR: 'averaged_perceptron_tagger_eng' not found.")
         print("Run: nltk.download('averaged_perceptron_tagger_eng')")
