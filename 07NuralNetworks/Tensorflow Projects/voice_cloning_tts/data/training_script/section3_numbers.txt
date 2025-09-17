@@ -1,9 +1,0 @@
-SECTION 3 – NUMERICAL EXPRESSIONS
--------------------------------------
-Let me read a few numbers.
-Ten point zero five.
-Negative three point one four one five nine.
-Five hundred and sixty-seven thousand, eight hundred and ninety-two.
-The matrix A is of size one hundred by one hundred.
-The probability is zero point zero zero four seven.
-Equation number twenty-three represents the cost function.
