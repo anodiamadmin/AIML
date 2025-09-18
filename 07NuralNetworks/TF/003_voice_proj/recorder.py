@@ -1,10 +1,13 @@
 # recorder.py
-# pip install sounddevice soundfile numpy
+# pip install sounddevice soundfile numpy noisereduce
 import sys, os, threading, queue
 from pathlib import Path
 import numpy as np
 import sounddevice as sd
 import soundfile as sf
+import noisereduce as nr
+from pydub import AudioSegment, effects
+
 
 # -----------------------------
 # Audio & Paths Config
@@ -14,6 +17,58 @@ CHANNELS = 1
 SUBTYPE = "PCM_16"   # 16-bit PCM
 ROOT_DIR = Path("./data/voice_identities")
 ROOT_DIR.mkdir(parents=True, exist_ok=True)
+CURRENT_VOICE_NAME = None
+
+# -----------------------------
+# Cleanup if user quits
+# -----------------------------
+def clean_before_quit(voice_name: str):
+    """
+    Best-effort cleanup for this session's files.
+    - Always delete <voice_name>_tmp.wav if present.
+    - Delete <voice_name>.wav ONLY if it's empty (0 frames) or header-only.
+    Safe no-op if voice_name is None/blank.
+    """
+    try:
+        if not voice_name:
+            return
+
+        main_path = ROOT_DIR / f"{voice_name}.wav"
+        tmp_path  = ROOT_DIR / f"{voice_name}_tmp.wav"
+
+        # Remove temp take (always)
+        if tmp_path.exists():
+            try:
+                tmp_path.unlink()
+                print(f"🧹 Removed temp: {tmp_path.name}")
+            except Exception as e:
+                print(f"⚠️ Could not remove temp '{tmp_path.name}': {e}")
+
+        # Remove main only if it's empty / header-only
+        if main_path.exists():
+            remove_main = False
+            try:
+                info = sf.info(str(main_path))
+                if info.frames == 0:
+                    remove_main = True
+            except Exception:
+                # Fallback: tiny header-only files are ~44 bytes
+                try:
+                    if main_path.stat().st_size <= 44:
+                        remove_main = True
+                except Exception:
+                    pass
+
+            if remove_main:
+                try:
+                    main_path.unlink()
+                    print(f"🧹 Removed empty main: {main_path.name}")
+                except Exception as e:
+                    print(f"⚠️ Could not remove main '{main_path.name}': {e}")
+
+    except Exception as e:
+        print(f"⚠️ Cleanup warning: {e}")
+
 
 # -----------------------------
 # Cross-platform single-key read
@@ -154,6 +209,7 @@ def ask_for_voice_identity_name() -> str:
 
         # allow quit
         if name.lower() == "q":
+            clean_before_quit('') # nothing to clean yet, but safe no-op
             print("👋 Exiting. No voice identity was created.")
             sys.exit(0)
 
@@ -177,7 +233,7 @@ def ask_for_voice_identity_name() -> str:
 
         return base if not base.endswith(".wav") else base[:-4]
 
-def prompt_press_any_key_or_quit_line():
+def prompt_press_any_key_or_quit_line(voice_name: str):
     """
     Show the 'Press any key to start recording' message and let user quit with 'q'.
     We accept a single 'q' (no Enter needed) for immediate exit here.
@@ -185,6 +241,7 @@ def prompt_press_any_key_or_quit_line():
     print("\n▶ Press any key to start recording ⏺")
     ch = getch_blocking()
     if ch and ch.lower() == "q":
+        clean_before_quit(voice_name)
         print("👋 Exiting. Goodbye!")
         sys.exit(0)
 
@@ -209,6 +266,7 @@ def prompt_review_menu(tmp_path: Path, voice_name: str, duration: float):
         c = ch.lower()
 
         if c == "q":
+            clean_before_quit(voice_name)
             print("👋 Exiting as requested.")
             sys.exit(0)
 
@@ -224,6 +282,7 @@ def prompt_review_menu(tmp_path: Path, voice_name: str, duration: float):
             # Any key restarts (also allow 'q' to quit)
             ch2 = getch_blocking()
             if ch2 and ch2.lower() == "q":
+                clean_before_quit(voice_name)
                 print("👋 Exiting. Goodbye!")
                 sys.exit(0)
             return "repeat"
@@ -245,6 +304,7 @@ def prompt_review_menu(tmp_path: Path, voice_name: str, duration: float):
                     continue
                 c2 = ch2.lower()
                 if c2 == "q":
+                    clean_before_quit(voice_name)
                     print("👋 Exiting as requested.")
                     sys.exit(0)
                 elif c2 == "p":
@@ -266,6 +326,7 @@ def prompt_review_menu(tmp_path: Path, voice_name: str, duration: float):
                     print("▶ Press any key to re-start recording ⏺")
                     ch3 = getch_blocking()
                     if ch3 and ch3.lower() == "q":
+                        clean_before_quit(voice_name)
                         print("👋 Exiting. Goodbye!")
                         sys.exit(0)
                     return "repeat"
@@ -282,10 +343,71 @@ def prompt_review_menu(tmp_path: Path, voice_name: str, duration: float):
             # Ignore and re-prompt the primary menu
             continue
 
+def clean_audio(in_path, out_path):
+    """Apply noise reduction + normalization."""
+    print("Cleaning audio...")
+
+    # Load raw audio
+    data, sr = sf.read(in_path)
+
+    # Apply noise reduction
+    reduced = nr.reduce_noise(y=data, sr=sr)
+
+    # Save temporary cleaned file
+    tmp_path = out_path.replace(".wav", "_cleaning.wav")
+    sf.write(tmp_path, reduced, sr)
+
+    # Normalize with pydub
+    audio = AudioSegment.from_wav(tmp_path)
+    audio = effects.normalize(audio)
+
+    audio.export(out_path, format="wav")
+    os.remove(tmp_path)
+
+    print(f"Cleaned audio saved: {out_path}")
+
+# -----------------------------
+# Finalize helper (new)
+# -----------------------------
+def finalize_voice_identity(voice_name: str):
+    """
+    Run cleaning on <voice_name>.wav -> clean_<voice_name>.wav and delete the original.
+    Exits the program on success.
+    """
+    main_path = ROOT_DIR / f"{voice_name}.wav"
+    out_path  = ROOT_DIR / f"clean_{voice_name}.wav"
+
+    # Ensure main has audio
+    if not main_path.exists():
+        print("⚠️ No main voice file found to finalize.")
+        return
+    try:
+        info = sf.info(str(main_path))
+        if info.frames == 0:
+            print("⚠️ Your main voice file is empty; please record and accept at least one take before finalizing.")
+            return
+    except Exception:
+        if main_path.stat().st_size <= 44:
+            print("⚠️ Your main voice file appears empty; please record and accept at least one take before finalizing.")
+            return
+
+    # Clean & normalize, then delete original
+    # clean_audio(str(main_path), str(out_path))
+    try:
+        main_path.unlink()
+    except Exception as e:
+        print(f"⚠️ Could not delete original file after cleaning: {e}")
+
+    print(f"✅ Final voice identity saved as: {out_path.name}")
+    print("👋 Exiting. Goodbye!")
+    sys.exit(0)
+
 def main():
+    global CURRENT_VOICE_NAME
     # 1) Greeting & name prompt
     print_banner()
     voice_name = ask_for_voice_identity_name()  # without .wav
+    CURRENT_VOICE_NAME = voice_name
     main_path = ROOT_DIR / f"{voice_name}.wav"
     tmp_path = ROOT_DIR / f"{voice_name}_tmp.wav"
 
@@ -297,7 +419,7 @@ def main():
     print("\nSystem is ready to create your voice identity.")
     print("Create by recording your voice for 5-10 minutes in your relevant field.")
     print("Record in a noise free room.")
-    prompt_press_any_key_or_quit_line()
+    prompt_press_any_key_or_quit_line(voice_name)
 
     # Loop for record → review → accept → enrich
     while True:
@@ -326,11 +448,21 @@ def main():
             print(f"\n✅ Appended to {main_path.name}.")
             print(f"Current {voice_name} length: {final_dur:.2f}s ( {SR} Hz, mono, {SUBTYPE} )")
 
-            # 10) Ask to enrich
-            print(f"\nEnrich your voice identity ({voice_name}) by recording more, or press 'q+↵' to quit.")
-            prompt_press_any_key_or_quit_line()
+            # 10) Ask to enrich OR SUBMIT FINAL
+            print(f"\nEnrich your voice identity ({voice_name}) by recording more,")
+            print("press 'S' to submit the final voice identity now, or press 'q+↵' to quit.")
+            print("▶ Press any key to start recording ⏺")
 
-            # Recreate an empty temp file for the next take
+            # Handle S / q / any key (start recording)
+            ch = getch_blocking()
+            if ch and ch.lower() == "q":
+                clean_before_quit(voice_name)
+                print("👋 Exiting. Goodbye!")
+                sys.exit(0)
+            if ch and ch.lower() == "s":
+                finalize_voice_identity(voice_name)
+
+            # Recreate an empty temp file for the next take, then continue to next loop (which starts recording)
             create_empty_wav(tmp_path)
             # 11) Repeat from step 5 (loop top)
 
@@ -338,4 +470,5 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
+        clean_before_quit(CURRENT_VOICE_NAME)
         print("\n👋 Exiting. Stay awesome!")
