@@ -392,14 +392,14 @@ def finalize_voice_identity(voice_name: str):
             return
 
     # Clean & normalize, then delete original
-    # clean_audio(str(main_path), str(out_path))
+    clean_audio(str(main_path), str(out_path))
     try:
         main_path.unlink()
     except Exception as e:
         print(f"⚠️ Could not delete original file after cleaning: {e}")
 
     print(f"✅ Final voice identity saved as: {out_path.name}")
-    print("👋 Exiting. Goodbye!")
+    # print("👋 Exiting. Goodbye!")
     sys.exit(0)
 
 def main():
@@ -460,7 +460,9 @@ def main():
                 print("👋 Exiting. Goodbye!")
                 sys.exit(0)
             if ch and ch.lower() == "s":
-                finalize_voice_identity(voice_name)
+                # finalize_voice_identity(voice_name)
+                ####### Need to remove voice_tmp.wav and quit.
+                print("👋 Exiting. Goodbye!")
 
             # Recreate an empty temp file for the next take, then continue to next loop (which starts recording)
             create_empty_wav(tmp_path)
