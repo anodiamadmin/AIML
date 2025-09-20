@@ -42,7 +42,7 @@ from melo.api import TTS
 # Paths
 # ------------------------
 DATA_DIR = Path("./data")
-VOICE_FILE = DATA_DIR / "my_voice.wav"
+VOICE_FILE = DATA_DIR / "voice_identities/anirban_id.wav" # "my_voice.wav"
 SCRIPT_FILE = DATA_DIR / "script.txt"
 OUTPUT_FILE = DATA_DIR / "speech.mp3"
 

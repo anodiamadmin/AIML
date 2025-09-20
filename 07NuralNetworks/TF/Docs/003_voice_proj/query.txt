@@ -1,0 +1,87 @@
+Update the recorder.py program as per the following pseudocode logic:
+when ./recorder.py is run:
+
+Program console must ask user to enter "voice_identity_name" in snake_case.
+If voice_identity_name is not in snake case:
+  Console error: "voice_identity_name" must be in snake_case
+  Exit program
+Else:
+  If .\data\voice_identities\{voice_identity_name}.wav file does not exist:
+    Create blank file .\data\voice_identities\{voice_identity_name}.wav
+    If .\data\voice_identities\tmp\{voice_identity_name}_tmp.wav file exists:
+      Delete file .\data\voice_identities\tmp\{voice_identity_name}_tmp.wav
+    Create blank file .\data\voice_identities\tmp\{voice_identity_name}_tmp.wav
+    Console display: creating voice identity - {voice_identity_name}
+  Console display: System is ready...\nRecord and update your voice identity - {voice_identity_name}, following the key press option prompts!
+  Console display: User options: 'q'->quit, 'p'->play stored voice, 'l'->listen unsaved part, 's'->save recent part, 'd'->delete unsaved part, 'r'->record
+  Accept user key press
+  while not 'escape' key pressed by user:
+    switch: key press options selected by user:
+      case: 'q':
+        Console display: Exit program? Press Y/N...
+        If 'y' or 'Y' or "Yes":
+          Console display: Exit program as per user selection...
+          Exit program
+        Else:
+          Break out of switch cases
+      case: 'p':
+        If f".\data\voice_identities\{voice_name}.wav" is blank:
+          Console display: Voice identity {voice_name} is blank as of now! Record your voice identity first...
+        Else:
+          Console display: Playing voice identity {voice_name}: total_time of {voice_name}.wav %2f seconds, 16KHz, "Mono", "PCM_16"
+          Play to speaker: f".\data\voice_identities\{voice_name}.wav"
+        Break out of switch cases
+      case: 'l':
+        If f".\data\voice_identities\tmp\{voice_name}_tmp.wav" is blank:
+          Console display: Nothing new is recorded yet for voice identity {voice_name}! Record your voice first...
+        Else:
+          Console display: Playing recent recording for voice identity {voice_name}: total_time_of {voice_name}_tmp.wav %2f seconds, 16KHz, "Mono", "PCM_16"
+          Play to speaker: f".\data\voice_identities\tmp\{voice_name}_tmp.wav"
+        Break out of switch cases
+      case: 's':
+        If f".\data\voice_identities\tmp\{voice_name}_tmp.wav" is blank:
+          Console display: Nothing new is recorded yet for voice identity {voice_name}! Record your voice first...
+        Else:
+          Console display: Save recent recording to voice identity {voice_name}? Press Y/N...
+          If 'y' or 'Y':
+            Console display: Saving recent recording to voice identity {voice_name}...
+            Append f".\data\voice_identities\tmp\{voice_name}_tmp.wav" to f".\data\voice_identities\{voice_name}.wav"
+            Erase contents of f".\data\voice_identities\tmp\{voice_name}_tmp.wav"
+            Console display: voice_identity {voice_name} updated successfully!
+          Else:
+            Console display: Not saving recent recording as per user selection.\nNot deleting either. To delete, specifically select 'd'/'D' option...
+        Break out of switch cases
+      case: 'd': 
+        If f".\data\voice_identities\tmp\{voice_name}_tmp.wav" is blank:
+          Console display: Nothing new is recorded yet for voice identity {voice_name}! Nothing to delete...
+        Else:
+          Console display: Delete recent recording for voice identity {voice_name}? Press Y/N...
+          If 'y' or 'Y':
+            Erase contents of f".\data\voice_identities\tmp\{voice_name}_tmp.wav"
+            Console display: Deleted recent recording to voice identity {voice_name} as per user selection...
+          Else:
+            Console display: Not deleting recent recording as user selection was not 'Y' or 'y'...
+        Break out of switch cases
+      case: 'r': 
+        If f".\data\voice_identities\tmp\{voice_name}_tmp.wav" is not blank:
+          display message: f".\data\voice_identities\tmp\{voice_name}_tmp.wav" is not blank! Overwrite the same? Y/N?
+          If not 'Y' or 'y':
+            Console display: Not changing voice identity {voice_name} as per user selection...
+            Break out of switch cases
+          Else:
+            Erase contents of f".\data\voice_identities\tmp\{voice_name}_tmp.wav"
+        Console display: Press any key to start recording ⏺ ...
+        If any key pressed:
+          Console display: Recording... ⏺ \nPress any key to stop!
+          Start recording sound: into file f".\data\voice_identities\tmp\{voice_name}_tmp.wav": SamplingRate=16KHz, Mono, PCM_16
+          If any key pressed again:
+            Stop recording sound: into file f".\data\voice_identities\tmp\{voice_name}_tmp.wav"
+            Delete 0.2 seconds from start and 0.2 seconds from end of f".\data\voice_identities\tmp\{voice_name}_tmp.wav" to avoid key board sound
+        Console display: Recording successful! total_time_of_track in seconds (%2f), SamplingRate=16KHz, Mono, PCM_16
+        Break out of switch cases
+    Send switch case
+    Console display: User options: 'q'->quit, 'p'->play stored voice, 'l'->listen unsaved part, 's'->save recent part, 'd'->delete unsaved part, 'r'->record
+    Accept user key press
+
+
+Give me a final clean recorder.py file
