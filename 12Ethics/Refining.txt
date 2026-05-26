@@ -1,0 +1,153 @@
+I want to re-write the 1. Data Scenario section for the Assessment-2 Part A: Data situation and stakeholders
+
+The question is:
+Choose a data-related situation with which you are familiar. It can relate to any aspect of the data supply chain: acquire, store, aggregate, analyse, use, share/sell or dispose (see Week 1 for elaboration).
+
+Provide a 1500 word report describing:
+
+Purpose of data collection, use or storage
+Information flows, upstream and downstream considerations
+Stakeholders, including data subjects and their relative power, agency and vulnerabilities
+Analysis of the impacts (including unintended or unwanted impacts) on stakeholders, including data subjects
+
+
+The data scenario you report on can relate to any aspect of business, public, or private life. You will need to clearly describe the practice or project, and provide a high-level overview of the elements of the data supply chain that apply (see Week 1).
+
+Presentation style/format
+Structure for Part A
+1. Data scenario (~500 words)	
+Clearly and succinctly outline the purpose of data collection, use or storage, and the type of data collected (e.g. personal, financial, health, commercial).
+
+State why you need this data, and whether it is public, internal. confidential, restricted etc.
+You should also outline the data supply chain/process, including information flows, upstream and downstream considerations.
+How will the data be collected, stored, used and deleted?
+
+2. Stakeholders (~500 words)
+
+(you may use a table for this)
+
+Who are the key stakeholders, including data subjects? What is their relationship to the data?
+What is their relative Power, Agency (how much control over the data can they exercise?) and Vulnerabilities? 
+3. Impact on stakeholders (~500 words)	
+Explanation of the potential impacts (intended and unintended) on stakeholders and the public interest, drawing on course materials where relevant.
+
+4. Appendices
+
+(not included in word count)
+
+Include tables and diagrams as needed, PLUS
+
+Methodology: You MUST include a brief (half to one page) account of your methodology, including your relationship to the data situation (are you directly involved or looking at it ‘from the outside’?), a description of your sources, and your rationale for using this method. You MUST also include a statement on how you have used AI if relevant (include your prompts), and a short exploration/critique of the limitations of the AI methods you have adopted. See example below.
+
+Put special focus on High distinction (HD) 85%-100% Criteria:
+Clarity of situation and purpose (40%): Exceptionally clear, concise, and comprehensive description of the situation and data use. Includes all relevant elements (data type, subjects, collection method). Situation is highly appropriate.
+Depth and breadth of discussion of stakeholders, how they are affected, and intended/unintended impacts (40%): Comprehensive, deep and highly insightful analysis and discussion.
+Report structure, communication, and referencing (20%): Professionally structured report. Highly engaging, coherent, and concise writing. Excellent grammar and formatting. Submission conforms to word limit boundaries. Clear and concise discussion of methodology. AI use acknowledged and limitations discussed, prompts provided.
+
+Use the following section to prepare the writeup:
+Energy Demand Forecasting Project Overview:
+This project centers on electricity demand forecasting, a critical tool for government policy-makers, market bodies, and energy businesses. Accurate forecasting is essential because it directly impacts profitability and cost-efficiency; even slight improvements in prediction can significantly lower costs for consumers and increase margins for providers.
+Key Drivers of Demand
+Demand is primarily influenced by three factors:
+Temperature: The most significant determinant due to heating and air conditioning needs during extreme weather.
+Historical Data: Leveraging 20 years of regional trends and macroeconomic variables (e.g., GDP or pandemic impacts).
+Past Forecast Accuracy: Analyzing previous models to identify systemic weaknesses.
+Core Objectives
+The analysis serves three distinct functions:
+Forecasting: Moving beyond simple "point estimates" to create sophisticated distributions of future demand.
+Synthetic Data Generation: Developing "plausible future worlds" to stress-test planning models. While historical data is deterministic (showing only what did happen), synthetic data provides a probabilistic view of what could happen, overcoming the limitations of short historical records.
+Ex-post Analysis: Explaining why specific outcomes occurred to refine future models.
+Modeling Approaches
+The project acknowledges that different models serve different stakeholders:
+Heuristics: For traders needing rapid decisions.
+Time Series: For short-term accuracy.
+Machine Learning: For complex synthetic data generation and long-term strategic planning.
+Ultimately, the "holy grail" is capturing the true distribution of future outcomes, allowing decision-makers to prepare for a wide range of scenarios rather than assuming next year will simply mirror the last.
+
+Electricity demand is about the weather.
+The greatest driver of variability in demand for electricity is the weather. This is illustrated in Figure 1 below, which shows average New South Wales demand versus average air temperature (at Bankstown and other NSW suburbs) on a daily basis from 1 January 2020 to 31 December 2020.
+Scatterplot of air temperature vs demand for New South Wales in 2020 shows higher demand at low and high air temperatures, and low demand at moderate temperatures.
+You can see the strong relationship between temperature and demand, which results in the striking vee-shape of the chart. The join of the vee sits at about 18 to 19 degrees Celsius. On days where the temperature increases above 19 degrees, demand increases because of increased use of air-conditioning. On days when the average temperature falls below 18 degrees, demand increases as customers turn on electric heaters.
+Data description
+The dataset you will be working with can be accessed in the course GitHub repository. The size of the underlying data set is approximately 752 MB (structured).
+Within this folder, there will be three data sets containing historical data (from 01-01-2010) of total demand, forecast demand, and air temperature.
+About the firm
+Established in February 2016, Endgame Economics is a technology-led consultancy that provides mathematical and economic advice. Much of their work involves advising organisations that operate in, or oversee, the National Electricity Market (NEM).
+Their clients include:
+Market bodies – regulators, the national rule maker, the market operator.
+Private businesses – generators, renewable developers, network operators.
+Other clients – law firms that handle matters in the electricity sector, and investors in energy assets.
+Ultimately, Endgame Economics are in the business of building models that solve their clients’ problems.
+
+The data sets
+There are three data sets containing historical data (from 01-01-2010) which include:
+Total electricity demand, in 5 minutes increments for New South Wales. This data is sourced from the Market Management System database, which is published by the market operator from the National Electricity Market (NEM) system. The variables are:
+DATETIME: Date and time interval of each observation in the format (dd/mm/yyyy hh:mm)
+TOTALDEMAND: Total demand (MW)
+REGIONID: Region Identifier (i.e. NSW1)
+Forecast demand in half-hourly increments for New South Wales.This data is also sourced from the Market Management System database. The variables are:
+DATETIME: Date time interval of each observation (dd/mm/yyyy hh:mm)
+FORECASTDEMAND: Forecast demand (MW)
+REGIONID: Region Identifier (i.e. NSW1)
+PREDISTPATCHSEQNO: Unique identifier of predispatch run (YYYYMMDDPP). In energy generation, “dispatch” refers to process of sending out energy to the power grid to meet energy demand. “Predispatch” then is an estimated forecast of this amount.
+PERIODID: Period count, starting from 1 for each predispatch run.
+LASTCHANGE: Date time interval of each update of the observation (dd/mm/yyyy hh:mm)
+For example, given below: Forecast demand for 1/1/2010 0:00, measured on 12/30/2009 12:31 was 7832.04 MW
+Air temperature in New South Wales (as measured from the Bankstown and other NSW suburbs  weather stations). This data is sourced from the Australian Data Archive for Meteorology. Note: Unlike the total demand and forecast demand, the time interval between each observation may not be constant (i.e. half-hourly data). The variables are:
+DATETIME: Date time interval of each observation (dd/mm/yyyy hh:mm)
+TemperatureTEMPERATURE: Air temperature (°C)
+LOCATION: Location of a weather station (i.e., Bankstown and other NSW Suburb weather stations)
+Please note that the files include data for 2010-2021 YTD even if you cannot see it in Excel – some of the files are so large that Excel cannot load them completely.
+
+Following is the details for Data Acquisition and Validation, Exploratory Data Analysis (EDA), Feature Engineering and Transformation, Macroeconomic and External Drivers -> Final Preparation
+This report details the development of a high-fidelity dataset for electricity demand forecasting, integrating data from AEMO and Endgame Economics (2010–2021). The methodology transitions from rigorous data hygiene to sophisticated feature engineering and macroeconomic integration.
+1. Data Acquisition and Validation
+The raw 30-minute interval data underwent a comprehensive validation process to ensure timestamp continuity and record integrity. Irrelevant spatial attributes were removed, and missing temperature or forecast values were addressed via time-based interpolation. The resulting core dataset includes actual demand, temperature, and historical demand forecasts.
+2. Exploratory Data Analysis (EDA)
+EDA confirmed that electricity demand is driven by complex, non-linear relationships:
+Thermal Sensitivity: A distinct U-shaped relationship exists between temperature and demand; consumption peaks during extreme heat and cold (HVAC usage) and stabilizes between 18–22°C.
+Temporal Cycles: Demand follows rigid intraday patterns (morning/evening peaks) and weekly cycles (higher weekday industrial activity vs. reduced weekend loads).
+Forecast Inconsistency: Analysis revealed that existing AEMO forecasts often fail to capture the full magnitude of peaks and troughs, necessitating more robust modeling.
+3. Feature Engineering and Transformation
+To improve predictive power, the dataset was enriched with several layers of engineered variables:
+Temporal Features: Core time variables were transformed using cyclical encoding (sine/cosine) to maintain periodic continuity (e.g., ensuring 23:30 and 00:00 are treated as adjacent).
+Calendar Effects: Indicators for public holidays, weekends, and the COVID-19 lockdown period were added to account for behavioral shifts.
+Lag and Rolling Statistics: Demand and temperature lags (from 30 minutes to 7 days) and rolling averages were integrated to capture temporal persistence and long-term trends.
+Non-linear Interaction Terms: Features like Heating/Cooling Degree Days (HDD/CDD), squared temperature, and a season-sensitive "Peak-Hour" weight were created to model thermal stress more accurately.
+4. Macroeconomic and External Drivers
+Recognizing that electricity demand is a proxy for economic activity, several long-term indicators were integrated:
+Economic Health: Quarterly GDP, annual inflation, and interest rate "shocks."
+Market Dynamics: ASX 200 log returns and rolling volatility.
+Demographics and Policy: Interpolated population growth (Bankstown), electricity CPI (cost proxy), and the increasing share of renewable/solar energy in the grid.
+5. Final Preparation
+The final modeling dataset comprises the target variable (TOTALDEMAND) and 35 prioritized features. Correlation analysis confirmed strong linear dependencies for lagged demand, while maintaining lower-correlation features to capture non-linear effects. All numerical data were normalized, and categorical variables were one-hot encoded, resulting in a structured, "model-ready" environment optimized for advanced machine learning algorithms like XGBoost and Neural Networks.
+
+Treat this section with importance:
+Subsequently, accurate prediction of electricity consumption of is being carried on using multiple methods akin to various purposes. Simpler models for quick results such as intraday demand estimation. more accurate and sophisticated models for rather important decision making like AEMO Grid operations, Energy pricing and Policy Decisions. 
+Statistical methods such as Regression, ARIMA, SARIMA, XGBoost are used for simpler predictions. Machine Learning algorithms like LSTM, TCN, TFT etc. are used for more sophisticated predictions. Finally, hybrid models are used for even better results.
+
+Given the above, We have already written the following:
+
+The data is primarily operational and environmental, and largely aggregated, meaning it does not directly identify individuals. However, it is derived from underlying consumption behaviours and therefore can indirectly reflect population-level patterns, making it internal and sensitive in nature. If extended to smart meter data, such systems could involve personal and confidential information, raising privacy considerations.
+The data supply chain follows a structured lifecycle consistent with Week 1 concepts of data as a socially embedded resource. Upstream, data is collected from multiple sources including energy market operators (e.g., AEMO), meteorological services, and financial datasets (AEMO, 2023); (IEA, 2022). These inputs are ingested into a central pipeline where data is cleaned, validated, and transformed. Feature engineering processes generate the 77-feature dataset used for modelling.
+The processed data is then used to train machine learning models such as LSTM and transformer-based architectures (Hochreiter & Schmidhuber, 1997); (Brown et al., 2020), which learn temporal dependencies and generate demand forecasts. Downstream, these predictions inform grid operators, energy providers, and policymakers, influencing decisions such as load balancing, pricing strategies, and infrastructure investment.
+Data is stored in secure cloud environments with controlled access, reflecting principles of data governance and stewardship. Retention policies ensure that historical data is preserved for modelling and auditing purposes, while outdated or redundant data may be periodically archived or deleted.
+Importantly, the system exemplifies the “black box” nature of advanced analytics, where complex models can lack interpretability, making it difficult for stakeholders to understand how predictions are generated. As highlighted in Week 1, data systems are not neutral but embedded within social, economic, and political contexts (UNSW, 2026), meaning their outputs can have far-reaching impacts beyond technical accuracy.
+From an ethical standpoint, the system raises key questions about transparency, fairness, and unintended consequences. While forecasting improves efficiency (a utilitarian benefit), it may also produce unequal outcomes if certain regions or communities are systematically disadvantaged. Ethical evaluation therefore requires not only technical validation but also consideration of broader societal impacts.
+
+From an ethical standpoint, the system raises fundamental concerns around transparency, fairness, accountability, and unintended consequences, which extend beyond purely technical performance. While electricity demand forecasting improves operational efficiency—aligning with a utilitarian objective of maximising overall societal benefit—this efficiency is not inherently equitable. Decisions derived from forecasts, such as dynamic pricing, load prioritisation, or infrastructure investment, may disproportionately impact certain regions or communities, particularly those with limited economic resilience or historically lower levels of infrastructure investment.
+
+A key issue is transparency. Advanced models such as LSTM or transformer-based architectures often operate as “black boxes,” meaning stakeholders—including consumers and regulators—may not fully understand how predictions are generated or how decisions are made. This lack of explainability undermines procedural justice, as affected individuals are unable to meaningfully question, challenge, or influence decisions that impact them.
+
+Closely related is the issue of fairness. Because the model is trained on historical data, it inherently reflects existing socio-economic and geographic patterns. If past data encodes inequalities—for example, lower investment in certain regions—then the model may inadvertently reinforce these disparities, creating feedback loops that perpetuate disadvantage. This highlights a limitation of utilitarian reasoning: outcomes that optimise aggregate efficiency may still produce inequitable distributions of benefits and harms.
+
+There are also important concerns regarding unintended consequences. For instance, forecast-driven pricing strategies may lead to higher costs during peak demand periods, disproportionately affecting low-income households. Similarly, over-reliance on automated predictions may reduce human oversight, increasing the risk that errors or biases propagate at scale. As algorithmic systems amplify decisions across large populations, even small inaccuracies can lead to significant systemic impacts.
+
+From a deontological perspective, these issues raise questions about the duty to ensure fairness, non-maleficence, and respect for individuals as ends in themselves rather than merely as data points. Stakeholders have a moral right to not be adversely affected by opaque or biased systems. This implies an obligation to incorporate explainability mechanisms, auditing processes, and safeguards against harm.
+
+Finally, justice-based frameworks, such as Rawls’ veil of ignorance and Sen’s capability approach, suggest that such systems should be designed to protect the most vulnerable. This requires ensuring not only efficient outcomes but also equitable access to benefits, transparency in processes, and inclusion of affected stakeholders in governance structures.
+
+In summary, ethical evaluation of the system must move beyond technical accuracy to consider who benefits, who bears the risks, and whether the system promotes a fair and just distribution of outcomes across society.
+
+
+

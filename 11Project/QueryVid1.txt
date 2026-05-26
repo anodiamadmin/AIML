@@ -1,0 +1,25 @@
+Update the attached code:
+
+The heading of the video on top or any part of data visualization must not get cropped or overlapped.
+
+All data visualizations are going to be placed withing ~50% width and ~60% height of a standard pptx presentation. So, take care of the font size and plot size and aspect ratios.
+
+Extract data, models, history, results and artefacts are in respective folders inside /TeamHProj. also output files, data visualizations and output videos folders must be in proper folders inside /TeamHProj.
+
+Visual: Actual Demand vs ARIMA, SARIMA, XGBoost Predictions. Electricity demand curves (last 7 days). Create a slow-motion video data representation that shows the plotting of the following for the last 7 days.
+
+At 0 to 4 seconds: draw the Actual demand (linewidth=1, color="#0000ff") and ARIMA STLF predictions (linewidth=1, color="#990000") for the last 7 days. The legend must show only the Actual demand and ARIMA prediction. No other entries in the legend until now.
+
+At 15 to 19 seconds: Overlay with SARIMA STLF predictions (linewidth=1, color="#ff8800") for the last 7 days. The legend must show only the Actual demand, ARIMA prediction and SARIMA prediction
+
+At 23 to 24 seconds: Fade and remove ARIMA and SARIMA STLF predictions. The graph must only show the Actual demand (linewidth=1, color="#0000ff") for the last 7 days. The legend must also show the Actual demand only.
+
+at 25 to 29 seconds: Overlay with XGBoost (best grid search) STLF prediction (linewidth=1, color="#00ff00") for the last 7 days. The legend must show only the Actual demand, XGBoost prediction.
+
+at 30 to 31 seconds: gradually increase the linewidth of XGBoost STLF prediction (color="#00ff00") from 1 to 3.5.
+also bring the Actual demand (linewidth=1, color="#0000ff") to the top, in front of XGBoost line. The legend must show only the Actual demand, XGBoost prediction.
+
+at 31 to 32 seconds: gradually decrease the linewidth of XGBoost STLF prediction (color="#00ff00") from 3.5 to 2.
+Keep the Actual demand (linewidth=1, color="#0000ff") to the top, in front of XGBoost line. The legend must show only the Actual demand, XGBoost prediction.
+
+Give me the updated code to create the above data visualization video.

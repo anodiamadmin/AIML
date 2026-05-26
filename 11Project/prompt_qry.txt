@@ -1,0 +1,21 @@
+
+Given the attached notebook for MTLF predictions, all the code and the visualizations ran perfectly. write me a extensive text based story telling like project report on topic Medium Term Load Forecasting. Use all parts of the notebook for storytelling. If you need to refer to any data visualizations give me the reference Block Number from the notebook and one line of reference to the data visualization. If you suggest some diagram, give me detailed description so that I can draw or generate or look up the internet for a suitable diagram.
+Give me a extensive text based story telling like project report on topic Medium Term Load Forecasting.
+
+
+Convert this into 1500-word strict academic format
+Add Harvard citations
+Create diagram visuals (ready to paste)
+Align with UNSW marking rubric
+
+
+100	DataPrep	Run		Pass
+101	STLF_Summay	NotDeveloped	x
+101A	STLF_Stats	Run		Pass
+101B	STLF_DL		Run		Pass
+101C	STLF_TCN_TFT	Run		Pass
+101D	STLF_Hybrid	Run		Pass
+102	MTLF		Run		Pass	
+102A	MTLF_Pred	Run		Pass
+103	LTLF		RunPartial	x
+103A	LTLF_Pred	NotDeveloped	x

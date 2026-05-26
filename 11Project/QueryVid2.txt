@@ -1,0 +1,65 @@
+Update the attached code:
+
+The heading of the video on top or any part of data visualization must not get cropped or overlapped.
+
+All data visualizations are going to be placed withing ~50% width and ~60% height of a standard pptx presentation. So, take care of the font size and plot size and aspect ratios.
+
+Extract data, models, history, results and artefacts are in respective folders inside /TeamHProj. also output files, data visualizations and output videos folders must be in proper folders inside /TeamHProj.
+
+Visual: Actual Demand & XGBoost Predictions vs Deep Learning Models. Electricity demand and deep-learning prediction curves (last 7 days). Create a slow-motion video data representation that shows the plotting of the following for the last 7 days.
+
+At 0 second: Start with the XGBoost (best grid search) prediction (linewidth=2, color="#00ff00") overlayed by Actual demand (linewidth=1, color="#0000ff") for the last 7 days. The legend must show only the Actual demand and XGBoost prediction. No other entries in the legend until now.
+
+At 2 to 6 seconds: Overlay with LSTM (best grid search) prediction (linewidth=1, color="#ff0000") for the last 7 days. The legend must show only the Actual demand, XGBoost prediction and LSTM prediction.
+
+At 10 to 15 seconds: Overlay with TCN prediction (linewidth=1, color="#990000") and TFT prediction (linewidth=1, color="#ff9900") for the last 7 days. The legend must show only the Actual demand, XGBoost prediction, LSTM prediction, TCN prediction and TFT prediction.
+
+At 22 to 24: Remove (by fading) LSTM, TCN and TFT prediction. The legend must show only the Actual demand, XGBoost prediction.
+
+At 25 to 29 seconds: Overlay with TCN+XGBoost Ensemble prediction (linewidth=1, color="#ff00ff") and LSTM+XGBoost Ensemble prediction (linewidth=1, color="#00ffff") for the last 7 days. The legend must show only the Actual demand, XGBoost prediction, TCN+XGBoost Ensemble prediction, and LSTM+XGBoost Ensemble prediction.
+
+at 29 to 30 seconds: Overlay with XGBoost (best grid search) STLF prediction (linewidth=2, color="#00ff00") for the last 7 days. The legend must show only the Actual demand, XGBoost prediction, TCN+XGBoost Ensemble prediction, and LSTM+XGBoost Ensemble prediction.
+
+at 30 to 31 seconds: gradually increase the linewidth of XGBoost STLF prediction (color="#00ff00") from 1 to 3.5.
+also bring the Actual demand (linewidth=1, color="#0000ff") to the top, in front of XGBoost line. The legend must show only the Actual demand, XGBoost prediction, TCN+XGBoost Ensemble prediction, and LSTM+XGBoost Ensemble prediction.
+
+at 31 to 32 seconds: gradually decrease the linewidth of XGBoost STLF prediction (color="#00ff00") from 3.5 to 2.
+Keep the Actual demand (linewidth=1, color="#0000ff") to the top, in front of XGBoost line. The TCN+XGBoost Ensemble prediction, and LSTM+XGBoost Ensemble prediction lines under/ below the XGBoost line. The legend must show only the Actual demand, XGBoost prediction, TCN+XGBoost Ensemble prediction, and LSTM+XGBoost Ensemble prediction.
+
+Give me the updated code to create the above data visualization video.
+
+
+
+Update the attached video code:
+
+The heading of the video on top or any part of data visualization must not get cropped or overlapped.
+
+All data visualizations are going to be placed withing ~50% width and ~60% height of a standard pptx presentation. So, take care of the font size and plot size and aspect ratios.
+
+Extract data, models, history, results and artefacts are in respective folders inside /TeamHProj. also output files, data visualizations and output videos folders must be in proper folders inside /TeamHProj.
+
+Visual: Actual Demand & XGBoost Predictions vs Deep Learning Models. Electricity demand and deep-learning prediction curves (last 7 days). Create a slow-motion video data representation that shows the plotting of the following for the last 7 days.
+
+Set the title forever = "Actual Demand & XGBoost vs Deep Learning Models" and do not change it in the code.
+
+At 0 second: Start with the XGBoost (best grid search) prediction (linewidth=2, color="#00ff00") overlayed by Actual demand (linewidth=1, color="#0000ff") for the last 7 days. The legend must show only the Actual demand and XGBoost prediction. No other entries in the legend until now.
+
+At 1 to 6 seconds: LSTM prediction curve (linewidth=1, color="#ff0000") must be overlay on the top layer in front of XGBoost and actual demand. Add LSTM to legend.
+
+At 8 to 10 seconds: LSTM prediction curve must be removed (faded), leaving only XGBoost and actual demand intact. Remove LSTM from legend.
+
+At 11 to 16 seconds: TCN (linewidth=1, color="#ff00ff") and TFT prediction (linewidth=1, color="#ff9900") for the last 7 days. TCN and TFT curves must be on the top layer in front of XGBoost and actual demand. Add LSTM to legend. The legend must show only the Actual demand, XGBoost prediction, TCN prediction and TFT prediction.
+
+At 22 to 24: Remove (by fading) TCN and TFT prediction. The legend must show only the Actual demand, XGBoost prediction.
+
+At 25 to 29 seconds: Overlay with TCN+XGBoost Ensemble prediction (linewidth=1, color="#ff00ff") and LSTM+XGBoost Ensemble prediction (linewidth=1, color="#00ffff") for the last 7 days. TCN+XGBoost Ensemble and LSTM+XGBoost Ensemble curves must be on the top layer in front of XGBoost and actual demand. The legend must show only the Actual demand, XGBoost prediction, TCN+XGBoost Ensemble prediction, and LSTM+XGBoost Ensemble prediction.
+
+at 29 to 31 seconds: Overlay with XGBoost (best grid search) STLF prediction (linewidth=2, color="#00ff00") for the last 7 days. XGBoost (linewidth=2, color="#00ff00") must be on top layer above TCN+XGBoost lowest layer, LSTM+XGBoost next layer towards top, Actual demand as the next layer above and the XGBoost as the final layer. The legend must show only the Actual demand, XGBoost prediction, TCN+XGBoost Ensemble prediction, and LSTM+XGBoost Ensemble prediction.
+
+at 31 to 32 seconds: gradually increase the linewidth of XGBoost STLF prediction (color="#00ff00") from 2 to 5.
+
+at 32 to 33 seconds: gradually decrease the linewidth of XGBoost STLF prediction (color="#00ff00") from 5 to 2.
+
+Give me the updated code to create the above data visualization video.
+
+

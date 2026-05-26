@@ -1,0 +1,393 @@
+# ============================================================
+# UPGRADED VIDEO: Actual + XGBoost + LSTM + TCN + TFT
+# LSTM: brown, 1s to 4s
+# TCN: dark yellow, 5s to 8s
+# TFT: orange, 9s to 12s
+# Fade LSTM, TCN, TFT: 12.5s to 14.5s
+# TCN re-overlay: bright purple, 15s to 20s
+# TFT re-overlay: bright red, 20s to 25s
+# ============================================================
+
+import os
+import shutil
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation, FFMpegWriter
+from IPython.display import Video, display
+
+BASE_DIR = "/content/drive/MyDrive/Colab Notebooks/TeamHProj"
+
+DATA_PATH = f"{BASE_DIR}/proj_datasets/dataset_STLF.csv.gz"
+XGB_PRED_PATH = f"{BASE_DIR}/proj_models/S_XGBoost_GridSearch/predictions/S_XGBoost_GridSearch_test_predictions.csv"
+LSTM_PRED_PATH = f"{BASE_DIR}/proj_models/D_LSTM_GridSearch/predictions/D_LSTM_GridSearch_test_predictions.csv"
+TCN_PRED_PATH = f"{BASE_DIR}/proj_models/D_TCN/predictions/D_TCN_test_predictions.csv"
+TFT_PRED_PATH = f"{BASE_DIR}/proj_models/D_TFT/predictions/D_TFT_test_predictions.csv"
+
+OUTPUT_DIR = f"{BASE_DIR}/proj_outputs/videos"
+PRESENTATION_DIR = f"{BASE_DIR}/PresentationViz"
+
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+os.makedirs(PRESENTATION_DIR, exist_ok=True)
+
+OUTPUT_VIDEO = f"{OUTPUT_DIR}/actual_xgb_lstm_tcn_tft_upgraded_overlay.mp4"
+PRESENTATION_VIDEO = f"{PRESENTATION_DIR}/actual_xgb_lstm_tcn_tft_upgraded_overlay.mp4"
+
+
+def load_prediction(path, output_col):
+    df = pd.read_csv(path, parse_dates=["DATETIME"])
+
+    possible_cols = [
+        "y_pred", "PREDICTED", "prediction", "pred",
+        "FORECAST", "forecast", "Prediction", "yhat"
+    ]
+
+    pred_col = None
+    for col in possible_cols:
+        if col in df.columns:
+            pred_col = col
+            break
+
+    if pred_col is None:
+        raise ValueError(
+            f"Could not find prediction column in:\n{path}\n"
+            f"Available columns: {list(df.columns)}"
+        )
+
+    return (
+        df[["DATETIME", pred_col]]
+        .rename(columns={pred_col: output_col})
+        .dropna()
+        .sort_values("DATETIME")
+        .reset_index(drop=True)
+    )
+
+
+# ----------------------------
+# Load data
+# ----------------------------
+df_actual = pd.read_csv(DATA_PATH, parse_dates=["DATETIME"])
+df_actual = (
+    df_actual[["DATETIME", "TOTALDEMAND"]]
+    .dropna()
+    .sort_values("DATETIME")
+    .reset_index(drop=True)
+)
+
+df_xgb = load_prediction(XGB_PRED_PATH, "XGB_PRED")
+df_lstm = load_prediction(LSTM_PRED_PATH, "LSTM_PRED")
+df_tcn = load_prediction(TCN_PRED_PATH, "TCN_PRED")
+df_tft = load_prediction(TFT_PRED_PATH, "TFT_PRED")
+
+
+# ----------------------------
+# Last 7 days
+# ----------------------------
+end_time = df_actual["DATETIME"].max()
+start_time = end_time - pd.Timedelta(days=7)
+
+plot_df = (
+    df_actual[(df_actual["DATETIME"] >= start_time) & (df_actual["DATETIME"] <= end_time)]
+    .merge(df_xgb, on="DATETIME", how="inner")
+    .merge(df_lstm, on="DATETIME", how="inner")
+    .merge(df_tcn, on="DATETIME", how="inner")
+    .merge(df_tft, on="DATETIME", how="inner")
+    .sort_values("DATETIME")
+    .reset_index(drop=True)
+)
+
+if plot_df.empty:
+    raise ValueError("No overlapping timestamps found across all models.")
+
+print(f"Video period: {plot_df['DATETIME'].min()} to {plot_df['DATETIME'].max()}")
+print(f"Rows used: {len(plot_df)}")
+
+
+# ----------------------------
+# Plot setup
+# ----------------------------
+plt.rcParams.update({
+    "font.size": 11,
+    "axes.titlesize": 14,
+    "axes.labelsize": 11,
+    "xtick.labelsize": 9,
+    "ytick.labelsize": 9,
+    "legend.fontsize": 8
+})
+
+x = plot_df["DATETIME"]
+
+y_actual = plot_df["TOTALDEMAND"]
+y_xgb = plot_df["XGB_PRED"]
+y_lstm = plot_df["LSTM_PRED"]
+y_tcn = plot_df["TCN_PRED"]
+y_tft = plot_df["TFT_PRED"]
+
+fig, ax = plt.subplots(figsize=(6.4, 4.2), dpi=160)
+
+actual_line, = ax.plot(
+    x, y_actual,
+    linewidth=1,
+    color="#0000ff",
+    label="Actual Demand"
+)
+
+xgb_line, = ax.plot(
+    x, y_xgb,
+    linewidth=1,
+    color="#00ff00",
+    label="XGBoost Grid Search"
+)
+
+lstm_line, = ax.plot(
+    [], [],
+    linewidth=1,
+    color="#666666",
+    label="LSTM"
+)
+
+tcn_line, = ax.plot(
+    [], [],
+    linewidth=1,
+    color="#00FFFF",
+    label="TCN"
+)
+
+tft_line, = ax.plot(
+    [], [],
+    linewidth=1,
+    color="#FFFF00",
+    label="TFT"
+)
+
+tcn_purple_line, = ax.plot(
+    [], [],
+    linewidth=1,
+    color="#FF00FF",
+    label="TCN Re-overlay"
+)
+
+tft_red_line, = ax.plot(
+    [], [],
+    linewidth=1,
+    color="#FF0000",
+    label="TFT Re-overlay"
+)
+
+ax.set_xlim(x.min(), x.max())
+
+y_min = min(
+    y_actual.min(), y_xgb.min(), y_lstm.min(), y_tcn.min(), y_tft.min()
+) * 0.98
+
+y_max = max(
+    y_actual.max(), y_xgb.max(), y_lstm.max(), y_tcn.max(), y_tft.max()
+) * 1.02
+
+ax.set_ylim(y_min, y_max)
+
+ax.set_xlabel("Datetime")
+ax.set_ylabel("Demand")
+ax.grid(True, alpha=0.3)
+ax.legend(loc="best")
+
+fig.autofmt_xdate(rotation=25)
+plt.tight_layout()
+
+
+# ----------------------------
+# Timing
+# ----------------------------
+fps = 30
+total_seconds = 25
+total_frames = int(total_seconds * fps)
+
+lstm_start = int(1.0 * fps)
+lstm_end = int(4.0 * fps)
+
+tcn_start = int(5.0 * fps)
+tcn_end = int(8.0 * fps)
+
+tft_start = int(9.0 * fps)
+tft_end = int(12.0 * fps)
+
+fade_start = int(12.5 * fps)
+fade_end = int(14.5 * fps)
+
+tcn_purple_start = int(15.0 * fps)
+tcn_purple_end = int(20.0 * fps)
+
+tft_red_start = int(20.0 * fps)
+tft_red_end = int(25.0 * fps)
+
+lstm_indices = np.linspace(1, len(plot_df), lstm_end - lstm_start).astype(int)
+tcn_indices = np.linspace(1, len(plot_df), tcn_end - tcn_start).astype(int)
+tft_indices = np.linspace(1, len(plot_df), tft_end - tft_start).astype(int)
+tcn_purple_indices = np.linspace(1, len(plot_df), tcn_purple_end - tcn_purple_start).astype(int)
+tft_red_indices = np.linspace(1, len(plot_df), tft_red_end - tft_red_start).astype(int)
+
+
+def init():
+    lstm_line.set_data([], [])
+    tcn_line.set_data([], [])
+    tft_line.set_data([], [])
+    tcn_purple_line.set_data([], [])
+    tft_red_line.set_data([], [])
+
+    lstm_line.set_alpha(1.0)
+    tcn_line.set_alpha(1.0)
+    tft_line.set_alpha(1.0)
+
+    ax.set_title("Actual Demand vs XGBoost Grid Search", pad=10)
+
+    return (
+        actual_line, xgb_line, lstm_line, tcn_line,
+        tft_line, tcn_purple_line, tft_red_line
+    )
+
+
+def update(frame):
+
+    if frame < lstm_start:
+        lstm_line.set_data([], [])
+        tcn_line.set_data([], [])
+        tft_line.set_data([], [])
+        tcn_purple_line.set_data([], [])
+        tft_red_line.set_data([], [])
+        ax.set_title("Actual Demand vs XGBoost Grid Search", pad=10)
+
+    elif frame < lstm_end:
+        idx = lstm_indices[frame - lstm_start]
+        lstm_line.set_data(x.iloc[:idx], y_lstm.iloc[:idx])
+        tcn_line.set_data([], [])
+        tft_line.set_data([], [])
+        tcn_purple_line.set_data([], [])
+        tft_red_line.set_data([], [])
+        ax.set_title("Overlaying STLF LSTM Prediction", pad=10)
+
+    elif frame < tcn_start:
+        lstm_line.set_data(x, y_lstm)
+        tcn_line.set_data([], [])
+        tft_line.set_data([], [])
+        tcn_purple_line.set_data([], [])
+        tft_red_line.set_data([], [])
+        ax.set_title("Actual + XGBoost + LSTM", pad=10)
+
+    elif frame < tcn_end:
+        idx = tcn_indices[frame - tcn_start]
+        lstm_line.set_data(x, y_lstm)
+        tcn_line.set_data(x.iloc[:idx], y_tcn.iloc[:idx])
+        tft_line.set_data([], [])
+        tcn_purple_line.set_data([], [])
+        tft_red_line.set_data([], [])
+        ax.set_title("Overlaying STLF TCN Prediction", pad=10)
+
+    elif frame < tft_start:
+        lstm_line.set_data(x, y_lstm)
+        tcn_line.set_data(x, y_tcn)
+        tft_line.set_data([], [])
+        tcn_purple_line.set_data([], [])
+        tft_red_line.set_data([], [])
+        ax.set_title("Actual + XGBoost + LSTM + TCN", pad=10)
+
+    elif frame < tft_end:
+        idx = tft_indices[frame - tft_start]
+        lstm_line.set_data(x, y_lstm)
+        tcn_line.set_data(x, y_tcn)
+        tft_line.set_data(x.iloc[:idx], y_tft.iloc[:idx])
+        tcn_purple_line.set_data([], [])
+        tft_red_line.set_data([], [])
+        ax.set_title("Overlaying STLF TFT Prediction", pad=10)
+
+    elif frame < fade_start:
+        lstm_line.set_data(x, y_lstm)
+        tcn_line.set_data(x, y_tcn)
+        tft_line.set_data(x, y_tft)
+        tcn_purple_line.set_data([], [])
+        tft_red_line.set_data([], [])
+
+        lstm_line.set_alpha(1.0)
+        tcn_line.set_alpha(1.0)
+        tft_line.set_alpha(1.0)
+
+        ax.set_title("Deep Learning Model Overlay", pad=10)
+
+    elif frame < fade_end:
+        fade_progress = (frame - fade_start) / max((fade_end - fade_start), 1)
+        fade_alpha = max(0.0, 1.0 - fade_progress)
+
+        lstm_line.set_data(x, y_lstm)
+        tcn_line.set_data(x, y_tcn)
+        tft_line.set_data(x, y_tft)
+        tcn_purple_line.set_data([], [])
+        tft_red_line.set_data([], [])
+
+        lstm_line.set_alpha(fade_alpha)
+        tcn_line.set_alpha(fade_alpha)
+        tft_line.set_alpha(fade_alpha)
+
+        ax.set_title("Removing LSTM, TCN and TFT Overlays", pad=10)
+
+    elif frame < tcn_purple_start:
+        lstm_line.set_alpha(0.0)
+        tcn_line.set_alpha(0.0)
+        tft_line.set_alpha(0.0)
+
+        tcn_purple_line.set_data([], [])
+        tft_red_line.set_data([], [])
+
+        ax.set_title("Actual Demand vs XGBoost Grid Search", pad=10)
+
+    elif frame < tcn_purple_end:
+        idx = tcn_purple_indices[frame - tcn_purple_start]
+
+        lstm_line.set_alpha(0.0)
+        tcn_line.set_alpha(0.0)
+        tft_line.set_alpha(0.0)
+
+        tcn_purple_line.set_data(x.iloc[:idx], y_tcn.iloc[:idx])
+        tft_red_line.set_data([], [])
+
+        ax.set_title("Overlaying STLF TCN Prediction Again", pad=10)
+
+    else:
+        idx = tft_red_indices[min(frame - tft_red_start, len(tft_red_indices) - 1)]
+
+        lstm_line.set_alpha(0.0)
+        tcn_line.set_alpha(0.0)
+        tft_line.set_alpha(0.0)
+
+        tcn_purple_line.set_data(x, y_tcn)
+        tft_red_line.set_data(x.iloc[:idx], y_tft.iloc[:idx])
+
+        ax.set_title("Overlaying STLF TFT Prediction Again", pad=10)
+
+    return (
+        actual_line, xgb_line, lstm_line, tcn_line,
+        tft_line, tcn_purple_line, tft_red_line
+    )
+
+
+anim = FuncAnimation(
+    fig,
+    update,
+    frames=total_frames,
+    init_func=init,
+    interval=1000 / fps,
+    blit=False
+)
+
+writer = FFMpegWriter(fps=fps, bitrate=4000)
+anim.save(OUTPUT_VIDEO, writer=writer)
+
+shutil.copy(OUTPUT_VIDEO, PRESENTATION_VIDEO)
+
+plt.close(fig)
+
+print("Saved video at:")
+print(OUTPUT_VIDEO)
+
+print("Copied presentation video to:")
+print(PRESENTATION_VIDEO)
+
+display(Video(OUTPUT_VIDEO, embed=True))

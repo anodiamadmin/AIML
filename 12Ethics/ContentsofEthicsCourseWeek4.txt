@@ -1,0 +1,115 @@
+4.3 Discussion: Professional standards and codes of conduct
+Purpose
+This activity aims to help you apply ethical principles and professional codes of conduct to a real-world data situation. Your participation in this activity forms a part of your mark for the Online Dialogue assessment task.
+Activity instructions
+In all professions, ethics is an essential part of professional practice. That is what distinguishes a profession from an occupation. But is this the case in computer science, data science, artificial intelligence or any related field, even though the decisions of professionals working in these fields may cause real-world harm? Should people working with data be required to meet professional standards, and if so, what should these standards look like?
+
+Follow the steps below to complete this activity.
+Step 1: In the following video, recorded at the 2019 ANTIDOTE Festival at the Sydney Opera House, Cambridge Analytica whistle-blower Christopher Wylie and investigative journalist Andrei Soldatov discuss the need to develop professional standards and codes of conduct for software engineers and data scientists.
+For this activity, you can choose to watch the whole video (1:13:59), but you only need to watch 25:15-35:45 for this activity. The video below will start playing from 25:15.
+Optional Additional background readings
+If you are unfamiliar with the Cambridge Analytica scandal, start by reading the article below.
+For a short (optional) introduction to Christopher Wylie, see the website below.
+If you would like to read some of Andrei Soldatov’s work (optional), see the link below.
+Dark data: online privacy and security: Summary:
+Dark data: online privacy and security
+This Video, focuses on the shift from digital "products" to "architectures" and the democratizing power of accessible design.
+​From Digital Products to Social Architectures
+​The provided transcripts challenge the conventional Silicon Valley narrative that views technology as a mere "product" and individuals as "users." Instead, the speaker argues that digital platforms function as ecosystems and architectures.
+​1. The Accountability Gap
+​The central argument is that software design should be held to the same rigorous standards as physical engineering. In the physical world, developers are bound by building codes and safety regulations; a builder cannot ignore fire hazards or exit accessibility simply because a person entered the building voluntarily.
+​In contrast, the tech industry often uses "Terms and Conditions" and job titles—like Service Design Managers or Customer Relations Specialists—to obscure systemic responsibility. The speaker compares this to other high-stakes sectors like aviation, pharmaceuticals, and automotive, where safety is a non-negotiable design standard rather than an optional agreement signed by the consumer.
+​2. Technology as a Tool for Freedom
+​The second prompt expands on the potential for technology to provide "freedom" by bypassing traditional barriers like literacy. By utilizing voice-to-text and natural language interfaces, technology can empower individuals—such as those running a decorating business—who may not be able to read or write. In this context, technology transitions from a restrictive architecture to a bridge for economic and social participation.
+​Core Themes
+​Architectural Intent: Digital spaces are designed to direct behavior, much like physical buildings.
+​Regulatory Parity: The need for "digital building codes" similar to those in the West or China to ensure systemic safety.
+​Democratization through Interface: Moving beyond text-based interaction allows for greater inclusion of diverse populations in the global economy.
+
+Step 2: Watch the following video where Associate Professor Tracy Wilcox and privacy expert David Vaile discuss the need for professional standards for data scientists.
+Summary of Transcript: 
+Professor Tracy Wilcox and privacy expert David Vaile discuss the need for professional standards for data scientists:
+The conversation between TW and DV explores whether data science should be classified as a formal profession, centering on the tension between rapid innovation and ethical responsibility.
+The Definition of a Profession
+TW defines a profession as a field operating within technical and ethical uncertainty, where practitioners owe loyalty not just to clients, but to the public interest. DV adds that a true profession involves:
+Regulatory Oversight: A registry where peers can "strike off" members for incompetence or unethical behavior.
+Standardization: A fixed code of conduct and concrete technical methodologies.
+The "Two-Speed" Nature of Data Science
+The speakers identify a significant divide in the industry:
+The Silicon Valley Model: In fields like advertising or social media, the mantra is "move fast and break things." Here, rapid changes in languages and models make rigid professional standards feel like a hindrance to innovation.
+High-Stakes Fields: In medicine, law, and civil engineering, data handles intimate lives and "life or death" scenarios. In these contexts, the "clever and fast" approach is dangerous. Experts here advocate for higher standards and the "precautionary principle" to prevent harm.
+Accountability and Hierarchy
+DV argues that professionalization doesn't need to be "one-size-fits-all." He draws a parallel to traditional fields:
+Selective Responsibility: Just as a lead engineer is responsible for a bridge while concrete suppliers are not, data science professionalization should target architects and designers—those with the power to influence risk and system behavior.
+The Middle Ground: For ambiguous cases (like fitness trackers), the necessity of professional standards depends on the capacity for harm. Those simply executing technical specifications (e.g., writing a "bubble sort") should not face the threat of being struck off for minor technical errors.
+Conclusion
+The dialogue suggests that while full professionalization of all IT work is unlikely and perhaps impractical, certain high-impact roles within data science justify the overhead of a formal profession. This shift would prioritize safety and ethics over speed, ensuring that those with the most control are held to the highest standards of public wellbeing.
+
+Step 3: Read the 10 Global Data Ethics Principles on page 2 of the following PDF:
+
+Data for Democracy GDEP Ethics Framework Principles 2018
+The FORTS Framework
+FAIRNESS
+I make a dedicated effort to understand, mitigate and
+communicate the presence of bias in both data practice and
+consumption.
+OPENNESS
+I practice humility and openness. Transparent practices,
+community engagement, and responsible communications
+are an integral part of my data ethics practice.
+RELIABILITY
+I ensure that every effort is made to glean a complete
+understanding of what is contained within data, where it
+came from, and how it was created. I also extend this effort
+for future users of all data and derivative data.
+TRUST
+I work to build public confidence in data practitioners. I make
+every effort to use data and algorithms in ways that maximize
+the informed participation of people around the world.
+SOCIAL BENEFIT
+I place people before data and am responsible for maximizing
+social benefit and minimizing harm. I consider the impact of my
+work on communities of people, other living beings, ecosystems
+and the world-at-large.
+
+Global Data Ethics Principles: As data practitioners & data consumers, we aim to:
+1: Consider (if not collect) informed and purposeful
+consent of data subjects for all projects, and discard
+resulting data when that consent expires.
+2: Make best effort to guarantee the security of data,
+subjects, and algorithms to prevent unauthorized
+access, policy violations, tampering, or other harm
+or actions outside the data subjects’ consent.
+3: Make best effort to protect anonymous data subjects,
+and any associated data, against any attempts to
+reverse-engineer, de-anonymize, or otherwise expose
+confidential information.
+4: Foster diversity by making efforts to ensure inclusion
+of participants, representation of viewpoints and
+communities, and openness. The data community
+should be open to, welcoming of, and inclusive of
+people from diverse backgrounds.
+5: Practice responsible transparency as the default where
+possible, throughout the entire data lifecycle.
+6: Acknowledge and mitigate unfair bias throughout all
+aspects of data work.
+7: Hold up datasets with clearly established provenance
+as the expected norm, rather than the exception.
+8: Respect relevant tensions of all stakeholders as it
+relates to privacy and data ownership.
+9: Take great care to communicate responsibly and
+accessibly
+10: Ensure that all data practitioners take responsibility for
+exercising ethical imagination in their work, including
+considering the implication of what came before and
+what may come after, and actively working to increase
+benefit and prevent harm to others.
+
+Two other possibly useful sources (optional) about the professional challenges of applying data ethics in practice may encourage you to reflect on the dilemmas data professionals face. 
+Heikkilä M. (2022), 'How to survive as an AI ethicist,’ MIT Technology Review, 1 November 2022
+Suskind, D. (2025) ‘AI Engineers Need Their Own Hippocratic Oath. Here’s What It Should Say’, Time, 27 August 2025
+
+Discussion forum
+In the discussion forum below, submit a 250-word post addressing the following questions:
+1. Do data practitioners need professional standards similar to the standards regulating architects, doctors and engineers? Why/why not?
+2. Go back to the example you shared with your Group in the earlier Stick-It board activity this week (Principles of data governance and stewardship) and explain which of the 10 Global Data Ethics Principles were violated in your example and how.

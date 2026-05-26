@@ -1,0 +1,20 @@
+Update the attached code:
+
+The heading of the video on top or any part of data visualization must not get cropped or overlapped.
+
+All data visualizations are going to be placed withing ~50% width and ~60% height of a standard pptx presentation. So, take care of the font size and plot size and aspect ratios.
+
+Extract data, models, history, results and artefacts are in respective folders inside /TeamHProj. also output files, data visualizations and output videos folders must be in proper folders inside /TeamHProj.
+
+Visual: Electricity demand curves (last 7 days). Create a slow-motion video data representation that shows the plotting of the following for the last 7 days.
+
+At 0 to 4 seconds: draw the Actual demand (linewidth=1, color="#0000ff") and ARIMA STLF predictions (linewidth=1, color="#990000") for the last 7 days. The legend must show only the Actual demand and ARIMA prediction. No other entries in the legend until now.
+
+At 15 to 19 seconds: Overlay with SARIMA STLF predictions (linewidth=1, color="#ff8800") for the last 7 days. The legend must show only the Actual demand, ARIMA prediction and SARIMA predictions
+
+At 23 to 24 seconds: Fade and remove ARIMA and SARIMA STLF predictions. The legend must also show the Actual demand only.
+
+
+
+
+Give me the updated code to create the above data visualization video.

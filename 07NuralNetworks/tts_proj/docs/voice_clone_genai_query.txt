@@ -1,0 +1,53 @@
+In the current project Retrieval-based-Voice-Conversion (RVC) will be used to do the following: 
+
+1. In './data/source_voices/' folder, I have some .wav files (user_0.wav, user_1.wav, ... user_n.wav) each of 4+ minutes, clean recording in 16KHz, Mono, PCM_16 and each correspond to one individual voice.
+
+2. Now if I ask my python program to train the pretrained rvc model with a particular user_x.wav (where 0<=x<=n) for 'e' number of epochs with checkpoints after each 'c' epochs, it must be creating a Retrieval-based-Voice-Conversion model for the user_x and store it along with the checkpoints.
+
+In the next phase later, I shall use the Retrieval-based-Voice-Conversion model created above for the user_x, to convert any other speech file abcd.wav into the model's (user_x) voice as a file 'abcd_user_x.wav'. But that is the later phase of the project. Not the current one.
+
+For now, give me the detailed step by step instructions to set up the above project.
+ 
+------------------------------------------------------------------------------------
+
+
+3. I provide another speech file in './data/input_speech/abcd.wav' to the program: ./rvc/cloner.py and run it as follows: $> python ./rvc/cloner.py -input=abcd.wav -voice=voice_id_x (where abcd can be any file name and abcd.wav is also a clean audio in 16KHz, Mono, PCM_16 and may or may not correspond to any individual model voice from './data/model_voices/' folder) cloner.py should do the following: convert abcd.wav into the model voice voice_id_x as a file './data/output_speech/abcd_voice_id_x.wav' (if ./rvc/models/voice_id_x.pth/voice_id_x.pt exists, else notify the user to run the ./rvc/train.py) 
+
+A tentative folder structure of the project files is as follows: 
+Project: anodiam_tts 
+|--.venv 
+|--data 
+| |--model_voices 
+| |--voice_id_1.wav 
+| |--voice_id_2.wav 
+|--rvc 
+| |--train.py 
+| |--cloner.py 
+| |--models 
+| |--voice_id_1.pth/ voice_id_1.pt 
+| |--voice_id_2.pth/ voice_id_2.pt 
+|--input_speech 
+| |--abcd.wav 
+| |--efgh.wav 
+|--output_speech 
+| |--abcd_voice_id_1.wav 
+| |--abcd_voice_id_2.wav 
+| |--efgh_voice_id_2.wav 
+|--.gitignore 
+
+You may give me the contents of the ./rvc/cloner.py and ./rvc/train.py later when I ask for specifically (not in this prompt). Next I will put in the ./data/model_voices/voice_id_x.wav' files. Then I will create the models by running the train.py. Then I shall provide the input speeches like the abcd.wav files and run the cloner.py to produce the final output. But that is not right now, I want to go step by step. 
+
+It seems that the setup is working fine now.
+
+(python3.10) PS D:\AIML\07NuralNetworks\anodiam_tts> .\.venv\Scripts\Activate.ps1                                                                  
+(.venv) PS D:\AIML\07NuralNetworks\anodiam_tts> python .\setup_sanity_check.py                                                                     
+=== Python Dependencies Sanity Check ===
+torch: 2.8.0+cpu | CUDA available? False
+torchaudio: 2.8.0+cpu
+faiss GPU support? False
+librosa: 0.11.0
+soundfile: 1.2.2
+
+Give me the detailed next steps:
+1. Copying/ cloning the RVC hugging face models/repo / git repository
+2. Any other steps I need to do before I start training.

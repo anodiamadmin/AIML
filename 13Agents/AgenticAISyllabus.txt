@@ -1,0 +1,21 @@
+1. Agentic AI - Foundations
+ - Autonomous AI architectures
+ - Native LLM interaction and coordination
+ - Build foundational AI agents without external frameworks
+2. OpenAI - Agents SDK
+ - Implement structured & modular workflows
+ - Applying guardrails for safety, validation, and controlled agent behavior
+3. CrewAI - Multi-Agent Collaboration
+ - Low-code multi-agent system - configuration-based workflows
+ - Defining agent roles, goals and task delegation strategies
+ - Coordinating multiple agents for collaborative problem-solving
+4. Advanced Agent Orchestration with LangGraph
+ - Graph-based workflows
+ - Stateful agent execution and control flows
+ - Scalable agent orchestration pipelines
+5. Distributed Agent Collaboration with Microsoft AutoGen
+ - Cooperative ecosystems - remote execution
+ - Multi-agent interactions and negotiations
+6. Anthropic Model Context Protocol (MCP)
+ - Interoperability
+ - Capability sharing and communication across AI models

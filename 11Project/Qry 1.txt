@@ -1,0 +1,48 @@
+Update the attached code. Give me the code to create the following data visualization video.
+
+All data visualizations are going to be placed withing ~50% width and ~60% height of a standard pptx presentation. So, take care of the font size and plot size and aspect ratios.
+
+Extract data, models, history, results and artefacts are in respective folders inside /TeamHProj. also output files, data visualizations and output videos folders must be in proper folders inside /TeamHProj.
+
+Visual: Electricity demand curves (last 7 days). Create a slow-motion video data representation that shows the plotting of the following for the last 7 days.
+- Actual real-time fluctuation (STLF)
+- STLF predictions by:
+  * XGBoost (Grid search)
+  * LSTM (Grid search)
+  * TCN
+  * TFT
+  * LSTM + XGBoost ensemble
+  * TCN + XGBoost ensemble
+
+Start the video with static representation of the Actual demand (linewidth=1, color="#0000ff") and XGBoost STLF prediction (linewidth=1, color="#00ff00") graphs for the last 7 days.
+
+Now at 1 second to 4 second: overlay the Actual demand and XGBoost STLF prediction by the LSTM STLF prediction for the last 7 days, using a thin light blue line
+
+At 5 second to 8 second: overlay the Actual demand, XGBoost STLF prediction and LSTM STLF prediction by the TCN STLF prediction for the last 7 days, using a thin light red line
+
+At 9 second to 12 second: overlay the Actual demand, XGBoost STLF prediction, LSTM STLF prediction and TCN STLF prediction by the TFT STLF prediction for the last 7 days, using a thin light orange line
+
+Display and save the video
+
+upgrade the last video.
+
+Change LSTM color to brown
+
+Change TCN color to dark yellow
+
+Change TFT color to orange
+
+at 12.5 to 14.5 seconds remove (fade LSTM, TCN and TFT)
+
+At 15 second to 20 second: overlay the Actual demand, XGBoost STLF prediction, LSTM STLF prediction and TCN STLF prediction by both the TCN STLF prediction for the last 7 days, using a thin bright purple line
+
+At 20 second to 25 second: overlay the Actual demand, XGBoost STLF prediction, LSTM STLF prediction and TCN STLF prediction by the TFT STLF prediction for the last 7 days, using a thin bright red line
+
+Display and save the video
+
+Give me the updated code.
+
+
+Update attached code:
+
+

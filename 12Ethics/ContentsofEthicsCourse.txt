@@ -1,0 +1,275 @@
+Contents of Ethics Course:
+
+Week 1: Why ethics?
+Weekly overview:
+We start this week by examining data as a resource and its increasingly central role in society. You will learn about the social embeddedness of data and interconnections between data analytics and wider social, political and economic contexts. We will briefly discuss what is meant by ethics, why ethics matter and what the ethical dimensions of data generation, manipulation and use for stakeholders at various stages of the data supply chain might be. You will also begin to reflect on your own role as a reflective practitioner and potential agent of positive change in data and analytics practices.
+Weekly learning outcomes:
+- Recognise the interconnections between data analytics and the wider social, political and economic contexts.
+- Identify the stakeholders in data-related situations and the ways in which data decisions can impact on them.
+- Explain what is meant by ethics.
+- Identify the ethical dimensions of data generation, manipulation and use.
+- Demonstrate the capacity to reflect on the impact of data analytics on your own role and society.
+Topics:
+1.1 The data society (Group B)
+Let’s start with a simple question: Why should you care about data ethics?
+1.2 Data stakeholders and supply chain (Group B)
+Who are the people impacted by data decisions and how are these people affected?
+1.3 What is ethics?
+Before you go any further, you must understand what ethics is, and just as importantly, what it is not.
+1.4 Discussion: The ethics of algorithms
+Let’s examine the ethical implications of algorithms and consider who should be held responsible for their consequences.
+
+Summary:
+Why ethical scrutiny is vital in our data-driven society, focusing on the human impact of technological growth.
+The Data Commodity
+Data is the "new oil"—a high-value asset interwoven with everything from medical research to warfare. However, while data brings immense societal benefits, its rapid expansion has outpaced our ethical frameworks. Corporations and governments often prioritize utility and growth without considering the dignity or rights of the individuals behind the data.
+The "Black Box" of Algorithms
+We increasingly rely on algorithms and machine learning to make life-altering decisions. While efficient, these systems present significant risks:
+Inscrutability: Algorithmic processes are often "black boxes," making it difficult for those affected to understand or challenge decisions.
+Error Amplification: Unlike humans, who can identify and correct mistakes, machine learning multiplies the speed and scale of errors (Type 1 and Type 2).
+Embedded Values: Technology is not neutral; it reflects the biases and assumptions of its creators—such as gender prejudices in neuroscience or distrust in employee surveillance.
+Human-Centered Data Ethics
+Data collection and use are socially embedded actions. Ethical data science requires shifting from a purely mathematical or economic focus to a human-centered one. This involves:
+Recognizing the unintended consequences of predictive analytics.
+Balancing economic outcomes with social responsibility.
+Ensuring that those impacted by data use are at the forefront of the design process.
+Ultimately, data ethics forces us to answer a fundamental question: In what kind of society do we want to live? It demands that we acknowledge our obligations to protect the people behind the numbers.
+
+Week2: Frameworks for ethical decision-making - part 1
+Weekly overview:
+We start the second week of this course by examining how to develop moral reasoning skills and the roles that moral imagination and ethical judgement play in this process. We will then introduce four ethical frameworks; consequentialism, utilitarianism, deontology and justice, and consider how they might guide data-related decisions. You will apply consequentialist, deontological and justice theories to real-world data situations and explain which is the best approach for the problems you’re facing. At the end of this week we kick off the News from a Better World exercise, which helps you to develop your own agency in building a more just and ethical world.
+Weekly learning outcomes:
+- Describe the key elements of ethical thinking.
+- Identify the stakeholders in data-related situations and the ways in which data decisions can impact on them.
+- Recognise the various ethical frameworks that can apply to a data-related situation.
+- Apply consequentialist, deontological and justice theories to a real-world data scenario.
+Topics:
+2.1 Developing moral reasoning skills (Group B)
+Which data decisions involve ethical content, and how do we develop our ability to make ethical decisions with data?
+2.2 Consequentialism and utilitarianism
+The first ethical theories we examine in detail are consequentialism and utilitarianism, which judge actions based on their consequences and outcomes.
+2.3 Deontology
+A deontological approach to ethics focuses on the inherent rightness or wrongness of actions, rather than their consequences. It emphasises duties, rules, and principles.
+2.4 Justice
+Justice ethics is another important application of deontology.
+2.5 Discussion: The ethics of tracking workers
+Is it ethically acceptable for an employer to track their employees’ movements and conversations?
+2.6 ‘News from a better world’ exercise (Group B)
+Reflect on your actions and ability to co-create a better world.
+2.7 Extension activity: Data justice
+Global data justice is becoming increasingly important.
+
+Summary:
+This summary outlines the core principles of moral reasoning in data science as presented in the transcript.
+1. Cultivating Moral Awareness
+Moral awareness is the ability to recognize that technical decisions—like data-sharing or algorithmic design—carry ethical weight. If you are unsure if a situation has "moral content," apply two simple tests:
+The Harm Test: Could this action cause harm to anyone?
+The Publicity Test: Would you feel uncomfortable if your decision was broadcast on social media?
+2. Exercising Moral Imagination
+This involves moving beyond technical utility to practice empathic understanding. It requires putting yourself in the shoes of those with the least power—the people most likely to be affected by an algorithm but least able to influence its creation.
+Shutterstock Diagram
+3. Breaking Mental Shortcuts
+Ethical failures often stem from "mental models" or cognitive biases (like the halo effect or prejudice) that act as filters. We must challenge the assumption that technological progress is inherently "good" or that utility justifies invasive methods, such as scraping public CCTV for facial recognition.
+4. The Framework for Action
+Ethical behavior is shaped by individual life experiences, organizational culture, and legal systems. To move from awareness to action, professionals should build a toolbox of ethical frameworks grounded in moral philosophy to evaluate right from wrong.
+Key takeaway: Just because we can build a technology does not mean we should. Ethical data science requires pausing to reflect on fundamental principles before proceeding.
+
+This transcript explores Consequentialism, specifically Utilitarianism, as the first tool in the "ethical toolbox" for data science. This framework evaluates the morality of an action based on its outcomes, seeking the "greatest good for the greatest number."
+Key Principles
+Cost-Benefit Analysis: Deciding what is right by weighing the social costs against the benefits for all stakeholders.
+Unintended Consequences: Practitioners must look beyond immediate goals to identify potential long-term harms.
+Utilitarian Logic: For example, scraping data to improve facial recognition is justified under this view if the resulting accuracy benefits society as a whole.
+Critical Limitations
+The text warns against "shortcuts" in utilitarian thinking:
+Narrow Definitions of "Good": In business, "good" is often reduced to profit or shareholder value rather than societal welfare. In data science, it is often equated with speed and deployment.
+Minority Rights: A significant flaw is that the needs or rights of minority groups may be sacrificed to serve the majority.
+Information Gaps: Calculating the precise weighting of costs and benefits is often difficult in complex data environments.
+Ultimately, while utilitarianism is useful for managing complex dilemmas, it raises the question: Are some actions inherently wrong, regardless of the benefits they produce?
+
+This summary explores Deontology, the second tool in the ethical toolkit, which focuses on duties, rules, and universal principles rather than outcomes.
+Core Principles: Duty over Consequences
+Derived from the Greek deon (duty), deontology argues that actions are inherently right or wrong based on their alignment with moral laws. Key concepts include:
+The Categorical Imperative (Kant): Act only according to rules that you would want to become universal laws.
+Humanity as an End: People must always be treated as ends in themselves, never merely as a "means to an end" (e.g., using individuals as mere data points for profit).
+Non-maleficence & Beneficence: The duty to "do no harm" and the proactive obligation to do good.
+Rights and Privacy
+Deontology distinguishes between interests (what you want) and rights (what you are entitled to).
+Moral vs. Legal Rights: Moral rights (like the right to dignity) exist independently of and prior to legal statutes.
+Negative vs. Positive Rights: A "negative right" is the right not to be interfered with (e.g., privacy), while a "positive right" implies an obligation from others to provide something (e.g., justice).
+Data Privacy: In this framework, privacy is a fundamental moral right essential to autonomy and human dignity, creating a duty for data practitioners to ensure transparency and traceability.
+Limitations
+While powerful for protecting minorities and individual dignity, deontology can struggle when two moral principles conflict, requiring other "tools" from the toolkit to resolve the tension.
+
+John Rawls’ veil of ignorance suggests designing society without knowing one’s own position (e.g., gender, wealth, ability), leading to fairer systems that protect the most vulnerable. In a data context, this implies creating equitable access to data, technology, and decision-making processes, regardless of background.
+Amartya Sen expands this through the capability approach, arguing justice is about enabling people to live meaningful lives—not just distributing resources. In data science, this means ensuring individuals have real access to benefits such as digital inclusion, education, and fair algorithmic outcomes.
+Three types of justice apply to analytics:
+Distributive justice: Fair outcomes (e.g., unbiased model predictions, equitable resource allocation).
+Procedural justice: Fair and transparent processes (e.g., explainable algorithms, inclusive data collection, access to personal data).
+Interactional justice: Respectful and honest communication (e.g., clear disclosures, ethical data use, avoiding misleading insights).
+Overall, a just data society requires strong governance, transparency, and inclusive access, ensuring that data-driven systems benefit all—especially those with less power.
+
+Week 3: Frameworks for ethical decision-making - part 2
+Weekly overview: 
+During the third week of this course we continue our examination of ethical frameworks that can be used to guide data-related decisions. We will discuss the basic principles of virtue ethics and care ethics, and look at practical applications of these moral philosophies. We will then use a case study to understand how the ethical decision-making tools discussed in weeks 2 and 3 are put to use to solve real-world data problems. At the end of this week we wrap up the ‘News from a better world’ exercise and discuss the ideas that you and your classmates have suggested to achieve a more just and ethical world.
+Topics:
+3.1 Introduction
+Setting the scene for Week 3.
+3.2 Care ethics
+An alternative approach to resolving ethical dilemmas is care ethics.
+3.3 Virtue ethics (Group B)
+This framework is based on the idea that humans contribute to a better world by cultivating virtues or qualities in their day-to-day living.
+3.4 Discussion: Applying the tools
+Let’s look at how we can apply the ethical frameworks to a highly controversial data-driven initiative: predictive policing.
+3.5 ‘News from a better world’ wrap-up (Group B)
+In this final part of the exercise we look at the values required to create a ‘better world’.
+3.6 Extension activity: The digital economy
+How are global organisations tackling some of the most pressing issues related to digitalisation and data?
+
+This summary explores Care Ethics, an approach that shifts ethical focus from abstract rules to concrete relationships and the well-being of specific individuals.
+1. Relationships Over Rules
+Unlike Deontology or Utilitarianism, Care Ethics does not require "impartiality." Instead, it emphasizes:
+Concrete Others: Viewing stakeholders (like data subjects) not as an amorphous mass, but as real people with specific life contexts.
+Reciprocity: Recognizing a moral connection between the decision-maker and those affected.
+Care as a Practice: It is not just a feeling; it is a proactive competence involving "caring about" (awareness), "taking care of" (responsibility), and "care-giving" (meeting needs).
+2. Application in Data Science
+Care ethics asks: "How does my work enhance the well-being of others?" It moves beyond "thought experiments" to evaluate social processes.
+Goal: The ultimate aim is to empower and emancipate those affected by data decisions.
+Case Study (WikiLeaks): In 2016, WikiLeaks released data on millions of Turkish women. From a care ethics perspective, this was a failure of "competence in caring." By ignoring the real-world danger of domestic violence and stalking, the organization failed to be receptive to the specific safety needs of those women.
+3. Usefulness and Limitations
+Strengths: It includes diverse voices often missing from traditional philosophy and treats stakeholders as "subjects" rather than "random objects."
+Limitations: Because it lacks the detached impartiality of other frameworks, it can be challenging to balance when dealing with competing care needs in a large-scale system.
+Key takeaway: Care ethics transforms data science from a mathematical exercise into a social responsibility, centered on the empathy and responsiveness we owe to the people behind the data.
+This summary explores Virtue Ethics, a framework that shifts the focus from the morality of specific actions to the character of the individual.
+1. Character and Flourishing
+Unlike utilitarianism (outcomes) or deontology (rules), virtue ethics asks: "Who ought I become?" * Eudaimonia: Aristotle’s term for "human flourishing"—a state of happiness, health, and sufficiency achieved through virtuous living.
+Habitual Practice: Virtues are not innate; they are character traits (like courage, honesty, and compassion) developed through consistent practice and commitment.
+Integrity and Constancy: These virtues involve staying true to your core values across different social contexts and maintaining a consistent moral character over time.
+2. The Virtuous Data Professional
+In the data science context, virtue ethics compels practitioners to reflect on their professional identity:
+The Role of the Actor: Your actions as a data scientist either reproduce or transform society.
+Critiquing Culture: It requires examining whether current professional values—such as speed or "breaking things"—actually lead to human flourishing or if they prioritize "vices" over virtues.
+Moral Best: By asking "Who am I at my best?", professionals can align their technical decisions with the kind of person they aspire to be.
+3. Usefulness and Limitations
+Strengths: Virtue ethics bridges the gap between knowing what is right and actually doing it. It is uniquely suited for a complex, uncertain age because it relies on informed ethical judgment rather than rigid formulas.
+Limitations: Critics argue it can be difficult to define a universal set of virtues, as different cultures or eras may prioritize different character traits.
+Key Takeaway: Virtue ethics reminds us that every data decision we make is a reflection of our character. To build a flourishing society, we must first cultivate the virtues necessary to sustain it.
+
+Animation titled Ethical Decision Making:
+The 7-Step Ethical Decision-Making ModelAssess the Situation: Use moral imagination to define the problem. Identify all stakeholders—especially data subjects—and gather facts without jumping to solutions.Challenge Assumptions: Reflect on personal biases, organizational mental models, and "taken-for-granted" worldviews.Apply Principles and Relationships: * Care Ethics: Consider stakeholders as concrete individuals with specific needs.Deontology: Identify rights (privacy, justice) and duties. Ensure people are treated as ends, not mere means.Evaluate Options and Consequences: Use utilitarian thinking to weigh the social costs and benefits of various paths. Consider if a decision could be "universalized. "Reflect on Virtue and Flourishing: Ask if the decision aligns with the person or organization you want to become. Does this promote human flourishing ($eudaimonia$)?Consider Legal/Regulatory Context: Align the decision with current legislation, professional codes, and jurisdictional standards. Decide and Justify: Weigh all factors to find the "fitting" position. Be prepared to counter less ethical rationalizations and assess the feasibility of implementation. Post-Implementation: The process concludes with a review. Reflection on the outcome ensures continuous learning and the development of ethical habits.
+
+Summary of video which showcases the controversy surrounding the use of PredPol, a software that uses predictive analytics to forecast crime;
+Time segment from 13:03 to 20:53:
+
+The transcript details the intensifying conflict between the Los Angeles Police Department (LAPD) and community activists over predictive policing technologies like PredPol and Operation LASER.
+The Technology: PredPol and Operation LASER
+The LAPD utilizes data-driven software to preempt crime:
+PredPol: An algorithm that analyzes historical crime types, locations, and times to generate 500x500-foot "hot spots" for patrol.
+Operation LASER: A "point system" that ranks individuals based on past behavior to identify those statistically most likely to re-offend.
+The Controversy: Feedback Loops and Bias
+While police frame these tools as efficient deterrents, activists from the Stop LAPD Spying Coalition and researchers from Cornell University raise critical ethical concerns:
+Feedback Loops: Algorithms may repeatedly send officers to the same neighborhoods based on past arrest data, creating a self-fulfilling prophecy that ignores actual crime rates.
+Systemic Bias: Critics argue that because historical police data is inherently biased, the resulting predictions disproportionately target Black, Brown, and low-income communities.
+Lack of Transparency: Activists claim the LAPD is "inscrutable," often requiring lawsuits to release information about how these "black box" programs operate.
+The Public Outcry
+During LA’s first public hearing on the matter, community members expressed a profound loss of trust, citing violations of civil and human rights. Demands included a full audit of the programs, reparations for those harmed by racial profiling, and the total abolition of predictive policing. The police acknowledged the potential for "built-in biases" in reporting but maintained that they are working to improve the systems.
+
+Week 4:
+Weekly overview:
+In our fourth week, we move from moral frameworks to the principles of data governance and stewardship. We will discuss the implications of data as a public resource, examine the effects of data governance on decision making and consider how data stewardship can be enacted in practice. In our class discussion this week, we asked if data practitioners should be required to meet professional standards and what those standards might look like for data analytics. 
+Weekly learning outcomes:
+- Identify principles of data governance
+- Explain data stewardship and how it can be enacted in practice.
+- Evaluate professional and ethical codes related to data and analytics.
+- Consider the implications of data as a public resource.
+Topics:
+4.1 Principles of data stewardship and governance (Group B)
+Let’s look at two key concepts in data science; data stewardship and governance, and how to apply their principles to data decisions.
+4.2 Participatory approaches to data governance and stewardship
+More participatory and inclusive approaches to data stewardship and governance help address some of the ethical issues we have been identifying over the past weeks.
+4.3 Discussion: Professional standards and codes of conduct
+4.4 Data protection and Privacy Impact Statements
+Data collection raises many concerns. Privacy Impact Assessments can address these ethical and regulatory concerns.
+4.5 Data as a public resource
+Much of the data that could be used to address society’s pressing issues resides in private hands. Should this data be made publicly available?
+4.6 Extension activity: How might we democratise Big Data?
+Data is generated collectively, but currently businesses are profiting from it. Would nationalising data help to ensure the benefits are widely distributed?
+
+Dark data: online privacy and security
+This Video, focuses on the shift from digital "products" to "architectures" and the democratizing power of accessible design.
+​From Digital Products to Social Architectures
+​The provided transcripts challenge the conventional Silicon Valley narrative that views technology as a mere "product" and individuals as "users." Instead, the speaker argues that digital platforms function as ecosystems and architectures.
+​1. The Accountability Gap
+​The central argument is that software design should be held to the same rigorous standards as physical engineering. In the physical world, developers are bound by building codes and safety regulations; a builder cannot ignore fire hazards or exit accessibility simply because a person entered the building voluntarily.
+​In contrast, the tech industry often uses "Terms and Conditions" and job titles—like Service Design Managers or Customer Relations Specialists—to obscure systemic responsibility. The speaker compares this to other high-stakes sectors like aviation, pharmaceuticals, and automotive, where safety is a non-negotiable design standard rather than an optional agreement signed by the consumer.
+​2. Technology as a Tool for Freedom
+​The second prompt expands on the potential for technology to provide "freedom" by bypassing traditional barriers like literacy. By utilizing voice-to-text and natural language interfaces, technology can empower individuals—such as those running a decorating business—who may not be able to read or write. In this context, technology transitions from a restrictive architecture to a bridge for economic and social participation.
+​Core Themes
+​Architectural Intent: Digital spaces are designed to direct behavior, much like physical buildings.
+​Regulatory Parity: The need for "digital building codes" similar to those in the West or China to ensure systemic safety.
+​Democratization through Interface: Moving beyond text-based interaction allows for greater inclusion of diverse populations in the global economy.
+
+Professor Tracy Wilcox and privacy expert David Vaile discuss the need for professional standards for data scientists:
+The conversation between TW and DV explores whether data science should be classified as a formal profession, centering on the tension between rapid innovation and ethical responsibility.
+The Definition of a Profession
+TW defines a profession as a field operating within technical and ethical uncertainty, where practitioners owe loyalty not just to clients, but to the public interest. DV adds that a true profession involves:
+Regulatory Oversight: A registry where peers can "strike off" members for incompetence or unethical behavior.
+Standardization: A fixed code of conduct and concrete technical methodologies.
+The "Two-Speed" Nature of Data Science
+The speakers identify a significant divide in the industry:
+The Silicon Valley Model: In fields like advertising or social media, the mantra is "move fast and break things." Here, rapid changes in languages and models make rigid professional standards feel like a hindrance to innovation.
+High-Stakes Fields: In medicine, law, and civil engineering, data handles intimate lives and "life or death" scenarios. In these contexts, the "clever and fast" approach is dangerous. Experts here advocate for higher standards and the "precautionary principle" to prevent harm.
+Accountability and Hierarchy
+DV argues that professionalization doesn't need to be "one-size-fits-all." He draws a parallel to traditional fields:
+Selective Responsibility: Just as a lead engineer is responsible for a bridge while concrete suppliers are not, data science professionalization should target architects and designers—those with the power to influence risk and system behavior.
+The Middle Ground: For ambiguous cases (like fitness trackers), the necessity of professional standards depends on the capacity for harm. Those simply executing technical specifications (e.g., writing a "bubble sort") should not face the threat of being struck off for minor technical errors.
+Conclusion
+The dialogue suggests that while full professionalization of all IT work is unlikely and perhaps impractical, certain high-impact roles within data science justify the overhead of a formal profession. This shift would prioritize safety and ethics over speed, ensuring that those with the most control are held to the highest standards of public wellbeing.
+
+Week 5:
+Weekly overview:
+“The human person has an intrinsic value with fundamental rights including the right to data protection and privacy, confidentiality, and intellectual property rights”. - Eke and Stahl, 2024 
+The fifth week of this course examines key legal and regulatory frameworks that apply to data analytics. As we saw in Week 1, ‘the law’ and ‘ethics’ are not the same thing, and an action may be unethical even if it is not proscribed by the law. Legal and regulatory frameworks provide a baseline that should not be crossed, but the law often lags behind practice and societal expectations, and this is no more apparent than in our datafied world. Nonetheless, an understanding of relevant, albeit evolving, legal and regulatory frameworks is an important foundation for ethical data practice.
+We will examine some key features of the regulatory system in Australia to help you understand how laws are made and to identify the different types of legal principles that inform your work with data. We will take a close look at the Australian Privacy Principles and examine the concept of ‘personal information’, including the key aspects of its definition.
+Please note that we have provided additional videos for you to watch if you wish to learn more about the different types of law and legal processes that you may encounter in your data analytics practice. You can find these optional resources under the second extension activity.
+Weekly learning outcomes:
+- Adopt a regulatory and legal perspective on the generation, manipulation and use of data.
+- Identify relevant regulatory frameworks and legal principles.
+- Articulate current issues and debates in data regulation.
+Topics:
+5.1 Introduction to legal regulation
+How are laws made, and what are the main sources and document types of legal regulation?
+5.2 ‘Personal information’ in privacy law
+Let’s look at the significance of a key term in the Privacy Act, ‘personal information’, to understand whether or not a data item is covered by data protection and privacy laws.
+5.3 Outline of privacy law in Australia
+The principles of how to properly deal with ‘personal information’ are embedded in the Australian Privacy Principles. Let’s examine some of the key provisions and concepts of these principles.
+5.4 Discussion: Criminal and civil law
+Let’s turn to a consideration of how both criminal and civil laws might apply to data protection.
+5.5 Other areas of law affecting data
+We have now looked at privacy and crime, two obvious areas of law affecting the use of information. You should also be aware of obligations of confidentiality, secrecy and commercial confidentiality, consumer protection, discrimination and negligence.
+5.6 Regulating the AI industry (Group B)
+How can we bring our regulatory frameworks in line with exponential advances in artificial intelligence?
+5.7 Extension activity: The European General Data Protection Regulation (GDPR)
+The European General Data Protection Regulation represents one of the most robust data privacy laws in the world. What does it mean for Australian
+
+Week 6:
+Weekly overview:
+“By default, technologies reflect and reinforce existing social orders, expressing and materializing hierarchical relations. However, technologies can also be tools of liberation. They can expose, undo, and reshape status quos.” - Davis, Williams and Yang, 2021
+Welcome to the final week of this course. After examining data decisions through the lenses of ethical frameworks, governance, professional standards, and laws and regulation, we now turn our focus to the ways in which data can be used for positive impact. We will discuss the potential of data for resolving humanitarian problems, addressing the UN Sustainable Development Goals, advancing democracy and building a more ethical and just future. You will also reflect on your own ethical agency as a data practitioner.
+The journey towards more ethical practice is an ongoing one—we never reach our destination. But along this road you will have hopefully picked up some new ways of thinking, new skills, new self-awareness and ultimately, confidence in yourself.
+Weekly learning outcomes
+- Identify the ways in which data and analytics can be used for positive impact.
+- Reflect on your own professional practice and capacities for ethical agency.
+- Evaluate the role of data in shaping a positive future.
+Topics:
+6.1 Where to from here?
+As we come to our final week, let us turn to the future, and consider where we can go as individuals, organisations, and societies.
+6.2 Analytics for positive impact (Group B)
+Let’s now shift our focus to the positive impact of data analytics and look at how data can help solve humanitarian issues around poverty, health, human rights, education and the environment.
+6.3 What can we do? Algorithmic fairness
+Explore different types of algorithmic fairness.
+6.4 What can we do? Algorithmic reparations (Group B)
+How do we build progressive and democratic alternatives to the ‘datafication’ of our daily lives?
+6.5 Discussion: How to be an agent of positive change? (Group B)
+In our last class discussion, you will consider how we can build a better world through data science practice. You will first consider your own actions and how they can help contribute to a more ethical data future.
+6.6 Extension activity: Whose data? Our data!
+Let’s look at some ideas for correcting the power imbalance between Big Tech and the individuals whose data is used for profit.

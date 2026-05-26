@@ -1,0 +1,18 @@
+Keep a note:
+
+In GCP my organization is anodiam.com; Project: voice-clone-project, Number: 161362001177, ID: voice-clone-project-474511
+Organization Administrator & Owner: anirban@anodiam.com; IAM users: vaibhavsinghnagar@gmail.com, sayan@anodiam.com, 1120anirban@gmail.com
+
+My GitHub repository https://github.com/anodiamadmin/VoiceCloneProject, (currently blank) is created by anirban@anodiam.com
+Following people are invited as collaborators: vaibhavsinghnagar@gmail.com, sayan@anodiam.com, 1120anirban@gmail.com
+
+I shall be doing the dev work as IAM user: 1120anirban@gmail.com >> GitHub account: 1120anirban
+Similar set up for other Project members: Sayan and Vaibhav
+
+I shall use anirban@anodiam.com account for Billing and Admin work only for both GCP and GitHub.
+
+I want to keep all the code including my Infrastructure as Code (IaC) in GitHub.
+
+How can I run commands from my GCP cloud shell to git clone all the code and subsequently create all the infrastructures according to my IaC code?
+
+Give me what IaC code I 

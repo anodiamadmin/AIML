@@ -1,0 +1,9 @@
+/.venv/
+/__pycache__/
+/rvc/models/
+/rvc/assets/*.pt
+/data/model_voices/*
+/data/input_speech/*
+/data/output_speech/*
+*.pth
+*.pt

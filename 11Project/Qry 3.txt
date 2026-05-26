@@ -1,0 +1,21 @@
+Give me code block that I can run at the bottom of the MTLF code to generate Figure 11 for my project under the heading: Baseline XGBoost model, configuration and results; with subplots for
+1. Test Actual vs Predicted (zoomed last 4 weeks) (Datetime for x labels must be slanted by 45 degrees)
+2. Feature Importance plot
+
+
+Give me code block that I can run at the bottom of the MTLF code to generate Figure 12 for my project under the heading: XGBoost Grid Search: configurations and top results; with subplots for
+1. Top 4 Grid Search configurations by Validation RMSE (Gris search configurations must be written inside the graph on the light blue horizontal bars, starting at the y axis and towards left, the configs may be longer the bars)
+2. Baseline vs Grid Search test Actual vs Predicted (zoomed last 1 weeks) (Datetime for x labels must be slanted by 45 degrees)
+
+
+Give me code block that I can run at the bottom of the MTLF code to generate Figure 13 for my project under the heading: Predictions over aggregated horizons from 3 days to 1 month; with subplots for
+1. RMSE, MAE, MAPE, and R2 vs horizon (3D, 7D, 14D, 30D)
+2. Actual vs Predicted moving-average demand for 7D and 30D horizons
+
+
+Give me code block that I can run at the bottom of the MTLF code to generate the compact:
+Metrics table for:
+Baseline XGBoost: train, validation, test
+Grid Search best model: train, validation, test
+Top 4 grid-search validation results
+Multi-horizon moving-average metrics: 3D, 7D, 14D, 30D

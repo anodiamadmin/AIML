@@ -1,0 +1,87 @@
+ZZSC9020-Data Science Project (Hexa 2 of 2026 Online) Masters in Data Science UNSW.
+Assessment 2: Individual reflective portfolio:
+Weight: 5%
+Time required: 6 Hours
+Due: Week 5, Tuesday, 14 April, 10pm
+Instructions: To complete this assessment, you will need to first write a brief reflection in the weekly teamwork reflection forum for Weeks 1-4. Each week will have a different question prompt.
+Task: This is an individual task. Write a 500-word summary reflective portfolio, based on your weekly teamwork reflections for Weeks 1-4. Each week will have a particular prompt, but you may also discuss:
+- how you split the various tasks among the members of our team
+- what tools you have used to organise your work efficiently
+- what went wrong or worked well each week
+- what you would change in the future to improve the interactions between members of a team
+- what are the main ingredients to help a team achieve its goals
+- what you are contributing to the team, or you appreciate your team members contributing.
+Instructions: Participate in weekly online reflective forums. These submissions will be your reflections of how your team is working together, the group process, dynamics, effectiveness, tools you found helpful, issues, challenges and responses to other posts. Note that data science is meant to be a highly interdisciplinary field of research. Reflection has been demonstrated to be a useful tool to support professional learning in authentic contexts where there are many uncontrolled variables. Often, the process of writing these things down brings aspects or relationships to light that you might have been previously unaware of. Your contribution to these forums is vital in order to share ideas, information, your successes, and failures with your cohort. Communication with your fellow students and Course Convenors will help ensure that you get the most from this course.
+You may use these weekly submissions as a reference to write an Individual Reflective Portfolio. Individual Reflective Portfolio must be submitted by Tuesday of Week 5 by 5pm.
+Note: You must ensure that your final individual reflective portfolio submission is no more than 500 words. Press the button below to link to the Word Counter app to ensure your submission meets the maximum word requirement.
+Presentation style/format
+Your responses should be written using correct spelling, grammar, and punctuation. Language should be free of bias (including but not limited to race, gender, sexual orientation, or disability). Quantitative information should be clearly described and appropriately communicated (e.g. figures and tables are appropriately labelled).
+Harvard referencing is required (see the UNSW Business School Harvard referencing guide).
+Rubric:
+Marking criteria: Clarity of description 50%
+Requirement for High distinction (HD 85%-100%) marks: Highly sophisticated evidence of your thinking about your practices and assumptions and how they relate to, and align with, course concepts, resources or activities. Deep understanding of selected concepts and highly convincing and meaningful case for their relevance. Highly insightful discussion of changes to your thinking and practice that are occurring or might occur. High degree of self-reflection.
+Marking criteria: Depth of reflection 50%
+Requirement for High distinction (HD 85%-100%) marks: Succinct, strongly convincing and highly compelling description and arguments in response to the questions posed. Outstanding clarity of argument, enabling the reader to create a clear mental picture of the concepts and their applicability.
+
+Weekly teamwork reflection:
+Purpose: Reflect on how your group is working so far.
+Activity instructions: Consider the reflection prompt below, then click the button to post your reflection in the forum.
+Weekly reflective portfolio: As part of Assessment 2, you are required to participate in a weekly reflective portfolio forum by posting one less than 250-word reflection each week. Your contribution to this forum is vital in order to share ideas, information, your success and failures with your cohort. Communication with the course convenors and fellow students will help ensure that you get the most from this course. These submissions can include reflections of the group process, group dynamics, tools you found helpful, issues, challenges as well as responses to other posts. In your reflection this week, comment on this question:
+Write a maximum of 250 words into the reflective portfolio forum below by responding to your lecturer's post. This activity will help you in attempting the assessments.
+
+Team H:
+Cathy Xu (z5210468), Project Lead
+Nader Sawalhi (z2271811),
+Andrew Chau (z2120445),
+Anirban Chakrabarty (z5626947).
+
+By the end of Week 1 following have been done:
+Assessment 1 Part B: Individual implementation checklist: A list of detailed software & tools to be used, discussed in team and questionnaire answered individually.
+Assessment 1 Part A: Group Project Plan: This is a group assignment. You will be allocated to groups during Orientation week. Being allocated to a group simulates an authentic work environment, where you will often need to work with the team you have. Your team will work together to create a three-page Group Project Plan (excluding pages devoted to the title, references, and appendix). Each team is encouraged to schedule a group meeting with one of the online lecturers to discuss their Group Project Plan, describing a detailed plan on how your team will conduct this project. You must make contact with each member of your team in Week 1 to write a 3-page plan establishing:
+
+An introduction and motivation to the project
+A brief preliminary literature review
+A brief initial outline of the methods, software, and description of the data you intend to work with
+A list of the main tasks or activities you will need to do to accomplish this project, the role of every team member in these activities, and a timeline for when these activities will take place over the duration of the course (a Gantt Chart might be useful for this). Refer to section 1.3 “Setting up your team” to explain in the Project Plan how you will organise your work. You should consider adding a mind map (potentially in the appendix) that gives, for each member in the team, their individual skills, knowledge and experience, etc., that make them efficient for the project. You should read/watch the course materials in section 1.1 for that purpose. (You can combine individual mind maps created in section 1.1c into a team mind map.) You can use this mind map to help you justify who will do what in the project. This could also serve as a justification for the choice of the computing language, the modelling strategy, etc.
+
+Assessment 2: Individual reflective portfolio: Question for week 1
+Have you met with your team and has your team established roles, tools, processes to communicate effectively with your team? If so, what are your next goals? If not, what do you plan to do to improve your communication with the team?
+
+Write a maximum of 250 words into the reflective portfolio forum below by responding to your lecturer's post. This activity will help you in attempting the assessments. Also give a short crisp subject line.
+
+------------------------------------------
+Week 1 Reflection – Team Setup and Next Steps
+We successfully met as Team H during Week 1 and established a strong foundation for collaboration. Roles were clearly defined, with Cathy leading as Project Lead, and responsibilities distributed based on individual strengths and interests. Given my background in AI and neural networks, I will contribute primarily to modelling, feature engineering, and advanced analytics components of the project.
+We agreed on a structured workflow using Microsoft Teams for formal meetings, WhatsApp for quick coordination, GitHub for version-controlled code collaboration, and shared cloud storage for documentation. This multi-tool setup has improved responsiveness, transparency, and clarity in task ownership. We also aligned on an Agile-style approach, focusing on iterative progress, regular check-ins, and continuous feedback.
+A key success this week was early alignment through the Group Project Plan, which helped establish clear expectations, timelines, and deliverables. This reduced ambiguity and enabled us to start efficiently. However, scheduling conflicts due to individual work commitments emerged as a minor challenge, highlighting the need for more flexible coordination and planning.
+Our next goals are to conduct deeper Exploratory Data Analysis (EDA), with a strong focus on data visualisation to uncover patterns, seasonality, and anomalies in electricity demand and temperature data. These insights will guide us in refining our research question, particularly whether to focus on short-term forecasting or broader trend analysis and support initial modelling decisions.
+Overall, maintaining consistent communication, leveraging each member’s strengths, and iterating quickly will be key to achieving high-quality outcomes.
+------------------------------------------
+
+Week 2:
+Due to work commitments I could not attend the weekly meeting this Tuesday at 6pm. It was a 20 minutes meeting. I circled back and connected later.
+
+Cathy wrote the meeting minutes and she published it on GitHub.
+Cathy started the EDA and report writing.
+Nader & I will be finishing off the EDA and Nader is doing ARIMA & SARIMA.
+Andrew assigned xgboost Sir
+I shall do Neural Networks and advanced EDA, Feature Engineering and Data Viz.
+
+We are sharing the responsibility of writing the project report among ourselves via MS word through SharePoint.
+
+Write a maximum of 250 words into the reflective portfolio forum below by responding to your lecturer's post. This activity will help you in attempting the assessments. 
+
+Question for week 2
+Is your team working efficiently so far? Is everyone actively contributing to the project? If so, what are your next goals? If not, what do you plan to do to improve your communication with the team?
+
+-----------------------------------------
+Week 2 Reflection: Team Progress and Contribution
+
+Overall, the team is working efficiently, with clear task allocation and active contributions from all members. Although I could not attend the scheduled 20-minute meeting on Tuesday due to work commitments, I ensured continuity by circling back later and catching up through the meeting minutes shared by Cathy on GitHub. This reflects strong team communication practices and effective documentation.
+Cathy has taken initiative in leading the Exploratory Data Analysis (EDA) and beginning the report writing, which has helped set a clear direction. Nader and I are collaborating to complete the EDA, with Nader focusing on ARIMA and SARIMA models. Andrew has been assigned XGBoost, while I will be working on Neural Networks, advanced EDA, feature engineering, and data visualisation. This distribution aligns well with our individual strengths and supports parallel progress.
+We are also collaboratively contributing to the project report using MS Word via SharePoint, which enables real-time updates and shared ownership of deliverables. This has improved coordination and reduced bottlenecks.
+At this stage, all members are actively contributing, and the workflow appears balanced and productive. Our next goals are to finalise EDA insights, identify key predictive features, and begin model experimentation across different approaches (statistical and machine learning). Additionally, we aim to ensure consistency in reporting and integrate individual contributions into a cohesive narrative.
+Moving forward, maintaining timely communication and ensuring alignment despite scheduling constraints will be critical to sustaining team efficiency.
+-----------------------------------------
+
+

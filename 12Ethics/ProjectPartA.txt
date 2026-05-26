@@ -1,0 +1,87 @@
+DATA IMPACT EVALUATION
+AI BASED ELECTRICITY DEMAND FORECASTING SYSTEM
+Author	Anirban Chakrabarty
+zlD  	z5626947
+Course 	ZZBU6505-Data and Ethics (H226 Online)
+Tutorial Time 	March - April 2026
+Teaching Team	Dr. Tracy Wilcox, Dr. Burcin Hatipoglu, Nidal Danoun
+Date	06/April/2026
+Contents
+1.	Data Scenario	3
+2.	Stakeholders	4
+Analytical Discussion	5
+3.	Impact on Stakeholders	6
+Intended Impacts	6
+Unintended and Adverse Impacts	6
+Ethical Evaluation and Public Interest	6
+Appendix: Methodology and Supporting Materials	8
+A1. Methodology	8
+A2. Electricity Demand Forecasting Data Pipeline Diagram	8
+A3. Use of Artificial Intelligence (AI) and Its Limitations	9
+A4. References	10
+1.	Data Scenario
+The AI Based Electricity Demand Forecasting System for New South Wales forecasts electricity demand using large-scale historical and real-time data from the New South Wales (NSW) suburbs within the National Electricity Market (NEM). The primary purpose of this system is to predict short-term electricity demand at fine temporal granularity (5-minute to 30-minute intervals) to support grid stability, optimise generation dispatch, and inform energy pricing and policy decisions. Accurate forecasting is critical because even marginal improvements can significantly reduce operational costs for providers while improving affordability and reliability for consumers.
+The data collected for this system is predominantly operational, environmental, and economic in nature. Core datasets include total electricity demand (MW), forecast demand, and air temperature readings sourced from AEMO’s Market Management System and meteorological stations. These are supplemented with macroeconomic indicators such as Australian GDP indexes, interest rates, and ASX market signals to capture broader economic activity. While the data is largely aggregated and non-personal, it indirectly reflects consumption behaviours at a population level and is therefore classified as internal and sensitive. If extended to smart meter granularity, the same system could involve confidential personal data, raising privacy and regulatory concerns.
+ 
+The data supply chain follows a structured lifecycle. Upstream, data is acquired from multiple sources including AEMO databases, weather stations, and financial datasets. These inputs are ingested through APIs and batch pipelines into a central processing environment. The data then undergoes rigorous validation and cleaning, ensuring timestamp continuity and addressing missing values through interpolation. Exploratory data analysis reveals key drivers of demand, particularly the strong non-linear relationship between temperature and electricity consumption due to higher demand due to heating & cooling requirements during extreme weathers, as well as consistent intraday and weekly cycles.
+Following this, extensive feature engineering and transformation are applied to enhance predictive capability. Temporal variables are encoded cyclically, while lag features and rolling statistics capture persistence and trends. Additional engineered variables, such as Heating and Cooling Degree Days (HDD/CDD), interaction terms, and calendar effects (e.g., holidays, COVID period), allow the model to capture complex behavioural and environmental dynamics. The final dataset consists of a model-ready feature space, combining both linear and non-linear predictors.
+ 
+Fig 6: Electricity Demand Forecasting Data Pipeline Diagram
+Downstream, the processed data is used across multiple modelling approaches depending on stakeholder needs. Statistical methods such as regression and ARIMA are used for rapid, short-term estimation, while machine learning models including LSTM, Temporal Convolutional Networks (TCN), and Transformer-based architectures enable more sophisticated forecasting and scenario simulation. Hybrid approaches further improve predictive accuracy and robustness.
+The outputs of these models are used by grid operators, energy providers, and policymakers to make critical decisions, including load balancing, pricing strategies, and infrastructure planning. Data is stored in secure cloud environments with controlled access, and retention policies ensure that historical datasets are preserved for auditing and model refinement, while obsolete data is archived or deleted in accordance with governance requirements.
+Overall, this system represents a complex, multi-layered data ecosystem where data is continuously collected, transformed, and utilised to support high-stakes decision-making, highlighting the importance of both technical accuracy and responsible data governance.
+ 
+2.	Stakeholders
+The electricity demand forecasting system involves multiple stakeholders spanning data generation, modelling, and decision-making. These include consumers (data subjects), operators, providers, regulators, and data suppliers. Each group interacts differently with the data, exhibiting varying levels of power, agency, and vulnerability within the broader data-driven energy ecosystem.
+Table 1: Stakeholder Analysis
+Stakeholder	Relationship to Data	Power	Agency	Vulnerabilities
+Electricity Consumers (Households & Businesses)	Indirect data subjects; consumption behaviours underpin aggregated variables 	Low	Minimal influence over data collection, modelling, or decision use	Limited transparency; exposure to pricing volatility and supply decisions
+Vulnerable Populations (e.g., low-income, rural)	Subset of consumers disproportionately affected by downstream outcomes	Very Low	Negligible control or representation in system design	Heightened sensitivity to cost increases and service instability
+Grid Operators (e.g., AEMO)	Primary institutional users of forecasts for load balancing and system reliability	Very High	Extensive control over operational decisions informed by model outputs	Systemic accountability; dependence on model accuracy and robustness
+Energy Providers (Retailers & Generators)	Use forecasts for pricing, generation planning, and market participation	High	Significant discretion in applying predictive insights commercially	Financial and reputational exposure to forecast errors
+Data Scientists / Engineers	Direct custodians of the dataset, responsible for modelling and feature engineering	Medium	Technical agency in model design, constrained by organisational priorities	Risk of embedding bias; limited accountability for downstream impacts
+Government & Regulators	Oversight of market operations, data governance, and compliance frameworks	High	Authority to enforce standards, audits, and regulatory interventions	Tension between innovation, market efficiency, and public interest
+Third-party Data Providers	Supply upstream inputs (e.g., weather, financial indicators) integrated into feature set	Medium	Control over data quality and availability	Errors or biases propagate through the modelling pipeline
+Wider Society / Public Interest	Indirect beneficiary or risk-bearer of system-wide outcomes (e.g., reliability, sustainability)	Low (individually)	Collective influence via policy, advocacy, and public discourse	Exposure to long-term systemic risks, including inequality and environmental impacts
+Analytical Discussion
+The stakeholder landscape reveals a significant asymmetry between data subjects and decision-makers, a core ethical concern in data systems. Electricity consumers, whose behaviours underpin demand data, have minimal visibility or control over how their data is aggregated, modelled, and operationalised. In contrast, institutional actors, particularly grid operators and energy providers exercise substantial power, using forecasts to influence pricing, supply allocation, and infrastructure investment.
+From a utilitarian perspective, the system is justified by its ability to improve efficiency and reliability across the energy market (Zhang et al., 1998). However, such optimisation may obscure distributional inequities, as vulnerable populations such as low-income or rural communities may bear disproportionate costs, particularly under dynamic pricing mechanisms.
+A deontological perspective highlights the duty to ensure fairness, transparency, and non-maleficence. The reliance on complex, opaque models limits explainability, reducing stakeholders’ ability to question or challenge outcomes, thereby undermining procedural fairness.
+Applying justice frameworks, including Rawls’ veil of ignorance and Sen’s capability approach, underscores the need to design systems that prioritise the least advantaged. This requires equitable outcomes, transparent processes, and inclusive governance to mitigate structural imbalances in power and agency.
+ 
+3.	Impact on Stakeholders
+The electricity demand forecasting system produces both intended and unintended impacts across stakeholders, highlighting that data systems are socially embedded rather than purely technical. While improving efficiency and reliability, these impacts are unevenly distributed, raising critical ethical concerns regarding fairness, accountability, and public interest.
+Intended Impacts
+At a system level, the primary intended outcome is improved grid stability and operational efficiency. Accurate short-term forecasts enable grid operators to balance supply and demand, reducing outages and ensuring reliable service. For energy providers, predictive insights support optimised generation planning and pricing strategies, lowering operational costs and improving market efficiency. From a utilitarian perspective (UNSW, 2026), these benefits contribute to the “greatest good for the greatest number,” as reliable electricity supply underpins economic activity and societal well-being. Enhanced feature integration further improves predictive accuracy and decision-making effectiveness.
+Unintended and Adverse Impacts
+Despite these benefits, the system also produces unintended consequences, particularly for stakeholders with limited power and agency. One key risk is the distributional impact of forecast-driven decisions, such as dynamic pricing or infrastructure allocation. While efficiency gains may benefit the majority, vulnerable populations—including low-income or rural communities—may face disproportionate burdens, such as increased energy costs or reduced service reliability. This reflects a known limitation of utilitarian reasoning, where aggregate benefits can mask inequities affecting minority groups.
+A further concern is the opacity of complex models, such as LSTM or transformer-based architectures. These models operate as “black boxes,” (Doshi-Velez & Kim, 2017) making it difficult for stakeholders to understand how predictions are generated or to challenge outcomes. This lack of transparency undermines procedural justice, as affected individuals are excluded from meaningful participation or contestation in decision-making processes.
+Additionally, the system may perpetuate systemic biases embedded in historical data. Since the dataset (196,466 rows, 77 features) is derived from past demand patterns, it reflects existing socio-economic conditions. If certain regions have historically experienced lower investment or higher volatility, the model may reinforce these patterns, leading to feedback loops that entrench inequality—an issue highlighted in discussions of algorithmic bias and predictive systems.
+There are also risks associated with over-reliance on automated decision-making. Human operators may defer to model outputs without sufficient critical scrutiny, increasing the likelihood of error propagation. Algorithmic systems can amplify errors at scale, with potentially significant consequences for infrastructure and public trust.
+Ethical Evaluation and Public Interest
+From a deontological standpoint, the system raises obligations to ensure fairness, transparency, and non-maleficence. Stakeholders have a moral right not to be adversely affected by opaque or biased models, requiring explainability, auditing, and safeguards against harm. Justice frameworks, including Rawls’ veil of ignorance and Sen’s capability approach, emphasise protecting the least advantaged and enabling equitable access to energy benefits.
+While the system delivers societal value through improved efficiency and reliability, ethical legitimacy depends on addressing inequality, enhancing transparency, and ensuring accountability. Without such measures, it risks reinforcing disparities and undermining public trust in data-driven decision-making systems.
+ 
+Appendix: Methodology and Supporting Materials
+A1. Methodology
+This report was developed using a case-based analytical approach, drawing on both practical experience and course materials. The selected data scenario, electricity demand forecasting, is directly aligned with my academic project in time-series modelling, where I worked extensively with a dataset comprising millions of observations and dozens of engineered features. As such, my role in this analysis can be described as a participant-observer, combining practical familiarity with critical reflection.
+The primary sources used in this report include:
+•	Course materials  focusing on data ethics, stakeholder analysis, and ethical frameworks 
+•	Project dataset & modelling workflow, including feature engineering & forecasting techniques 
+•	Insights derived from discussions on algorithmic bias, black-box models, & data justice 
+The methodology involved three key stages:
+1.	Data Scenario Mapping: I first documented the end-to-end data pipeline, including upstream data sources, feature engineering processes, model development, and downstream decision-making. This ensured alignment with the data supply chain framework. 
+2.	Stakeholder Identification and Analysis: Stakeholders were identified across the data lifecycle, including data subjects, system operators, and affected communities. Their power, agency, and vulnerabilities were analysed using concepts from data stakeholders & ethical reasoning frameworks. 
+3.	Ethical Impact Evaluation: The impacts of the system were evaluated using multiple ethical frameworks: 
+•	Utilitarianism (overall efficiency and societal benefit) 
+•	Deontology (rights, fairness, and duties) 
+•	Justice frameworks (Rawls’ veil of ignorance and Sen’s capability approach). This multi-framework approach enabled a more comprehensive and balanced evaluation of both intended and unintended consequences.
+This methodology was chosen because it integrates technical understanding with ethical reasoning, allowing for a holistic evaluation of the data system. However, it is limited by the absence of direct stakeholder interviews or organisational data, meaning that some insights are based on inference rather than empirical validation.
+A2. Use of Artificial Intelligence (AI) and Its Limitations
+Limited use of generative AI (ChatGPT) was made during the preparation of this report, primarily for language refinement and structural clarity. Specifically, AI was used to assist in improving sentence flow, enhancing academic tone, and organising content in line with the assessment requirements.
+Example prompts included:
+•	“Refine this paragraph for clarity and academic tone.” 
+•	“Improve the structure of this section while maintaining original meaning.” 
+The substantive content, analysis, and interpretation were developed independently by the author, based on course materials and project work. All AI-assisted outputs were carefully reviewed, edited, and verified to ensure accuracy, relevance, and alignment with the electricity demand forecasting context.
+AI use in this report has several limitations. First, AI does not have access to the full project context or underlying dataset and may generate generic or imprecise suggestions, requiring manual correction. Second, AI can sometimes oversimplify complex ethical concepts, necessitating further refinement to ensure appropriate depth and rigor. Third, there is a risk of inaccuracies, and therefore all content was cross-checked against course materials.
+Overall, AI was used sparingly as an editing aid, and all final judgments, analysis, and conclusions remain the sole responsibility of the author.

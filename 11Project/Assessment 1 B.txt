@@ -1,0 +1,402 @@
+Assessment 1 Part A: Group Project Plan
+Instructions: read and engage with the Week 1 course materials and meet with your group to collectively decide on a plan for your project. I am placed in Team H with 3 other team members:
+1. Cathy Xu - Team lead (email: cathy.xu2@student.unsw.edu.au; Phone # WhatsApp: +61 426 419 879)
+2. Nader Sawalhi (email: nadersaw@gmail.com; Phone # WhatsApp: +61 434 227 357)
+3. Andrew Chau (email: Akpchau@gmail.com; Phone # WhatsApp: +61 430 051 719)
+4. Myself Anirban Chakrabarty (email: anirban@anodiam.com; Phone # WhatsApp: +61 470142229)
+
+Following is the summary of the transcript of the business context of the project and data:
+it discusses demand forecasting in the energy sector, focusing on how analysis informs decision-making for government bodies and industry operators, and explores methods to improve forecast accuracy and robustness.
+Understanding Client Needs and Use Cases
+- Clients include government and market bodies setting policies and laws to facilitate investment, as well as energy companies operating infrastructure.
+- The analysis aims to support decision-making, with an emphasis on understanding how clients will use forecasts.
+- Identifying potential secondary clients who can benefit from the work is crucial for future sales.
+- Forecasting demand accurately can lead to increased profits and lower costs, making demand the central focus.
+Demand Drivers and Data Sources
+- Temperature is the primary determinant, influencing electricity use during hot or cold periods.
+- Historical demand data spanning 20 years provides a baseline, alongside past forecast accuracy to evaluate model performance.
+- Incorporating macroeconomic variables like the following:
+  * Electricity Price Inflation (Retail/Default Market Offer)
+  * Household Disposable Income & Cost of Living
+  * Employment Trends (Working-from-Home)
+  * Population Growth & Housing Density
+  * Residential Mortgage Rates & Interest Rates
+  * Government Rebates (Energy Relief Funds)
+  * Rooftop Solar & Battery Uptake (Consumer Energy Resources)
+  * ASX (Australian Securities Exchange) index
+Forecasting Models and Approaches
+- Various models include time series, machine learning, and heuristic methods, each suited to different purposes like short-term prediction or rapid decision-making.
+- The goal is to produce probabilistic forecasts, not just point estimates, capturing the range of possible future demands.
+- Synthetic data generation allows stress testing models under different scenarios, especially useful when historical data is limited or biased.
+Synthetic Data and Future Planning
+- Synthetic data helps simulate plausible future worlds, capturing the full distribution of outcomes beyond observed historical points.
+- It enables better risk assessment, model testing, and long-term planning, especially when climate change or other factors introduce uncertainty.
+- The challenge lies in accurately modeling the distribution of variables like temperature to generate realistic demand scenarios.
+Explaining Outcomes and Improving Models
+- Understanding why demand outcomes occurred (e.g., weather, economic shifts) helps refine models and improve future forecasts.
+- Historical data provides a starting point, but synthetic data extends this by exploring alternative scenarios.
+- The ultimate aim is to develop models that can predict a full distribution of demand, accounting for uncertainties and complex interactions, leading to more effective planning and decision-making.
+
+Week 1 Task - group assignment. On the following headings, create a three-page Group Project Plan (excluding pages devoted to the title, references, and appendix).
+1> An introduction and motivation to the project (This is my responsibility)
+2> A brief preliminary literature review (This is the responsibility of Nader Sawalhi)
+3> A brief initial outline of the methods, software, and description of the data you intend to work with  (This is the responsibility of Andrew Chau)
+4> A list of the main tasks or activities you will need to do to accomplish this project, the role of every team member in these activities, and a timeline for when these activities will take place over the duration of the course (a Gantt Chart might be useful for this). Refer to section 1.3 “Setting up your team” to explain in the Project Plan how you will organise your work. You should consider adding a mind map (potentially in the appendix) that gives, for each member in the team, their individual skills, knowledge and experience, etc., that make them efficient for the project. You should read/watch the course materials in section 1.1 for that purpose. (You can combine individual mind maps created in section 1.1c into a team mind map.) You can use this mind map to help you justify who will do what in the project. This could also serve as a justification for the choice of the computing language, the modelling strategy, etc. (This is the responsibility of Cathy Xu)
+
+Presentation style
+Your Group Project Plan should be written using correct spelling, grammar, and punctuation. Language should be free of bias (including but not limited to race, gender, sexual orientation, or disability). Quantitative information should be clearly described and appropriately communicated (e.g. figures and tables are correctly labelled).
+Given the page limit for this assessment, references page(s) are excluded from the page count, and you can use any referencing style (i.e., not necessarily Harvard referencing style). You will use the Harvard referencing style for the final report.
+
+Marking criteria: 20% Introduction and motivation. Clear explanation of the goal, the question asked by the client, the business question, explanation of how business question will be addressed.
+High distinction (HD) 85%-100% requirement: The goal is explained extremely well and logically addressed piece by piece, in a way that structures the whole plan to tell the story of the intended data analysis. Outstanding justification of the choices made and clear explanation for why this analysis will be the most appropriate to address the business question. Excellent description of the problem, and proposed solution and design choices.
+
+Marking criteria: 20% Literature review. Quality of the background/ literature review, quantity and quality of literature, justification for choice of software. Criterion of writing a good literature review: summary, state of the art, existing gaps, how can your proposal bridge the gap.
+High distinction (HD) 85%-100% requirement: The most significant areas of literature relevant to the proposed work have been reviewed and you have clearly identified one or more methodological gaps. You will have shown that you understand the conceptual relationships between reviewed works and between reviewed works and the work you intend to do, i.e., you make intellectual connections between the different parts of the review and puts their work in context. In addition to meeting the quality at the previous sentence/ point, you have made a critical assessment of the literature in the context of you project to a depth and breadth that is of the quality that could be anticipated to be seen in a journal review paper.
+
+Marking criteria: 20% Methods, software and data description. Choice of the model, understanding of intended methods and algorithms, description of the model and discussion of the assumptions.
+High distinction (HD) 85%-100% requirement: Identifies a way to improve upon a baseline model and takes into account several aspects of the data (uni- or multivariate or dependents). Identifies how model will be tailored for the characteristics of the data, and specifically designed for the research question. Outstanding description of the proposed model, methods, algorithms, software and assumptions.
+
+Marking criteria: 10% Technical. Proper use of the template, structure and page limit.
+High distinction (HD) 85%-100% requirement: The report structure and word limit are fully adhered to, template instructions correctly followed and reference list is completely accurate with no errors.
+
+Marking criteria: 10% Clarity of writing. The quality of written expression, English grammar, flow.
+High distinction (HD) 85%-100% requirement: Uses clear language that skillfully communicates meaning to readers with clarity and fluency and is virtually error-free.
+
+The current status of the project plan is as follows:
+
+Temperature-Aware Electricity Demand Forecasting: A Comparative Study of Statistical and Machine Learning Models under Extreme Conditions
+Cathy Xu (z5210468),
+Nader Sawalhi (z2271811),
+Andrew Chau (z2120445),
+Anirban Chakrabarty (z5626947).
+20/03/2026
+Table of Contents
+(Behmiri, et al., 2023)0.1	Introduction and Motivation	1
+0.2	Brief Literature Review	2
+0.3	Methods, Software and Data Description	3
+0.4	Activities and Schedule	4
+References	5
+
+(Behmiri, et al., 2023)0.1	Introduction and Motivation (This is my responsibility to write a great introduction and motivation to the project of about half page)
+You should describe the problem in your own words and motivate its importance. Your description should be clear for a reader not familiar with the problem (e.g., a student in your discipline but who is not involved in the course, another professor from your school who is not teaching this course). The idea is that you explain clearly what you have understood about what exactly is the problem after having listened to the project provider, and after potential discussions with the sponsor and/or your lecturers. Each team can define its own specific problem in the context of the global problem and associated data sets provided by the “client.”
+Then, briefly describe how you intend to solve the problem (e.g., compare several existing methodologies, apply specific statistical techniques, etc.).
+
+0.2	Brief Literature Review
+Electricity demand has increased significantly in recent decades due to population growth, technological development, and expanding urban environments (Nassreddine, 2025). Because electricity is fundamental to industrial production and economic activity, accurate demand forecasting is essential for planning generation capacity, distribution networks, and infrastructure investment (Ahmad, et al., 2018). Reliable forecasts allow energy providers to maintain a balance between electricity supply and demand, whereas inaccurate predictions can create operational and economic challenges. Underestimating demand may lead to power shortages and reduced service reliability, while overestimating demand may result in unnecessary infrastructure expansion and inefficient resource allocation (Kumar Biswajit Debnath, 2018). In Australia, the Australian Energy Market Operator (AEMO) relies on demand forecasting for planning and operational decisions. Even small improvements in forecast accuracy can produce measurable cost savings and reduce exposure to high wholesale prices.
+Traditional electricity demand forecasting methods rely on statistical time-series models that analyse historical consumption patterns. Common techniques include the AutoRegressive Integrated Moving Average (ARIMA) model (George E. P. Box, 1970)and exponential smoothing methods (Brown, 1956). These models perform well when electricity demand follows stable temporal patterns such as daily, weekly, and seasonal cycles. For example, García-Ascanio and Maté demonstrated that ARIMA models can produce accurate short-term forecasts for electricity demand when analysing non-stationary time-series data (Carolina García-Ascanio, 2010). However, traditional statistical models generally assume linear relationships and may struggle to capture complex interactions between electricity demand and external variables such as weather conditions, economic activity, and consumer behaviour (Hyndman, 2021). A key driver of electricity demand is weather, particularly temperature. Numerous studies (Behmiri, et al., 2023) show a strong relationship between temperature and load, often described as nonlinear and U-shaped. Demand increases during both high and low temperature conditions due to cooling and heating requirements. In the Australian context, high temperatures are especially important because air conditioning drives peak demand during summer periods. To address these limitations, recent research has explored machine learning approaches for electricity demand forecasting. Artificial Neural Networks (ANN) are widely used because they can model nonlinear relationships between electricity demand and influencing variables (Hippert, et al., 2001). More recently, deep learning models such as Long Short-Term Memory (LSTM) networks have been applied to electricity demand prediction due to their ability to capture temporal dependencies in sequential data (Kong, et al., 2019). Ensemble learning algorithms such as Extreme Gradient Boosting (XGBoost) also demonstrate strong forecasting performance by combining multiple decision trees and efficiently modelling nonlinear relationships within large datasets (Chen & Guestrin, 2016).
+Most existing studies rely on a wide range of input variables, including multiple weather factors, calendar effects, and socio-economic data, which can improve accuracy but limit practical use when data is restricted. In addition, many focus on overall performance using metrics such as MAE and RMSE, without recognising that errors during peak demand periods have greater operational and economic impact. In this project, short-term electricity demand forecasting over a 24-hour horizon is enhanced by incorporating the temperature effect. A baseline is established using regression and statistical models, such as ARIMA, and is then compared with machine learning approaches including XGBoost and LSTM. To better reflect real-world conditions, a scenario-based evaluation is introduced, where model performance is assessed during selected extreme temperature periods, both high and low, and across weekdays and weekends. This approach is intended to provide a more realistic assessment of model accuracy and stability during critical demand conditions.
+
+0.3	Methods, Software and Data Description
+This project develops and compares models for electricity demand forecasting in New Wales within the National Electricity Market (NEM) (UNSW, 2025). Electricity demand is strongly influenced by temperature, particularly during extreme heat and cold events when heating and cooling needs drive peak consumption. This project investigates short-term electricity demand forecasting in New South Wales using temperature-focused features, with an emphasis on accuracy during critical peak periods. A comparative approach is adopted, evaluating four methods: regression as a baseline, ARIMA to capture time-series patterns, XGBoost for modelling nonlinear relationships, and LSTM for learning temporal dependencies. Historical half-hourly demand and temperature data will be used to train and test the models, with performance assessed using standard metrics such as MAE and RMSE, as well as targeted evaluation during peak demand periods.
+A key focus of the project is scenario-based evaluation under extreme temperature conditions. Forecast accuracy will be examined on selected high and low temperature days, with comparisons made between typical weekdays and weekends to capture differences in demand behaviour. Unlike many studies that rely on large numbers of input variables, this project adopts a temperature-driven approach, supported by feature engineering such as lagged demand, time-based variables, and temperature transformations. This allows the study to assess how much predictive power can be achieved with minimal inputs while maintaining reliability under stress conditions. The results aim to identify which modelling approach provides the most accurate and stable forecasts for real-world energy system operations.
+
+The project will use GitHub for version control, Jupyter Notebook for programming and documentation, and both Python and R for analysis. Python libraries such as NumPy and pandas will be used for data manipulation, while Matplotlib and Seaborn will be used for data visualisation. Scikit-learn will support the implementation of machine learning models, and PyTorch will be used for neural network and deep learning approaches. These tools are proposed for the initial development phase and may be refined as the project progresses.
+This project uses three CSV datasets: forecastdemand_nsw.csv, totaldemand_nsw.csv, and temperature_nsw.csv (UNSW, 2025), which together support electricity demand forecasting in New South Wales. The totaldemand_nsw dataset provides the actual electricity demand values to be predicted, while temperature_nsw contains air temperature data, which serves as the primary explanatory variable in this study. The forecastdemand_nsw dataset, which is the largest with over 10.9 million records, contains forecast information used for benchmarking and comparison, whereas the temperature and total demand datasets are smaller, with approximately 220 thousand and 196 thousand records, respectively. To enable analysis, the datasets were standardised by aligning time formats, resolving missing and duplicate timestamps, and ensuring consistency across half-hour intervals. The cleaned demand and temperature data were then merged using the datetime attribute to produce a unified dataset suitable for modelling, while the forecast dataset was aggregated to provide a comparable benchmark.
+0.4	Activities and Schedule
+The main project activities are displayed in the Gantt Chart (Figure 1). The team has also created a Trello board - link here - to support project management and progress updates.  The activities for the project are organised into key stages, including initial setup and team coordination, data preprocessing and cleaning, model development and training, and the preparation of the final report and video. The team has been structured into the following roles [WIP]:
+•	Team Lead / Project Manager – Cathy Xu
+Cathy has a background in project management and is experienced with tools such as Gantt charts and Trello, which supports her role as Team Lead and Project Manager.
+•	Lead Researcher & Data Scientist – Nader Sawalhi
+Nader brings a strong research background and technical expertise, supporting his role as Lead Researcher and Data Scientist.
+•	Data Analyst - Andrew Chau
+Andrew has a broad skill set and experience in data visualisation, making him well suited to the Data Analyst role.
+•	Data Scientist - Anirban Chakrabarty
+Anirban works in the AI and machine learning domain and contributes advanced technical skills as the team’s Data Scientist. 
+.
+Figure 1 Group H Gantt chart
+References
+Ahmad, T., Chen, H., Guo, Y. & Wang, J., 2018. A comprehensive overview on the data-driven and large-scale approaches for forecasting building energy demand. Energy and Buildings, 15 April, pp. 301-320.
+Behmiri, N. B., Fezzi, C. & Ravazzolo, F., 2023. Incorporating air temperature into mid-term electricity load forecasting models using time-series regressions and neural networks. Energy Volume 278,, 1 September . 
+Brown, R. G., 1956. Exponential Smoothing for Predicting Demand. s.l.:s.n.
+Carolina García-Ascanio, C. M., 2010. Electric power demand forecasting using interval time series: A comparison between VAR and iMLP. Energy Policy, Volume 38, Issue 2,, February , pp. 715-725.
+Chen, T. & Guestrin, C., 2016. XGBoost: A Scalable Tree Boosting System. 
+George E. P. Box, G. M. J., 1970. Time Series Analysis: Forecasting and Control. s.l.:s.n.
+GitHub, n.d. GitHub. [Online] 
+Available at: https://github.com/
+[Accessed 2026].
+Hippert, H. S., Pedreira, C. E. & Souza, R. C., 2001. Neural Networks for Short-Term Load Forecasting: A Review and Evaluation. IEEE Transactions on Power Systems, Volume 16, Issue 1, pp. 12, 44-55, 12.
+Hyndman, R. &. A. G., 2021. Forecasting: Principles and Practice. s.l.:OTexts.
+Jupyter, n.d. Jupyter. [Online] 
+Available at: https://jupyter.org/
+[Accessed 2006].
+Kong, W. et al., 2019. Short-Term Residential Load Forecasting Based on LSTM Recurrent Neural Network. IEEE Transactions on Smart Grid (Volume: 10, Issue: 1), January. 
+Kumar Biswajit Debnath, M. M., 2018. Forecasting methods in energy planning models. Renewable and Sustainable Energy Reviews, May, pp. 297-325.
+Matplotlib, n.d. Matplotlib: Visualization with Python. [Online] 
+Available at: https://matplotlib.org/
+[Accessed 2026].
+Nassreddine, G. H. A. A.-K. O. R. A. a. N. M., 2025. Feature Selection Technique Using Multiple Linear Regression for Accurate Electricity Demand Forecasting. Smart Energy System Research, p. 10003.
+Numpy, n.d. NumPy. [Online] 
+Available at: https://numpy.org/
+[Accessed 2026].
+Pandas, 2026. Pandas. [Online] 
+Available at: https://pandas.pydata.org/
+Pandas, n.d. Pandas. [Online] 
+Available at: https://pandas.pydata.org/
+[Accessed 2026].
+Python, n.d. Python. [Online] 
+Available at: https://www.python.org/
+[Accessed 2026].
+PyTorch, n.d. PyTorch. [Online] 
+Available at: https://pytorch.org/
+[Accessed 2026].
+Scikit-learn, n.d. scikit-learn Machine Learning in Python. [Online] 
+Available at: https://scikit-learn.org/
+[Accessed 2026].
+Seaborn, n.d. seaborn: statistical data visualization. [Online] 
+Available at: https://seaborn.pydata.org/
+[Accessed 2026].
+Team, R. C., n.d. The R Project for Statistical Computing. [Online] 
+Available at: https://www.r-project.org/
+[Accessed 2026].
+UNSW, 2025. 1.2 Introduction to the data (Project brief: Energy forecast). [Online] 
+Available at: https://moodle.telt.unsw.edu.au/mod/page/view.php?id=8492414
+UNSW, 2025. 1.2c Accessing the project data in GitHub (The data sets). [Online] 
+Available at: https://moodle.telt.unsw.edu.au/mod/page/view.php?id=8492417
+[Accessed 2026].
+
+Write a great introduction and motivation to the project of about half a page. Provide me links to any and all relevant research works as well.
+------------------------------------------------------------------------------
+
+Course material Synopsys:
+1.1 The role of data scientists in industry
+What is the role of data scientists in industry?
+This document features Oliver Nunn discussing his background and the role of a data scientist in providing insights from raw, quantitative data to support decision-making.
+Oliver Nunn, a director at Endgame Economics with a background in pure mathematics and economics from UNSW, has ten years of experience in the energy sector as a data scientist.
+ His role involves transforming raw data into actionable insights, similar to analysts but with a focus on quantitative analysis.
+ Data scientists in his company analyze raw information to generate insights that enable informed decision-making, distinguishing their work from traditional report-based advice.
+Why is teamwork important for data scientists?
+1.1a Skills for working in teams
+What skills do you bring to the team?
+Data science projects usually require different subject matter experts to bring their respective expertise to the table as a data science team. This expertise involves various skills in statistics, mathematics, computing, coding, economics, data engineering, business intelligence, software engineering, project management, etc.
+A good data scientist should possess several non-technical and technical skills. A list of ten of the most important ones.
+Create a mindmap
+Use any free mind mapping software such as:
+EdrawMind (Formerly MindMaster)
+Lucidspark
+M8! - Mind Map
+
+Following is the summary of the transcript of the business context of the project and data:
+it discusses demand forecasting in the energy sector, focusing on how analysis informs decision-making for government bodies and industry operators, and explores methods to improve forecast accuracy and robustness.
+Understanding Client Needs and Use Cases
+- Clients include government and market bodies setting policies and laws to facilitate investment, as well as energy companies operating infrastructure.
+- The analysis aims to support decision-making, with an emphasis on understanding how clients will use forecasts.
+- Identifying potential secondary clients who can benefit from the work is crucial for future sales.
+- Forecasting demand accurately can lead to increased profits and lower costs, making demand the central focus.
+Demand Drivers and Data Sources
+- Temperature is the primary determinant, influencing electricity use during hot or cold periods.
+- Historical demand data spanning 20 years provides a baseline, alongside past forecast accuracy to evaluate model performance.
+- Incorporating macroeconomic variables like the following:
+  * Electricity Price Inflation (Retail/Default Market Offer)
+  * Household Disposable Income & Cost of Living
+  * Employment Trends (Working-from-Home)
+  * Population Growth & Housing Density
+  * Residential Mortgage Rates & Interest Rates
+  * Government Rebates (Energy Relief Funds)
+  * Rooftop Solar & Battery Uptake (Consumer Energy Resources)
+  * ASX (Australian Securities Exchange) index
+Forecasting Models and Approaches
+- Various models include time series, machine learning, and heuristic methods, each suited to different purposes like short-term prediction or rapid decision-making.
+- The goal is to produce probabilistic forecasts, not just point estimates, capturing the range of possible future demands.
+- Synthetic data generation allows stress testing models under different scenarios, especially useful when historical data is limited or biased.
+Synthetic Data and Future Planning
+- Synthetic data helps simulate plausible future worlds, capturing the full distribution of outcomes beyond observed historical points.
+- It enables better risk assessment, model testing, and long-term planning, especially when climate change or other factors introduce uncertainty.
+- The challenge lies in accurately modeling the distribution of variables like temperature to generate realistic demand scenarios.
+Explaining Outcomes and Improving Models
+- Understanding why demand outcomes occurred (e.g., weather, economic shifts) helps refine models and improve future forecasts.
+- Historical data provides a starting point, but synthetic data extends this by exploring alternative scenarios.
+- The ultimate aim is to develop models that can predict a full distribution of demand, accounting for uncertainties and complex interactions, leading to more effective planning and decision-making.
+
+Task
+Learn more about your goal for the data science project.
+This activity will help you define, as a team, your own research question in the context of the research problem introduced earlier and choose potential data you might use to build an answer to the research question, given your time and resources constraints.
+Activity instructions
+Read the introduction, then brainstorm what you think you'll need to know to get started on the project in the StickIt Board below.
+Your goal for the project
+In this project, you are not given a closed task. As a group, you should come up with your own research question related to the energy market and provide a thorough analysis using (part of) the data provided (potentially incorporating external data you can find by yourselves). 
+As a first step, you need to make a plan that (i) defines an interesting question and (ii) allows you to answer the question in the assigned timeline. 
+How to access the data
+You will access the data using GitHub. Work through the other activities in this week to explore how to set up a GitHub account.
+Brainstorm
+
+Using GitHub
+This session covers how you will configure GitHub as the primary repository for data and source code to support remote and distributed development.
+Completion requirements
+Purpose
+Learn about GitHub repository and configure it to be shared among the team members and course lecturers in order to complete your assessments in this course.
+Activity instructions
+Follow the instructions linked below to set up your GitHub account and perform basic tasks in GitHub.
+How to use GitHub
+This course will use GitHub as the primary repository for data and source code to support remote and distributed development. We will also use GitHub as a reference point, in which the groups will list all the project management, communication, and development tools that they will use during the course. Each group will have its repository, and the course lecturers will be part of the repository team. Your group GitHub setup will allow the lecturers to follow the project development and assist the groups with potential issues.
+In your team GitHub, you will create a standardised directory structure, including directories for data, code, and documents. You should also create a set of standardised document templates to guide an efficient data science process. Make sure to discuss between you an efficient way to collaborate on your documents in order not to lose anything, as well as to keep track of any changes made on your computing codes or your report.
+Press the button below for instructions on how to manage your group and configure your folder structure in your GitHub account.
+Press the button below to download instructions on how to set up GitHub for your team.
+This activity will help you in attempting the assessments.
+Accessing the project data in GitHub
+Use GitHub to access the data repository.
+Completion requirements
+Purpose
+Setup a private GitHub repository and configure it to be shared among the team members and course lecturers
+Understand how a GitHub repository works and how to organise the course code, data, and documentation using this tool
+Learn how to use git and GitHub main commands using the command line interface.
+Activity instructions
+Click the link below to access the GitHub repository for your data science project.
+The data sets
+There are three data sets containing historical data (from 01-01-2010) which include:
+Total electricity demand, in 5 minutes increments for New South Wales. This data is sourced from the Market Management System database, which is published by the market operator from the National Electricity Market (NEM) system. The variables are:
+DATETIME: Date and time interval of each observation in the format (dd/mm/yyyy hh:mm)
+TOTALDEMAND: Total demand (MW)
+REGIONID: Region Identifier (i.e. NSW1)
+Forecast demand in half-hourly increments for New South Wales.This data is also sourced from the Market Management System database. The variables are:
+DATETIME: Date time interval of each observation (dd/mm/yyyy hh:mm)
+FORECASTDEMAND: Forecast demand (MW)
+REGIONID: Region Identifier (i.e. NSW1)
+PREDISTPATCHSEQNO: Unique identifier of predispatch run (YYYYMMDDPP). In energy generation, “dispatch” refers to process of sending out energy to the power grid to meet energy demand. “Predispatch” then is an estimated forecast of this amount.
+PERIODID: Period count, starting from 1 for each predispatch run.
+LASTCHANGE: Date time interval of each update of the observation (dd/mm/yyyy hh:mm)
+For example, given below: Forecast demand for 1/1/2010 0:00, measured on 12/30/2009 12:31 was 7832.04 MW
+Air temperature in New South Wales (as measured from the Bankstown Airport weather station). This data is sourced from the Australian Data Archive for Meteorology. Note: Unlike the total demand and forecast demand, the time interval between each observation may not be constant (i.e. half-hourly data). The variables are:
+DATETIME: Date time interval of each observation (dd/mm/yyyy hh:mm)
+TemperatureTEMPERATURE: Air temperature (°C)
+LOCATION: Location of a weather station (i.e.i.e., Bankstown weather station)
+Please note that the files include data for 2010-2021 YTD even if you cannot see it in Excel – some of the files are so large that Excel cannot load them completely.
+Access the GitHub repository for this course
+The GitHub repository linked in the button below is the main point of access for students and lecturers of the ZZSC9020 capstone course. In this repository, you will find the data and source code to start developing your projects. Also, we will use the repository to share code, documentation, data, models, and other resources between the team members and course lecturers.
+
+Setting up your team
+This session further examines best practice and provides resources to help run a successful team.
+Purpose: This activity will help you form an effective working group and work towards completing Assessment 1b: Implementation checklist.
+Activity instructions
+Read the information below, then work with your group to document your team strategy. Lastly, don't forget to schedule a meeting between your team and one of the online lecturers by the end of Week 1.
+Getting your team started on the project
+Typically, a data science project is done by a data science team. Data science teams have project leads for project management and governance tasks, and individual data scientists and engineers to perform the data science and data engineering parts of the project. Click 'start' below to work through the steps involved in setting up your team for this course.
+Steps to set up your team
+Panel1 of 9
+Team roles
+You will be randomly assigned into a group with 3 or 4 other students and must have contacted the members of your group in week 1. You may need to elect someone to play the role of Team Lead. This person should coordinate the efforts made by all team members and split the different activities according to the strengths and skills of the team members. The Team Lead thus clearly defines, collegially, the roles among the team players. He/She organises the activities that will be performed to finish the project in a timely manner. Of course, it does not mean that he/she should not take part in the other tasks (e.g., writing of the report, modelling, etc.).
+Discuss with your teammates how you will allocate various other roles to each team member. Use the mind maps created in the previous activity to help you in this task.
+Panel2 of 9
+Agree on a strategy and tools
+In order to ensure a smooth collaboration between all team players, we advise that you put in place a well-defined strategy and decide on a range of tools that will increase the efficiency of your work. Think also about OS platform compatibility before choosing these tools. At the bottom of this page, we give a few pieces of advice and mention potential tools, but feel free to innovate.
+Panel3 of 9
+When will you meet?
+The first thing to do is to decide when you will meet; for example, you might use Doodle to coordinate your meetings.
+Panel4 of 9
+How will you meet?
+The next step is to decide how you will interact with each other. We recommend using your designated group channel on Teams. It is advised you find a way to archive the messages you will exchange or record your meetings (in case someone cannot show up during one of your meetings for example).
+Panel5 of 9
+Write an agenda
+Each time you meet, you should have a written agenda of the meeting that succinctly details what will be discussed (see https://plan.io/blog/meeting-notes). Press the button below to access meeting agenda templates.
+Panel6 of 9
+Record your meetings
+You should also have someone that will write the minutes of the meeting to record what will have been decided. Press the button below to see templates for meeting minutes.
+Panel7 of 9
+Which statistical analyses will you use?
+The third step is to decide what software you are going to use for your statistical analyses. How will you ensure a complete reproducibility of these analyses? We strongly suggest you use either RStudio in combination with R Markdown , or Jupyter or a Colab.
+A nice tool to collaborate in real-time on markdown documents is Hackmd which supports GitHub integration or Stackedit.
+Panel8 of 9
+What is your first 'to do' list?
+Finally, you will need to plan very seriously a list of activities that will have to be performed to ensure a timely completion of the project. What computing tools will you use to manage these tasks and increase your productivity? How will you distribute these tasks in a clever way between the members of your team? Do not hesitate to adopt agile practices and management of the flow of work. Maybe you can use Trello or Jira which are web-based Kanban-style list-making applications that can be connected to Slack or Discord.
+To learn more about the project management software Jira, you can complete this short Coursera course.
+Panel9 of 9
+Get feedback on your plan
+Once you and your team have agreed on your plan, schedule an appointment with one of the Online Lecturers via the Communications tab by the end of Week 1. They will be able to give your team feedback on your plan.
+Introduction to R Markdown (Optional)
+Learn how R Markdown can be a useful tool for data scientists.
+Completion requirements
+Purpose
+Learn the basics of R Markdown to expand your capabilities of writing Data Science reproducible reports.
+Activity instructions
+Read through the description of R Markdown below. You may also wish to visit the site linked below to learn more about how to use R Markdown. Finally, considering what you've learned about R Markdown, identify which feature you think would be most useful for this course and vote in the poll below. 
+The main features of R Markdown
+RMarkdown is a format for writing reproducible, dynamic reports mixing in the same document various languages such as LaTeX, R and Python, among others. It is implemented in the RStudio software. It is similar in spirit to Jupyter notebooks, but it offers more features. In fact, it is possible, directly from within RStudio, to compile (we say "knit") this Rmd file to produce various output formats (such as LaTeX, PDF, Word, Beamer slides, HTML, etc.) thanks to the third-party software pandoc. Using this strategy for creating a report offers both the advantages of a WYSIWYG ("What You See Is What You Get") editor and the flexibility of a typesetting programming language.
+When creating an R Markdown document, you intertwine paragraphs of text with chunks of code (e.g., R or Python). You can "play" these chunks by clicking on a green arrow located right of the chunk itself. You thus create your report interactively and iteratively. It is possible to parameterise each chunk individually to either make its content (i.e., the code), or only the output of the code, or nothing, appear in the final document. Moreover, the pieces of text are written in a very simple tag language called Markdown, which makes it easy to read. For instance, to get a text in boldface, write *this text is bold* while for italic, write _this text is in italic_. Of course, you can also use LaTeX commands to typeset mathematics!
+Finally, when you are happy with your results, you can knit the whole Rmd document to produce your final PDF or Word report. If a few weeks later, you wonder how you obtained some nice numerical or graphical result displayed in your Word or PDF document, you just need to open the associated Rmd file. You can even change or add a few values in the associated data sets and reproduce the entire updated report in one click!
+Please visit the Introduction section at https://rmarkdown.rstudio.com/lesson-1.html to watch a very short video showcasing its use. And, if you are convinced like we are and can find the time, do not hesitate to read the remaining sections. We believe this will greatly improve your data science work efficiency.
+Note that you can collaborate online on an RMarkdown document thanks to the trackdown package (see https://bookdown.org/yihui/rmarkdown-cookbook/google-drive.html).
+The role of R Markdown in this course
+We created an R Markdown template (a file with extension Rmd) that you can use to create an entirely reproducible report for this course. Note that we do provide a Word document (generated easily and directly from our Rmd template) in case you prefer to stick to software you already know well.
+Weekly teamwork reflection
+Forum
+Don't track unread posts
+Completion requirements
+Purpose
+Reflect on how your group is working so far.
+Activity instructions
+Consider the reflection prompt below, then click the button to post your reflection in the forum.
+Weekly reflective portfolio
+As part of Assessment 2, you are required to participate in a weekly reflective portfolio forum by posting one less than 250-word reflection each week. Your contribution to this forum is vital in order to share ideas, information, your success and failures with your cohort. Communication with the course convenors and fellow students will help ensure that you get the most from this course. These submissions can include reflections of the group process, group dynamics, tools you found helpful, issues, challenges as well as responses to other posts.
+In your reflection this week, comment on this question:
+Question for week 1
+Have you met with your team and has your team established roles, tools, processes to communicate effectively with your team? If so, what are your next goals? If not, what do you plan to do to improve your communication with the team?
+Write a maximum of 250 words into the reflective portfolio forum below by responding to your lecturer's post. This activity will help you in attempting the assessments. Once you have added your reflection, you will have a 30 minute window to make any edits to your post. After 30 minutes you will be able to see your classmates' reflections to discuss ideas.
+
+Group tasks to be completed by the beginning of week 2
+Elect a team leader
+Define roles and responsibilities for each member of the team with proper justification
+Schedule weekly group meetings with course conveyor
+Establish teamwork software list (with proper justification, short description of tools chosen, and example(s) of use):
+Project Management: GitHub (mandatory)
+List-making applications: Trello, MS Planner, Jira, other
+File sharing: Dropbox, SeaFile, OneDrive, Google Drive, other
+Collaborative editing: Overleaf, Colab, Replit, other
+Organise Group meetings: Teams, Zoom, Discord, Slack, other
+Write weekly submission of 250 words into the Reflective forum
+Complete Assessment 1, Part A: Group Project Plan
+Complete Assessment 1, Part B: Implementation Checklist
+Meet with your team
+Write a brief post introducing yourself to your team in your group channel on Teams. As a team, discuss how you want to set up your team based on the ideas outlined above.
+Don't forget, as a team you will need to achieve the following by the end of week 1:
+Prepare a brief written document that explains how you will work together as a team.
+Schedule a meeting with one of the online lecturers.
+You will discuss your team document with your online lecturer during your meeting.
+Feedback
+You will receive feedback on your teamwork document during a meeting with one of the online lecturers.
+
+Assessment 1b: Implementation checklist
+Assessment 1 Part B: Individual implementation checklist:
+Read the course material in Week 1, and then consider the software and digital tools you will use to help manage your project.
+Instructions
+Each group member must individually answer all questions in the implementation checklist questionnaire. For each category in the checklist, select one or more choices among the ones offered. Give a short description of each software or tool selected, and explain clearly what features you intend to use during this course.
+Also, justify why your group has decided to agree on this specific choice among all those available. You can give examples of use. We want every student to be fully involved in the process of considering the tools and software your group may use for your project, and expect to see that you are engaged with this through the free-text responses in this assessment.
+Assessment 1B. Implementation Checklist
+
+1. What software will you use for your group meetings? For each category below, select one or more choices.
+Zoom, Skype, Discord, MS 0365 Teams, Slack, Other
+Answer: MS 0365 Teams; Other (WhatsApp)
+2. Software used for your group meetings. Give a short description of each software or tools selected and explain clearly what are the features you will use during this course. Justify properly why your group has decided to agree on this specific choice among all those available. You can give examples of use. Note: Your response is limited to 180 words (1000 characters)
+Answer: We will use MS 365 Teams as our primary software for group meetings, with WhatsApp (Other) as a supplementary real-time communication tool. MS Teams will be used for all formal meetings, including weekly team discussions and sessions with lecturers. It offers video conferencing, screen sharing, recording, and chat. We will use screen sharing to review code, discuss model outputs, and present findings. Recordings will help absent members stay aligned. WhatsApp will be used only for quick, informal communication such as scheduling, reminders, and minor clarifications, not for formal meetings. This choice ensures structured collaboration. MS Teams is preferred over tools like Zoom or Slack due to its integration with the UNSW ecosystem and its comprehensive meeting features. WhatsApp complements this by enabling fast coordination. For example, meetings will be on Teams, while day-to-day updates occur via WhatsApp.
+
+3. What software will you use to manage your work collaboratively? For each category below, select one or more choices.
+GitHub, Trello, Jira, MS Planner, Dropbox, Seafile, Google Drive, OneDrive, Replit, Other
+Answer: GitHub, Torello, Google Drive
+4. What software used to manage your work collaboratively? Give a short description of each software or tools selected and explain clearly what are the features you will use during this course. Justify properly why your group has decided to agree on this specific choice among all those available. You can give examples of use. Note: Your response is limited to 180 words (1000 characters)
+Answer:We will use GitHub, Trello and Google Drive to manage our work collaboratively. GitHub will be the main platform for version control, storing code, datasets and documentation. We will use repositories, branching and pull requests to manage parallel development and ensure reproducibility. Trello will be used for task management using a Scrum-board, with tasks organised into To Do, In Progress and Completed to track progress and assign responsibilities. Google Drive will be used for file sharing and collaborative editing of reports and documents. These tools were chosen for their complementary strengths. GitHub supports structured and reproducible development, Trello enables clear tracking of tasks, and Google Drive allows efficient document collaboration. Compared to alternatives, they are widely used, easy to integrate and suitable for both technical and non-technical work. For example, tasks in Trello will link to GitHub work, while reports will be developed in Google Drive.
+
+5. What software will you use for your data analysis? For each category below, select one or more choices. Python, R/RStudio, MATLAB, SAS, Tableau, Other
+Answer: Python, R/RStudio
+6. What software will you use for your data analysis? Give a short description of each software or tools selected and explain clearly what are the features you will use during this course. Also, justify properly why your group has decided to agree on this specific choice among all those available. You can give examples of use. Note: Your response is limited to 180 words (1000 characters)
+Answer must not have any formatting, must be purely a plain text format in simple text & ASCII characters.
+Your response must be < 180 words and 1000 characters, both.
+Answer: We will use Python and R/RStudio for data analysis. Python will be the primary tool due to its strong ecosystem for data science. We will use pandas and numpy for data processing, matplotlib and seaborn for visualisation, scikit-learn for machine learning models such as regression and XGBoost, and PyTorch for LSTM models. Jupyter notebooks will support interactive analysis and reproducibility. R/RStudio will be used for statistical modelling and time series analysis, particularly ARIMA and exploratory analysis, using packages such as forecast and ggplot2. These tools were chosen for their complementary strengths. Python provides flexibility and scalability for machine learning, while R offers strong statistical capabilities. Compared to alternatives like MATLAB or SAS, they are open source, widely used and better suited for collaborative academic work. For example, data will be cleaned and modelled in Python, while time series validation and visualisation can be performed in R.
+
+7. What software will you use to write your group report in a reproducible manner? For each category below, select one or more choices. Jupyter, RMarkdown, Google Colab, LaTeX, Overleaf, Other
+Answer: Jupyter notebooks; RMarkdown; Other (MS Word)
+8. What software will you use to write your group report in a reproducible manner? Give a short description of each software or tools selected and explain clearly what are the features you will use during this course. Also, justify properly why your group has decided to agree on this specific choice among all those available. You can give examples of use. Note: Your response is limited to 180 words (1000 characters)
+Answer must not have any formatting, must be purely a plain text format in simple text & ASCII characters.
+Your response must be < 180 words and 1000 characters, both.
+Answer: We will use Jupyter notebooks, Google Colab and RMarkdown to write our report in a reproducible manner, with MS Word used only for final formatting and submission. Jupyter and Colab will be used to combine Python code, outputs and explanations, enabling clear presentation of data processing, modelling and visualisation. Colab also allows cloud-based execution and easy sharing across the team. RMarkdown will integrate R code with text and generate structured reports. These tools support embedding code and results directly, ensuring reproducibility. They were chosen because they align with our use of Python and R and support collaboration. Compared to LaTeX or Overleaf, they provide better integration with code execution. For example, results and plots can be generated and updated automatically, then exported to Word for final presentation.
+
+9. What software will you use for your oral presentation? For each category below, select one or more choices. Beamer, Powerpoint, Zoom, Screencast-O-Matic,  Prezi, RShiny, Other
+Answer: PowerPoint and Zoom
+10. What software will you use to write your Oral presentation? Give a short description of each software or tools selected and explain clearly what are the features you will use during this course. Also, justify properly why your group has decided to agree on this specific choice among all those available. You can give examples of use. Note: Your response is limited to 180 words (1000 characters)
+Answer must not have any formatting, must be purely a plain text format in simple text & ASCII characters.
+Your response must be < 180 words and 1000 characters, both.
+Answer: We will use PowerPoint and Zoom for our oral presentation. PowerPoint will be used to design and deliver the presentation slides. It allows clear structuring of content, visualisation of results and integration of charts and images. We will use it to present key findings, models and insights in a concise and professional format. Zoom will be used to record and deliver the presentation, enabling screen sharing and video recording. This ensures smooth delivery and allows us to capture the presentation for submission. These tools were chosen due to their ease of use, familiarity within the team and strong compatibility with university requirements. Compared to alternatives like Prezi or Beamer, PowerPoint provides better control over slide design and is more widely accepted. Zoom offers reliable recording features without additional setup. For example, slides will be created in PowerPoint and presented and recorded via Zoom for submission.
+
+11. List any additional software you intend to use that is not mentioned above. Note: Your response is limited to 180 words. Answer must not have any formatting, must be purely a plain text format in simple text & ASCII characters.
+Your response must be < 180 words and 1000 characters, both.
+Answer: We will also use Visual Studio Code as an additional tool. Visual Studio Code will serve as a lightweight code editor for developing and managing Python scripts, with features such as extensions, debugging and GitHub integration. It supports efficient coding, version control and project organisation. This tool was selected because it is flexible, widely used and integrates well with our existing workflow. Compared to other editors, it provides a simple interface with powerful features for development. For example, code can be written and tested in Visual Studio Code before being integrated into Jupyter notebooks or pushed to GitHub for collaboration.
+
+
+

@@ -1,0 +1,43 @@
+# EDA
+# head(colony_counts)
+# dim(colony_counts)
+# names(colony_counts)
+# str(colony_counts)
+# summary(colony_counts)
+# colSums(is.na(colony_counts))
+# View(colony_counts)
+
+# Q4 leverage pts
+# Don't remove high leverage pts, valid observations not data entry errors. not unduly influence model. residuals vs leverage plots can identify if any problem.
+
+# Q9 Colinearity
+# yes
+# redundancy: total ≈ total.fem + other
+# all.equal(colony_counts$total, colony_counts$total.fem + colony_counts$other)
+# high variance (VIF)
+
+# Q10
+# total ≈ total.fem + other
+# coef in Model D2 are bigger. In D1, coefs distorted due to multicollinearity, redundant total. Remove it.
+
+#---------------------------------
+
+# Q2 most shrunk predictor
+# total.fem shrink most as lambda increase. Ridge regressn => large initial magnitude predictor, high correln with others -> most shrinkage as penalty increase.
+
+#---------------------------------
+
+# Q2 interpretation for the weight coefficient in terms of odds
+# per gm nest wt increase, female spider multiplied ~e^-0.0048 (decrease)
+
+# D << critical val 3.84. F1 sufficient fit, simple model. Additional predictor in F2 does not provide mush improvement.
+
+#---------------------------------
+
+# Q3 G2
+# insect.count non linear: edf=3.768, F p=0.00741)
+# prey.sec linear: edf=1
+# prey.sec not significant (p=0.61428)
+
+# Q4 G2 G3
+# G3 simpler model. p-value 0.6016 > 0.05, not significant. Adding prey.sec doesn't improve fit.

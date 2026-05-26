@@ -1,0 +1,209 @@
+Question was:
+Instructions We consider the following variables collected about each nest: - weight (weight of individuals in a nest). (response) - total.fem (total number of adult females). - other (total number of males and juveniles). - total (total number of spiders). Note that some of the above numbers are estimated values and so they may not be integers, even though the true value would be an integer (like the total number of spiders). We will consider two models: Model D1: Normal/Gaussian linear model with the response variable weight with predictors: total.fem, other, total. Model D2: Normal/Gaussian linear model with the response variable weight with predictors you will select below. Please pay attention to which Model is being referenced in each Question. Questions 1-9 ask about Model D1. Questions 10 asks about Model D2. Questions 11 asks about comparing Model D1 with Model D2.
+-----------------------------------------------
+
+Q1 D1: What is the estimated value of 𝜎^?
+
+Code:
+model_D1 <- lm(weight ~ total.fem + other + total, data = colony_counts)
+summary(model_D1)
+
+Ans: Residual standard error: 0.2053 gives 𝜎^
+-----------------------------------------------
+
+Q2 D1: Model D1: What is the fitted coefficient for total.fem?
+
+Code:
+coef(model_D1)
+
+Ans: total.fem -> 0.0034877586
+-----------------------------------------------
+
+Q3 D1:
+How many points have high leverage? rule of thumb -> high leverage if its leverage value is ≥3×p/N.
+Code:
+sum(hatvalues(model_D1) >= 3*length(coef(model_D1))/nrow(colony_counts))
+
+LHS:
+sum: Counts the number of TRUE values
+hatvalues(model_D1): Computes leverage values (hᵢ) for each observation in Model D1. Measure how far each point’s predictors are from the mean of predictors
+RHS:
+3 * length(coef(model_D1)) / nrow(colony_counts): Computes the threshold = 3p/N (rule of thumb for high leverage)
+coef(model_D1): Extracts the model coefficients (including intercept)
+length(coef(model_D1)): Gives p, the number of parameters in the model
+nrow(colony_counts): Gives N, the number of observations (rows in dataset)
+-----------------------------------------------
+
+Q4 D1:
+Don't remove high leverage pts, valid observations not data entry errors. not unduly influence model. residuals vs leverage plots can identify if any problem.
+Explanation:
+A residuals vs leverage plot helps assess this by identifying points with both high leverage and large residuals (e.g., via Cook’s distance). If they are not influential, they do not unduly affect the model, so they can be retained.
+-----------------------------------------------
+
+Q5 D1: TSS total sum of squares:
+round(sum((colony_counts$weight - mean(colony_counts$weight))^2), 1)
+72.9
+-----------------------------------------------
+
+Q6 D1: sum of the squared standardized residuals:
+round(sum(rstandard(model_D1)^2), 2)
+rstandard(model_D1)^2: Ensures all values are positive and emphasizes larger deviations
+-----------------------------------------------
+
+Q7 D1: log likelihood
+round(logLik(model_D1)[1], 2)
+
+[1] gives numeric value only. eliminates number of parameters, number of observations etc.
+-----------------------------------------------
+
+Q8 D1: AIC second part = 2k
+2*length(coef(model_D1))
+
+Akaike Information Criterion=−2logL+2k
+−2logL → measures model fit
+2k → penalty for model complexity = twice the number of model parameters
+-----------------------------------------------
+
+Q9 D1: Colinearity
+install.packages("car")
+library(car)
+vif(model_D1)
+# strong linear relationship (correlation)
+cor(colony_counts[, c("total.fem", "other", "total")])
+
+          total.fem     other     total
+total.fem 1.0000000 0.5877307 0.9256491
+other     0.5877307 1.0000000 0.8328179
+total     0.9256491 0.8328179 1.0000000
+From correlation matrix total.fem vs total = 0.9256 other vs total = 0.8328 indicate strong linear relationships
+total = total.fem + other
+Therefore Redundant information across predictors, Inflated standard errors
+------------------------------------------------
+
+Q10 D1: Total was removed: Perfect/near-perfect linear dependency: total = total.fem + other: Makes total redundant. total.fem & other are already in model
++ high correlations: total.fem vs total = 0.9256 & other vs total = 0.8328
+------------------------------------------------
+
+Q11 D2: lower BIC
+BIC(model_D1)
+BIC(model_D2)
+
+Bayesian Information Criterion evaluates models by balancing fit and complexity
+Model D2 has fewer parameters than Model D1 → lower penalty term
+Since D2 also removes multicollinearity, it achieves a similar or better fit with less complexity
+Therefore, BIC(model_D2) < BIC(model_D1) indicates that Model D2 is preferred.
+-------------------------------------------------
+
+Q1 E1:
+library(glmnet)
+→ Loads the glmnet package for ridge regression
+x <- as.matrix(colony_counts[, c("total.fem", "other", "total")])
+→ Creates predictor matrix X using the three variables (required as matrix for glmnet)
+y <- colony_counts$weight
+→ Defines response variable y
+lambda_seq <- seq(0.001, 50, by = 0.001)
+→ Generates sequence of λ values from 0.001 to 50 (ridge penalty range): regularization parameter, punishing values against overfitting in ridge regression
+model_E1 <- glmnet(x, y, alpha = 0, lambda = lambda_seq, standardize = TRUE)
+→ Fits ridge regression model (alpha = 0) across all λ values with standardized predictors
+try(dev.off(), silent = TRUE)
+→ Closes any existing plot device safely (avoids plotting issues)
+par(mar = c(4,4,2,1))
+→ Adjusts plot margins (bottom, left, top, right)
+beta <- as.matrix(model_E1$beta)
+→ Extracts coefficient estimates for all predictors across λ values
+log_lambda <- log(model_E1$lambda)
+→ Computes log(λ) for x-axis scaling
+matplot(log_lambda, t(beta), type = "l", lty = 1, lwd = 2,
+        col = c("lightblue", "orange", "darkgreen"),
+→ Plots coefficient paths (each line = one predictor) against log(λ)
+        xlab = "log(lambda)",
+        ylab = "Standardized Coefficients",
+        main = "Ridge Regression (Standardized) Coefficients vs log(lambda)",
+→ Adds axis labels and plot title
+        ylim = c(-0.001, 0.004),
+        cex.main = 0.9, font.main = 1)
+→ Sets y-axis range and adjusts title size/style
+grid(col = "lightgray", lty = "dashed")
+→ Adds grid lines for readability
+legend("topright",
+       legend = rownames(beta),
+→ Uses predictor names as legend labels
+       col = c("lightblue", "orange", "darkgreen"),
+       lty = 1, lwd = 2, bty = "o")
+→ Styles the legend (colors, line type, box)
+-------------------------------------------------
+
+Q2 E1: most shrunk predictor
+# total.fem shrink most as lambda increase. Ridge regressn => large initial magnitude predictor, high correln with others -> most shrinkage as penalty increase.
+-------------------------------------------------
+
+Q3 E1: What is the λ value corresponding to the 1-standard-error rule?
+cv.glmnet(x, y, alpha = 0, lambda = lambda_seq)$lambda.1se
+-------------------------------------------------
+
+Q4 E1: What is the value of the train mean squared error (MSE) for λ=3?
+mean((y - predict(model_E1, newx = x, s = 3))^2)
+predict(model_E1, newx = x, s = 3)): Generates predicted values ŷ from the ridge model using λ = 3
+------------------------------------------------
+
+Q5 E1: leave-one-out CV lambda=3 -> estimate test MSE
+
+This code manually performs leave-one-out cross-validation by leaving out one point at a time, fitting the ridge model on the remaining data, predicting the omitted point, squaring its error, and averaging those errors.
+
+(mean(sapply(1:nrow(x), function(i) {
+  fit <- glmnet(x[-i, ], y[-i], alpha = 0, lambda = 3)
+  (y[i] - predict(fit, newx = x[i, , drop = FALSE], s = 3))^2
+}))
+
+1:nrow(x) -> Iterates through each observation, treating each one once as the left-out test point
+sapply(..., function(i) { ... }) -> Repeats the leave-one-out process for every observation and stores the squared prediction error each time
+x[-i, ] and y[-i] -> Use all observations except the i-th one as the training set
+glmnet(..., alpha = 0, lambda = 3) -> Fits the ridge regression model with λ = 3 on the training data
+x[i, , drop = FALSE] -> Selects the left-out observation as a 1-row matrix so predict() works correctly
+predict(fit, newx = x[i, , drop = FALSE], s = 3) -> Predicts the response for the omitted observation using the fitted ridge model
+(y[i] - predict(...))^2 -> Computes the squared test error for that left-out point
+mean(...)
+------------------------------------------------
+
+Q6 E1: leave-one-out CV lambda=3 -> max MSEi
+max(sapply(1:nrow(x), function(i) {
+fit <- glmnet(x[-i, ], y[-i], alpha = 0, lambda = 3)
+(y[i] - predict(fit, newx = x[i, , drop = FALSE], s = 3))^2
+}))
+------------------------------------------------
+
+Q1 F1: Wt coef
+round(coef(model_F1)["weight"], 4)
+------------------------------------------------
+
+Q2 F1: interpretation for the weight coefficient in terms of odds
+# per gm nest wt increase, female spider multiplied ~e^-0.0048 (decrease)
+# D << critical val 3.84. F1 sufficient fit, simple model. Additional predictor in F2 does not provide mush improvement.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

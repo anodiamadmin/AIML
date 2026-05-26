@@ -1,0 +1,8 @@
+Agentic AI
+
+TensorFlow
+Py-Torch
+Masters Projects
+
+Publish papers on:
+1. Gaussian Splats
