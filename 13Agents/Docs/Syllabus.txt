@@ -1,0 +1,54 @@
+Syllabus:
+
+Venkata Reddy AI Classes: 36 Videos: Agentic AI Full Course: The Fastest Way to Master Agentic AI
+- https://www.youtube.com/watch?v=Cw2b7h6yHMo&list=PL2hXNYim5xvq7VeuhDiB-0279P2fmH16u
+
+Design Patterns:
+- https://www.youtube.com/watch?v=e2zIr_2JMbE
+
+Code With Aarohi: 25 Videos: Learn Agentic AI: From Basics to Advanced Multi-Agent Systems
+- https://www.youtube.com/watch?v=MU1GBAoGvks&list=PLv8Cp2NvcY8DeLpPBREcC9aU8ESfYeSeX
+
+RAG:
+- https://www.youtube.com/watch?v=63B-3rqRFbQ&list=PLNIQLFWpQMRUMjxfe8o6g3uzJ6LH_VotY
+
+Agentic and Generative AI
+What are AI/ LLM Agents - Types of AI Agents
+Build a Simple Reflex Agent in Python - Create a Smart Room Cleaning Agent
+Goal-Based Agents Using Langchain Streamlit
+Learning Agents
+Reinforcement Learning Basics
+Value Function in Reinforcement Learning - V(s) Explained with Bellman Equation & Example
+Learning Agents - Q-Learning Explained | Reinforcement Learning Tutorial with Python
+LangGraph Tutorial: Build Agentic AI Systems Step by Step
+CrewAI - Agentic AI Framework
+Understanding Agno (formerly Phidata) - Multimodal Agentic AI Framework
+Agno Tutorial: Create AI Agents with Tools & Memory
+Agentic RAG with Agno
+What is MCP (Model Context Protocol)?
+How to Run and Connect Multiple MCP Servers with LangGraph on Local Machine
+Creating a Custom MCP Server with LangGraph & Streamlit | Step by Step tutorial
+Build a custom MCP server on the cloud from scratch | Step by Step tutorial
+Using MCP Servers with Agno: From Local Setup to Cloud Deployment
+How to Build Agentic AI Apps with OpenAI Agents SDK
+How to Use MCP with OpenAI Agents SDK
+
+
+
+
+Google ADK - Major production framework
+Pydantic AI - Growing fast
+Smolagents - HuggingFace standard
+AG2/AutoGen - Strong for multi-agent
+Claude Agent SDK - Anthropic-native agents
+A2A Protocol - As important as MCP now
+Agent Observability - Production essential
+Agent Evaluation/Evals - Production essential
+Guardrails & Security - Production essential
+HITL design patterns - Enterprise standard
+
+
+
+
+
+
